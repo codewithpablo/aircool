@@ -1,9 +1,9 @@
 "use client";
-import TestimonialCard from "./TestimonialCard";
+import Image from "next/image";
 
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { testimonios } from "@/constants";
+import { images, testimonios } from "@/constants";
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +12,7 @@ import {
 
 export default function CarouselVertical() {
   const autoplay = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
+    Autoplay({ delay: 2000, stopOnInteraction: false })
   );
 
   return (
@@ -25,9 +25,11 @@ export default function CarouselVertical() {
       
     >
       <CarouselContent className=" h-[400px] rounded-3xl ">
-        {testimonios.map((testimonio, index) => (
-          <CarouselItem key={index} className="">
-            <TestimonialCard testimonio={testimonio}/>
+        {images.map((e, i) => (
+          <CarouselItem key={i}>
+            <div className="relative w-xs h-full">
+              <Image src={e} alt="" width={400} height={100} className="h-full object-cover rounded-2xl" />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>

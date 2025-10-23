@@ -50,7 +50,7 @@ const Hero = () => {
             </div>
         </div>
         <div className='flex-1 flex flex-col items-center mt-20 lg:h-screen relative  justify-start '>
-           <div className="shadow-lg border rounded-2xl overflow-hidden">
+           <div className=" rounded-2xl overflow-hidden">
              <HeroSlider />
            </div>
         </div>

@@ -75,25 +75,114 @@ export const courses = [
 ];
 
 
-export const testimonios = [
+// types
+export interface Testimonio {
+  id: number;
+  nombre: string;
+  comentario: string;
+  foto: string;        // URL o ruta local a la imagen
+  ciudad: string;      // localidad dentro del país
+  provincia: string;
+  pais: 'Argentina';
+  curso?: string;      // opcional: curso relacionado
+  fecha?: string;      // opcional: "2025-10-01"
+}
+
+export const testimonios: Testimonio[] = [
   {
-    nombre: "María López",
-    cargo: "Técnica en refrigeración",
-    comentario: "Los cursos de AirCool me enseñaron habilidades prácticas que pude aplicar inmediatamente en mi trabajo. ¡Muy recomendable!"
-  },
-  {
-    nombre: "Juan Pérez",
-    cargo: "Instalador de equipos",
-    comentario: "Aprendí técnicas profesionales que antes no conocía. Gracias a AirCool ahora me siento más preparado para cualquier desafío."
-  },
-  {
+    id: 1,
     nombre: "Lucía Fernández",
-    cargo: "Estudiante de refrigeración",
-    comentario: "Los instructores explican todo de manera clara y práctica. Los cursos me ayudaron a ganar confianza en mis conocimientos."
+    comentario:
+      "El curso superó mis expectativas: el contenido es claro y los ejercicios prácticos me ayudaron a entender todo rápido.",
+    foto: "https://randomuser.me/api/portraits/women/68.jpg",
+    ciudad: "Córdoba",
+    provincia: "Córdoba",
+    pais: "Argentina",
+    curso: "Refrigeración Integral",
+    fecha: "2025-09-12",
   },
   {
-    nombre: "Carlos Gómez",
-    cargo: "Empleado de mantenimiento",
-    comentario: "Excelente formación y muy aplicable al día a día. Recomiendo AirCool a todos los que quieren especializarse en refrigeración."
-  }
+    id: 2,
+    nombre: "Matías Gómez",
+    comentario:
+      "Las clases tienen buen ritmo y los instructores responden todas las dudas. Lo recomiendo para quienes empiezan desde cero.",
+    foto: "https://randomuser.me/api/portraits/men/45.jpg",
+    ciudad: "Rosario",
+    provincia: "Santa Fe",
+    pais: "Argentina",
+    curso: "Mecánica de Frío",
+    fecha: "2025-08-30",
+  },
+  {
+    id: 3,
+    nombre: "Vanina Castro",
+    comentario:
+      "Práctico y directo al punto. Pude aplicar lo aprendido en mi trabajo al día siguiente.",
+    foto: "https://randomuser.me/api/portraits/women/12.jpg",
+    ciudad: "Mar del Plata",
+    provincia: "Buenos Aires",
+    pais: "Argentina",
+    curso: "Instalación y Mantenimiento",
+    fecha: "2025-07-15",
+  },
+  {
+    id: 4,
+    nombre: "Sergio Alvarez",
+    comentario:
+      "Material actualizado y ejemplos reales. Ideal si querés profesionalizarte en el rubro.",
+    foto: "https://randomuser.me/api/portraits/men/32.jpg",
+    ciudad: "Mendoza",
+    provincia: "Mendoza",
+    pais: "Argentina",
+    curso: "Sistemas de Refrigeración Comercial",
+    fecha: "2025-06-03",
+  },
+  {
+    id: 5,
+    nombre: "Mariana López",
+    comentario:
+      "La comunidad es muy activa y el soporte técnico es rápido. Volvería a tomar otro curso sin dudar.",
+    foto: "https://randomuser.me/api/portraits/women/54.jpg",
+    ciudad: "San Miguel de Tucumán",
+    provincia: "Tucumán",
+    pais: "Argentina",
+    fecha: "2025-05-21",
+  },
+  {
+    id: 6,
+    nombre: "Gonzalo Pérez",
+    comentario:
+      "Explicaciones claras, buena relación teoría-práctica. Los recursos descargables son muy útiles.",
+    foto: "https://randomuser.me/api/portraits/men/21.jpg",
+    ciudad: "La Plata",
+    provincia: "Buenos Aires",
+    pais: "Argentina",
+    curso: "Diagnóstico y Reparación",
+    fecha: "2025-04-10",
+  },
+  {
+    id: 7,
+    nombre: "Florencia Díaz",
+    comentario:
+      "Me sorprendió la calidad del contenido y las demostraciones paso a paso. Me siento más segura trabajando en campo.",
+    foto: "https://randomuser.me/api/portraits/women/37.jpg",
+    ciudad: "Bariloche",
+    provincia: "Río Negro",
+    pais: "Argentina",
+    fecha: "2025-03-02",
+  },
+  {
+    id: 8,
+    nombre: "Diego Ramírez",
+    comentario:
+      "Excelente balance entre teoría y práctica. Los proyectos finales me ayudaron a armar un portfolio técnico.",
+    foto: "https://randomuser.me/api/portraits/men/14.jpg",
+    ciudad: "Salta",
+    provincia: "Salta",
+    pais: "Argentina",
+    curso: "Proyectos de Refrigeración",
+    fecha: "2025-01-28",
+  },
 ];
+
+export default testimonios;
