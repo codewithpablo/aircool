@@ -7,7 +7,7 @@ const Hero = () => {
  <div className="relative">
   
  
-     <div className='flex flex-col lg:flex-row  lg:h-screen '>
+     <div className='flex flex-col lg:flex-row  lg:h-[90dvh] '>
         <div className='flex-1 flex flex-col justify-center h-full ' >
             <div className="w-[80%] flex flex-col gap-3 mx-auto">
               <h1 className="lg:hidden text-center text-6xl  font-semibold my-10 ">
@@ -49,8 +49,10 @@ const Hero = () => {
                 <p className="text-gray-400">Tu crecimiento profesional comienza aquí: capacitaciones técnicas teoricas virtuales y practicas obligatoriamente presenciales, para dominar la refrigeración, el aire acondicionado y la climatización moderna.</p>
             </div>
         </div>
-        <div className='flex-1 flex flex-col items-center mt-20 lg:h-screen relative  justify-center'>
-            <HeroSlider />
+        <div className='flex-1 flex flex-col items-center mt-20 lg:h-screen relative  justify-start '>
+           <div className="shadow-lg border rounded-2xl overflow-hidden">
+             <HeroSlider />
+           </div>
         </div>
     </div>
 

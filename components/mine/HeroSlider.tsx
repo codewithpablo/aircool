@@ -1,31 +1,36 @@
+"use client";
 import TestimonialCard from "./TestimonialCard";
+
+import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { testimonios } from "@/constants";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export default function CarouselVertical() {
+  const autoplay = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
+
   return (
     <Carousel
-      opts={{
-        align: "start",
-      }}
+      plugins={[autoplay.current]}
       orientation="vertical"
-      className="w-full max-w-xs my-14"
+      className="w-full max-w-xs  "
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
+      
     >
-      <CarouselContent className="-mt-1 h-[250px]">
+      <CarouselContent className=" h-[400px] rounded-3xl ">
         {testimonios.map((testimonio, index) => (
-          <CarouselItem key={index} className="pt-1 md:basis-1/2">
-                    <TestimonialCard  testimonio={testimonio}/>
+          <CarouselItem key={index} className="">
+            <TestimonialCard testimonio={testimonio}/>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
     </Carousel>
   );
 }

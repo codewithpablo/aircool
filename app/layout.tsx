@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // los pesos que quieras
+  variable: "--font-poppins",
+});
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AirCool ",
-  description: "Sitio oficial de Aircool",
+  title: "Aircool: Campus Virtual ",
+  description: "Refrigeracion integral",
 };
 
 export default function RootLayout({
@@ -25,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`  ${poppins.variable }antialiased `}
       >
         {children}
       </body>
