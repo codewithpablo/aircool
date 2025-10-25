@@ -106,7 +106,7 @@ export default function AttendanceChart() {
 
         {/* Más alto y con espacio entre la barra y el borde */}
         <div className="h-60">
-          <Bar data={data} options={options} />
+          <Bar data={data} />
         </div>
       </CardContent>
     </Card>
