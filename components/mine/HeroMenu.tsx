@@ -76,7 +76,7 @@ export default function NavigationMenuWithDropdown() {
   return (
     <div className="relative flex justify-center z-20 bg-red-400 shadow-lg py-3 px-9 w-[90%] mx-auto mt-3 rounded-full">
       <div className="absolute left-9 top-4">
-        <Logo />
+        <Logo color="white"/>
       </div>
 
       <NavigationMenu>

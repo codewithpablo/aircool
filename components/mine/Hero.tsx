@@ -1,7 +1,8 @@
 "use client"
 import HeroSlider from "./HeroSlider"
 import { TypeAnimation } from "react-type-animation"
-
+import AuthButton from "./AuthButton"
+import Link from "next/link"
 const Hero = () => {
   return (
  <div className="relative">
@@ -47,7 +48,15 @@ const Hero = () => {
             />
           </h1>
                 <p className="text-gray-400">Tu crecimiento profesional comienza aquí: capacitaciones técnicas teoricas virtuales y practicas obligatoriamente presenciales, para dominar la refrigeración, el aire acondicionado y la climatización moderna.</p>
+                <div className="flex gap-2">
+                <Link href="/admin/dashboard">
+                    <AuthButton text="Ingresar al campus"/>
+                </Link>
+                <AuthButton text="Ver todos los cursos"/>
+                </div>
             </div>
+
+            
         </div>
         <div className='flex-1 flex flex-col items-center mt-20 lg:h-screen relative  justify-start '>
            <div className=" rounded-2xl overflow-hidden">

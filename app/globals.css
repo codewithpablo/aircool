@@ -121,3 +121,6 @@
   }
 }
 
+.hideScrollbar::-webkit-scrollbar {
+  width: 0px;  /* Chrome, Safari y Opera */
+}
