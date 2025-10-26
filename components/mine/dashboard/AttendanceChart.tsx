@@ -14,23 +14,35 @@ import { Bar } from "react-chartjs-2";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 export default function AttendanceChart() {
+  // 🔹 Accedemos a los colores CSS
+  const firstColor =
+    typeof window !== "undefined"
+      ? getComputedStyle(document.documentElement).getPropertyValue("--first") ||
+        "#ffd5cf"
+      : "#ffd5cf";
+  const secondColor =
+    typeof window !== "undefined"
+      ? getComputedStyle(document.documentElement).getPropertyValue("--second") ||
+        "#cdebff"
+      : "#cdebff";
+
   const data = {
     labels: [
       "Ene", "Feb", "Mar", "Abr", "May", "Jun",
-      "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+      "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
     ],
     datasets: [
       {
         label: "Hombres",
         data: [45, 38, 40, 50, 42, 48, 43, 47, 44, 49, 46, 50],
-        backgroundColor: "#A7C7E7", // 🩵 azul laguna suave
+        backgroundColor: secondColor.trim(), // 💙 usa --second
         borderRadius: 12,
         barThickness: 9,
       },
       {
         label: "Mujeres",
         data: [42, 35, 38, 48, 40, 45, 41, 46, 43, 47, 44, 49],
-        backgroundColor: "#F7B7A3", // 🧡 salmón pastel cálido
+        backgroundColor: firstColor.trim(), // 🩷 usa --first
         borderRadius: 12,
         barThickness: 9,
       },
@@ -76,13 +88,12 @@ export default function AttendanceChart() {
           font: { size: 12 },
           stepSize: 10,
         },
-        // 🔹 Agregamos un espacio visual arriba de las barras
         suggestedMax: 60,
       },
     },
     layout: {
       padding: {
-        top: 20, // 🔹 espacio adicional superior
+        top: 20,
       },
     },
     animation: {
@@ -92,8 +103,8 @@ export default function AttendanceChart() {
   };
 
   return (
-    <Card className="flex-1 bg-white border border-gray-100 shadow-sm rounded-2xl">
-      <CardContent className="p-6">
+    <Card className="flex-1 border border-gray-100 shadow-sm rounded-2xl">
+      <CardContent>
         <div className="flex justify-between items-center mb-5">
           <div>
             <h2 className="text-lg font-semibold text-gray-800 tracking-tight">
@@ -104,9 +115,8 @@ export default function AttendanceChart() {
           <span className="text-gray-400 text-sm">📅</span>
         </div>
 
-        {/* Más alto y con espacio entre la barra y el borde */}
         <div className="h-60">
-          <Bar data={data} />
+          <Bar data={data}  />
         </div>
       </CardContent>
     </Card>

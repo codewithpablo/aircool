@@ -1,7 +1,8 @@
 "use client"
 import HeroSlider from "./HeroSlider"
+
 import { TypeAnimation } from "react-type-animation"
-import AuthButton from "./AuthButton"
+import AuthButton from "../other/AuthButton"
 import Link from "next/link"
 const Hero = () => {
   return (
@@ -44,7 +45,7 @@ const Hero = () => {
               speed={50}
               repeat={Infinity}
               cursor={true}
-              className="inline-block text-red-400"
+              className="inline-block text-blue-500"
             />
           </h1>
                 <p className="text-gray-400">Tu crecimiento profesional comienza aquí: capacitaciones técnicas teoricas virtuales y practicas obligatoriamente presenciales, para dominar la refrigeración, el aire acondicionado y la climatización moderna.</p>
@@ -58,7 +59,7 @@ const Hero = () => {
 
             
         </div>
-        <div className='flex-1 flex flex-col items-center mt-20 lg:h-screen relative  justify-start '>
+        <div className='flex-1 flex flex-col items-start mt-20 lg:h-full relative  justify-start '>
            <div className=" rounded-2xl overflow-hidden">
              <HeroSlider />
            </div>

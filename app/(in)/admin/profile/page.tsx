@@ -1,8 +1,10 @@
-import React from 'react'
+import ProfileEditCard from "@/components/mine/profile/ProfileEditCard"
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className="p-2 ">
+      <ProfileEditCard />
+    </div>
   )
 }
 

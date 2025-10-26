@@ -1,6 +1,5 @@
 "use client";
-
-import Logo from "./Logo";
+import Logo from "../other/Logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -73,10 +72,18 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function NavigationMenuWithDropdown() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // No renderiza en SSR
+
   return (
-    <div className="relative flex justify-center z-20 bg-red-400 shadow-lg py-3 px-9 w-[90%] mx-auto mt-3 rounded-full">
+    <div className="relative flex justify-center z-20 bg-blue-400 shadow-xl py-3 px-9 w-[90%] mt-2 rounded-full mx-auto ">
       <div className="absolute left-9 top-4">
-        <Logo color="white"/>
+        <Logo color="white" />
       </div>
 
       <NavigationMenu>
@@ -84,17 +91,15 @@ export default function NavigationMenuWithDropdown() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Nosotros</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-3 p-1 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] ">
+              <ul className="grid gap-3 p-1 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <Link
                       href="/"
                       className="relative flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden focus:shadow-md"
                     >
-                        <Image src="/4.png" alt="" fill objectFit="cover"/>
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        AIR COOL
-                      </div>
+                      <Image src="/4.png" alt="" fill objectFit="cover" />
+                      <div className="mb-2 mt-4 text-lg font-medium">AIR COOL</div>
                       <p className="text-sm leading-tight text-muted-foreground">
                         Nueva propuesta educativa
                       </p>
@@ -105,18 +110,18 @@ export default function NavigationMenuWithDropdown() {
                 <ListItem href="/docs" title="Equipo de profesores">
                   Disponemos de profesores titulados y experimentados
                 </ListItem>
-                <ListItem href="/docs/installation" title="Mision y valores">
-                  Nuestro objetivo es formar técnicos especializados y competentes 
+                <ListItem href="/docs/installation" title="Misión y valores">
+                  Nuestro objetivo es formar técnicos especializados y competentes
                 </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Por que Air Cool">
-                  Aprendés no solo teoría, sinotambien a aplicar los conocimientos
+                <ListItem href="/docs/primitives/typography" title="Por qué Air Cool">
+                  Aprendés no solo teoría, sino también a aplicar los conocimientos
                 </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuTrigger> Cursos</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Cursos</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-1 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {components.map((component) => (
@@ -162,9 +167,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
         </Link>
       </NavigationMenuLink>
     </li>

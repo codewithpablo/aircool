@@ -20,8 +20,8 @@ export function SidebarLink({
       className={`flex items-center gap-3  py-2 rounded-lg text-sm font-medium transition
         ${
           isActive
-            ? "bg-red-400 text-white font-semibold"
-            : "text-gray-700 hover:bg-azulLaguna/10 hover:text-azulNoche"
+            ? "bg-white text-black font-semibold"
+            : "text-gray-800 hover:bg-azulLaguna/10 hover:text-azulNoche"
         }`}
     >
      <div className="flex gap-2   w-[50%]  mx-auto">

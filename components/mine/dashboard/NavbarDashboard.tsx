@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 
 export default function NavbarDashboard() {
   return (
-    <nav className="w-full sticky top-0 bg-white z-50 border-b px-6 h-16 py-3 flex items-center justify-between">
+    <nav className="w-full sticky bgThird pr-6 top-0 bg-verde  z-50    h-16 py-3 flex items-center justify-between">
      
 
       {/* BARRA DE BÚSQUEDA */}
-      <div className="flex-1 max-w-md mx-6 relative">
+      <div className="flex-1 max-w-md ml-3 relative">
         <Input
           type="text"
           placeholder="Buscar..."

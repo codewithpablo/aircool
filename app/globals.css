@@ -1,6 +1,42 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* 🎨 Variables globales */
+:root {
+  --first: #ffd5cf;
+  --second : #cdebff;
+  --third: rgb(155, 209, 193);
+}
+
+/* 🎯 Clases que usan las variables */
+.colorFirst {
+  color: var(--first);
+}
+
+.bgFirst {
+  background-color: var(--first);
+}
+
+.bgSecond{
+  background-color: var(--second)
+}
+
+
+.textSecond{
+  color: var(--second)
+}
+
+
+.colorThird {
+  color: var(--third);
+}
+
+.bgThird {
+  background-color: var(--third);
+}
+
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -123,4 +159,20 @@
 
 .hideScrollbar::-webkit-scrollbar {
   width: 0px;  /* Chrome, Safari y Opera */
+}
+
+
+
+/* Seleccionamos el elemento al que queremos ponerle el fondo */
+.giantBackground{
+  /* URL de la imagen */
+  background-image: url('../public/13.png');
+    
+  /* Ajustes de la imagen */
+  background-size: cover;       /* Hace que la imagen cubra todo el elemento */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;  /* Centra la imagen en el elemento */
+
+  /* Opcional: color de fondo de respaldo si la imagen no carga */
+  background-color: #f0f0f0;
 }

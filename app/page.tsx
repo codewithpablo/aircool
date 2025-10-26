@@ -1,10 +1,11 @@
-import Hero from "@/components/mine/Hero";
-import CoursesGallery from "@/components/mine/CoursesGallery";
-import HeroMenu from "@/components/mine/HeroMenu";
-import TestimonialSection from "@/components/mine/TestimonialSection";
+import Hero from "@/components/mine/hero/Hero";
+import CoursesGallery from "@/components/mine/courses/CoursesGallery";
+import HeroMenu from "@/components/mine/hero/HeroMenu";
+import TestimonialSection from "@/components/mine/gallery/TestimonialSection";
+
 export default function Home() {
   return (
-    <>
+    <div>
       <HeroMenu />
       <Hero />
       <h2 className="text-2xl text-center font-semibold my-10">
@@ -15,6 +16,7 @@ export default function Home() {
       <CoursesGallery direction="right" />
      </div>
         <TestimonialSection />
-    </>
+
+    </div>
   );
 }

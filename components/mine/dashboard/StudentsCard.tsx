@@ -18,28 +18,39 @@ export default function StudentsCard() {
   const girls = 253;
   const total = boys + girls;
 
-  const data = {
-  labels: ["Boys", "Girls"],
-  datasets: [
-    {
-      label: "Boys",
-      data: [boys, total - boys],
-      backgroundColor: ["#A5D8FF", "#E5E7EB"], // azul y gris claro para el anillo exterior
-      borderWidth: 0,
-      cutout: "70%",
-      radius: "100%", // anillo exterior
-    },
-    {
-      label: "Girls",
-      data: [girls, total - girls],
-      backgroundColor: ["#FFE066", "#D1D5DB"], // amarillo y gris más oscuro para el anillo interior
-      borderWidth: 0,
-      cutout: "70%", // anillo interior
-      radius: "100%",
-    },
-  ],
-};
+  // 🎨 Accedemos a los colores CSS definidos en :root
+  const firstColor =
+    typeof window !== "undefined"
+      ? getComputedStyle(document.documentElement).getPropertyValue("--first") ||
+        "#ffd5cf"
+      : "#ffd5cf";
+  const secondColor =
+    typeof window !== "undefined"
+      ? getComputedStyle(document.documentElement).getPropertyValue("--second") ||
+        "#cdebff"
+      : "#cdebff";
 
+  const data = {
+    labels: ["Boys", "Girls"],
+    datasets: [
+      {
+        label: "Boys",
+        data: [boys, total - boys],
+        backgroundColor: [secondColor.trim(), "#E5E7EB"], // usa --second 💙
+        borderWidth: 0,
+        cutout: "70%",
+        radius: "100%",
+      },
+      {
+        label: "Girls",
+        data: [girls, total - girls],
+        backgroundColor: [firstColor.trim(), "#D1D5DB"], // usa --first 🩷
+        borderWidth: 0,
+        cutout: "70%",
+        radius: "100%",
+      },
+    ],
+  };
 
   const options: ChartOptions<"doughnut"> = {
     responsive: true,
@@ -52,7 +63,7 @@ export default function StudentsCard() {
   };
 
   return (
-    <Card className="p-4 w-[280px] shadow-md rounded-2xl">
+    <Card className="p-4 h-full w-[280px] shadow-md rounded-2xl">
       <h2 className="text-sm font-semibold text-gray-700 mb-2">Students</h2>
       <CardContent className="flex flex-col items-center relative">
         {/* Gráfico doble anillo */}
@@ -69,7 +80,7 @@ export default function StudentsCard() {
           <div className="flex flex-col items-center">
             <span
               className="w-3 h-3 rounded-full mb-1"
-              style={{ backgroundColor: "#A5D8FF" }}
+              style={{ backgroundColor: secondColor.trim() }}
             ></span>
             <p className="text-sm font-semibold">{boys}</p>
             <p className="text-xs text-gray-500">
@@ -79,7 +90,7 @@ export default function StudentsCard() {
           <div className="flex flex-col items-center">
             <span
               className="w-3 h-3 rounded-full mb-1"
-              style={{ backgroundColor: "#FFE066" }}
+              style={{ backgroundColor: firstColor.trim() }}
             ></span>
             <p className="text-sm font-semibold">{girls}</p>
             <p className="text-xs text-gray-500">

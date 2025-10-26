@@ -17,7 +17,7 @@ export default function DashboardCard({
   bgColor ,
 }: DashboardCardProps) {
   return (
-    <div className={`flex items-center justify-between rounded-2xl ${bgColor} shadow-sm p-5 w-full max-w-[260px] transition hover:shadow-md`}>
+    <div className={`flex items-center justify-between rounded-2xl ${bgColor} shadow-sm p-5 w-full max-w-[260px] transition `}>
       <div className="flex flex-col">
         <h3 className="text-gray-500 text-sm font-medium">{title}</h3>
         <p className="text-3xl font-semibold text-gray-800 mt-1">{value}</p>

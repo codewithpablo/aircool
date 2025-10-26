@@ -1,16 +1,16 @@
 "use client";
-import Logo from "@/components/mine/Logo";
+import Logo from "@/components/mine/other/Logo";
 import { ReactNode } from "react";
 import { Home, BookOpen, User, LogOut, MessageCircle, Calendar, Megaphone, UserPen } from "lucide-react";
-import { SidebarLink } from "@/components/mine/SidebarLink";
-import NavbarDashboard from "@/components/mine/NavbarDashboard";
-import { CalendarDashboard } from "@/components/mine/CalendarDashboard";
+import { SidebarLink } from "@/components/mine/sidebar/SidebarLink";
+import NavbarDashboard from "@/components/mine/dashboard/NavbarDashboard";
+
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="h-screen  flex">
       {/* Sidebar */}
-      <aside className="w-60 shadow-lg flex flex-col justify-between ">
+      <aside className="w-60  flex flex-col justify-between bgThird ">
         <div>
           {/* Logo / título */}
           <div className=" flex items-center flex-col  text-center  justify-center  relative h-16 ">
@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       </aside>
 
       {/* Contenido principal */}
-      <main className="flex-1 max-h-screen  overflow-hidden ">
+      <main className="flex-1 max-h-screen  overflow-y-scroll ">
           <NavbarDashboard />
         {children}
          

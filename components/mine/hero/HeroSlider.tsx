@@ -10,7 +10,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-export default function CarouselVertical() {
+export default function HeroSlider() {
   const autoplay = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: false })
   );
@@ -19,7 +19,7 @@ export default function CarouselVertical() {
     <Carousel
       plugins={[autoplay.current]}
       orientation="vertical"
-      className="w-full max-w-xs  "
+      className="w-[550px]  "
       onMouseEnter={autoplay.current.stop}
       onMouseLeave={autoplay.current.reset}
       
@@ -27,8 +27,8 @@ export default function CarouselVertical() {
       <CarouselContent className=" h-[400px] rounded-3xl ">
         {images.map((e, i) => (
           <CarouselItem key={i}>
-            <div className="relative w-xs h-full">
-              <Image src={e} alt="" width={400} height={100} className="h-full object-cover rounded-2xl" />
+            <div className="relative w-[550px] h-full">
+              <Image src={e} alt="" fill className="h-full object-cover rounded-2xl" />
             </div>
           </CarouselItem>
         ))}

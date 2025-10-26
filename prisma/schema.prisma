@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // o "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------
+// ADMIN
+// ----------------------
+model Admin {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  // Solo gestiona el sistema, sin relaciones directas
+}
+
+// ----------------------
+// TEACHER
+// ----------------------
+model Teacher {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  courses   Course[]
+  meetings  VirtualMeeting[]
+}
+
+// ----------------------
+// STUDENT
+// ----------------------
+model Student {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  courses     StudentCourse[]
+  meetings    StudentMeeting[]
+}
+
+// ----------------------
+// COURSE
+// ----------------------
+model Course {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  teacherId   Int
+  teacher     Teacher   @relation(fields: [teacherId], references: [id])
+
+  units       Unit[]
+  students    StudentCourse[]
+}
+
+// ----------------------
+// UNIT
+// ----------------------
+model Unit {
+  id        Int       @id @default(autoincrement())
+  title     String
+  order     Int
+  courseId  Int
+  course    Course    @relation(fields: [courseId], references: [id])
+  lessons   Lesson[]
+}
+
+// ----------------------
+// LESSON
+// ----------------------
+model Lesson {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String?
+  videoUrl  String?
+  order     Int
+  unitId    Int
+  unit      Unit      @relation(fields: [unitId], references: [id])
+}
+
+// ----------------------
+// VIRTUAL MEETING
+// ----------------------
+model VirtualMeeting {
+  id          Int       @id @default(autoincrement())
+  title       String
+  date        DateTime
+  link        String
+
+  teacherId   Int
+  teacher     Teacher   @relation(fields: [teacherId], references: [id])
+
+  students    StudentMeeting[]
+}
+
+// ----------------------
+// TABLAS INTERMEDIAS CON INFO EXTRA
+// ----------------------
+
+// Relación Student ↔ Course
+model StudentCourse {
+  id         Int       @id @default(autoincrement())
+  studentId  Int
+  courseId   Int
+  enrolledAt DateTime  @default(now())
+  status     String?   // ejemplo: "active", "completed", "dropped"
+
+  student    Student   @relation(fields: [studentId], references: [id])
+  course     Course    @relation(fields: [courseId], references: [id])
+
+  @@unique([studentId, courseId])
+}
+
+// Relación Student ↔ VirtualMeeting
+model StudentMeeting {
+  id           Int       @id @default(autoincrement())
+  studentId    Int
+  meetingId    Int
+  attended     Boolean   @default(false) // si asistió a la reunión
+  feedback     String?   // comentarios opcionales
+
+  student      Student        @relation(fields: [studentId], references: [id])
+  meeting      VirtualMeeting @relation(fields: [meetingId], references: [id])
+
+  @@unique([studentId, meetingId])
+}
