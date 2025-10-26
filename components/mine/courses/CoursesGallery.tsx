@@ -27,8 +27,6 @@ export default function CoursesGallery({ direction = "right" }: CoursesGalleryPr
 
   return (
     <div className="w-full">
-      
-
       <Carousel
         plugins={[plugin.current]}
         className="w-[99%] mx-auto"
@@ -46,8 +44,11 @@ export default function CoursesGallery({ direction = "right" }: CoursesGalleryPr
               <CourseCard
                 name={course.name}
                 image={course.image}
-                description={course.description}
                 link={course.link}
+                category={course.category}
+                amountOfLessons={course.amountOfLessons}
+                totalHours={course.totalHours}
+                price={course.price}
               />
             </CarouselItem>
           ))}
