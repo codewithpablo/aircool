@@ -53,13 +53,15 @@ const Hero = () => {
                 <Link href="/admin/dashboard">
                     <AuthButton text="Ingresar al campus"/>
                 </Link>
-                <AuthButton text="Ver todos los cursos"/>
+                <Link href="/courses">
+                    <AuthButton text="Ver todos los cursos"/>
+                </Link>
                 </div>
             </div>
 
             
         </div>
-        <div className='flex-1 flex flex-col items-start mt-20 lg:h-full relative  justify-start '>
+        <div className='flex-1 flex flex-col items-start  lg:h-full relative  justify-start '>
            <div className=" rounded-2xl overflow-hidden">
              <HeroSlider />
            </div>
