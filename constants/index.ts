@@ -11,7 +11,6 @@ export const images = [
   '/10.jpg',
   '/11.jpg',
   '/12.jpg',
-  '/13.png',
   '/14.jpg',
   '/15.jpg',
   '/16.jpg',

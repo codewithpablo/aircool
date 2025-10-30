@@ -5,7 +5,7 @@
 :root {
   --first: #ffd5cf;
   --second : #cdebff;
-  --third: rgb(155, 209, 193);
+  --third: rgb(165, 199, 248);
 }
 
 /* 🎯 Clases que usan las variables */
@@ -166,13 +166,9 @@
 /* Seleccionamos el elemento al que queremos ponerle el fondo */
 .giantBackground{
   /* URL de la imagen */
-  background-image: url('../public/13.png');
-    
-  /* Ajustes de la imagen */
-  background-size: cover;       /* Hace que la imagen cubra todo el elemento */
+  background-image: url('../public/aircool.png');
   background-repeat: no-repeat; /* Evita que la imagen se repita */
+  /* Ajustes de la imagen */
+  background-size: contain;       /* Hace que la imagen cubra todo el elemento */
   background-position: center;  /* Centra la imagen en el elemento */
-
-  /* Opcional: color de fondo de respaldo si la imagen no carga */
-  background-color: #f0f0f0;
 }

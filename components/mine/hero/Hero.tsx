@@ -6,7 +6,7 @@ import AuthButton from "../other/AuthButton"
 import Link from "next/link"
 const Hero = () => {
   return (
- <div className="relative">
+ <div className=" relative">
   
  
      <div className='flex flex-col lg:flex-row  lg:h-[90dvh] '>

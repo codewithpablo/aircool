@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentsTable from '@/components/students/StudentsTable';
+import StudentsTable from '@/components/mine/students/StudentsTable';
 
 const Students = () => {
   return (

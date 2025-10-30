@@ -25,7 +25,7 @@ export const CourseCard = ({
   description,
 }: CourseCardProps) => {
   return (
-    <div className="h-80 rounded-3xl overflow-hidden border transition-transform hover:scale-[1.02] my-3 z-60">
+    <div className="bg-white h-80 rounded-3xl overflow-hidden border transition-transform hover:scale-[1.02] my-3 z-60">
       <div className="relative h-32">
         <Image
           src={image}
