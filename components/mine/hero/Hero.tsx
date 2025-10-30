@@ -50,7 +50,7 @@ const Hero = () => {
           </h1>
                 <p className="text-gray-400">Tu crecimiento profesional comienza aquí: capacitaciones técnicas teoricas virtuales y practicas obligatoriamente presenciales, para dominar la refrigeración, el aire acondicionado y la climatización moderna.</p>
                 <div className="flex gap-2">
-                <Link href="/admin/dashboard">
+                <Link href="/choose">
                     <AuthButton text="Ingresar al campus"/>
                 </Link>
                 <Link href="/courses">

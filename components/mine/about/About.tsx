@@ -252,11 +252,11 @@ const About = () => {
           onValueChange={(value) => setActiveTab(value as TabKey)}
         >
           {/* Lista de pestañas */}
-          <TabsList className="rounded-full border w-full flex justify-between mb-10">
+          <TabsList className="rounded-full border w-full flex justify-between mb-10 ">
             {tabSequence.map((tabId) => (
               <TabsTrigger
                 key={tabId}
-                className="flex-1 text-center h-full w-full p-0 m-0 rounded-full data-[state=active]:bg-blue-500 data-[state=active]:text-white font-light"
+                className="flex-1 text-center h-full w-full py-5 m-0 rounded-full data-[state=active]:bg-blue-500 data-[state=active]:text-white font-light"
                 value={tabId}
                 onClick={() => setIsTypingDone(false)}
               >
