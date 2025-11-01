@@ -1,61 +1,56 @@
-import HeroSlider from "./HeroSlider"
-import { TypeAnimation } from "react-type-animation"
-import AuthButton from "../other/AuthButton"
-import Link from "next/link"
+import HeroSlider from "./HeroSlider";
+import { TypeAnimation } from "react-type-animation";
+import AuthButton from "../other/AuthButton";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 const Hero = () => {
   return (
- <div className=" relative">
-    
- 
-     <div className='flex flex-col lg:flex-row  lg:h-[90dvh] '>
-        <div className='flex-1 flex flex-col justify-start h-full ' >
-            <div className="w-[80%] flex flex-col gap-3 mx-auto">
-              <h1 className="lg:hidden text-center text-6xl  font-semibold my-10 ">
-            Aprendé a dominar  la<br />  refrigeracion <br /> y potencia tu <br />{" "}
-            <TypeAnimation
-              sequence={[
-                "carrera",
-                1500,
-                "exito",
-                1500,
-                "futuro",
-                1500,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-              cursor={true}
-              className="inline-block text-red-400"
-            />
-          </h1>
-              <h1 className="hidden lg:flex lg:flex-col   text-6xl  font-semibold my-5 ">
-            <span>De cero a <span className="text-blue-400 italic ">ingresos reales</span>: aprendé sobre Refrigeracion Integral</span>
-           
-          </h1>
-                <p className="text-gray-400">Aprendé habilidades prácticas y muy demandadas que pocos ofrecen. Con docentes matriculados, que poseen décadas de trayectoria y formación en los mejores institutos del país, condensan años de experiencia en clases 100% prácticas para que las apliques vos mismo. Aprendé rápido, prácticalo en casos reales y ganá ventaja profesional.</p>
-                <div className="flex gap-2">
-                <Link href="/choose">
-                    <AuthButton text="Ingresar al campus"/>
-                </Link>
-                <Link href="/courses">
-                    <AuthButton text="Ver todos los cursos"/>
-                </Link>
-                </div>
+    <div className="relative w-full">
+      <div className="flex flex-col lg:flex-row lg:h-[90dvh]">
+        {/* Texto */}
+        <div className="flex-1 flex flex-col justify-start h-full px-4 sm:px-6 lg:px-12 py-10 lg:py-0">
+          <div className="max-w-[90%] sm:max-w-[80%] lg:max-w-full mx-auto flex flex-col gap-4">
+            {/* Título móvil */}
+            <h1 className="lg:hidden text-left text-5xl sm:text-6xl font-semibold my-5">
+              <span>
+                De cero a <span className="text-blue-400 italic">ingresos reales</span>: aprendé sobre Refrigeración Integral
+              </span>
+            </h1>
+
+            {/* Título escritorio */}
+            <h1 className="hidden lg:flex lg:flex-col text-4xl xl:text-6xl font-semibold my-5">
+              <span>
+                De cero a <span className="text-blue-400 italic">ingresos reales</span>: aprendé sobre Refrigeración Integral
+              </span>
+            </h1>
+
+            {/* Descripción */}
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed">
+              Aprendé habilidades prácticas y muy demandadas que pocos ofrecen. Con docentes matriculados, que poseen décadas de trayectoria y formación en los mejores institutos del país, condensan años de experiencia en clases 100% prácticas para que las apliques vos mismo. Aprendé rápido, prácticalo en casos reales y ganá ventaja profesional.
+            </p>
+
+            {/* Botones */}
+            <div className=" w-fit mx-auto md:w-[300px] md:mx-0 flex gap-3 mt-5">
+              <Link href="/choose">
+                <Button className=" text-white rounded-full bg-blue-400  hover:bg-blue-400">Ingresar al campus</Button>
+              </Link>
+              <Link href="/courses">
+                <Button className=" bg-white rounded-full text-gray-900 hover:bg-white">Ver todos los cursos</Button>
+              </Link>
             </div>
-
-            
+          </div>
         </div>
-        <div className='flex-1 flex flex-col items-center relative right-20  lg:h-full justify-center bottom-5 '>
-           <div className=" rounded-[50px] overflow-hidden">
-             <HeroSlider />
-             
 
-           </div>
+        {/* Slider */}
+        <div className="flex-1 flex justify-center items-center lg:items-end lg:justify-end relative lg:right-0 px-4 sm:px-6 lg:px-0 mt-10 lg:mt-0">
+          <div className="w-full sm:w-[90%] md:w-[80%] lg:w-full max-w-lg xl:max-w-xl rounded-[30px] sm:rounded-[50px] overflow-hidden shadow-lg">
+            <HeroSlider />
+          </div>
         </div>
+      </div>
     </div>
-             
- </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
