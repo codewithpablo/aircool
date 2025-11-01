@@ -64,7 +64,7 @@ export default function ChooseUser() {
   const [selected, setSelected] = useState("student");
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-gradient-to-br from-blue-100 via-white to-blue-200">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-linear-to-br from-blue-100 via-white to-blue-200">
       
       {/* Fondos animados */}
       <motion.div

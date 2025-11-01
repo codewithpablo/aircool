@@ -1,16 +1,14 @@
-"use client"
 import HeroSlider from "./HeroSlider"
-
 import { TypeAnimation } from "react-type-animation"
 import AuthButton from "../other/AuthButton"
 import Link from "next/link"
 const Hero = () => {
   return (
  <div className=" relative">
-  
+    
  
      <div className='flex flex-col lg:flex-row  lg:h-[90dvh] '>
-        <div className='flex-1 flex flex-col justify-center h-full ' >
+        <div className='flex-1 flex flex-col justify-start pt-10 h-full ' >
             <div className="w-[80%] flex flex-col gap-3 mx-auto">
               <h1 className="lg:hidden text-center text-6xl  font-semibold my-10 ">
             Aprendé a dominar  la<br />  refrigeracion <br /> y potencia tu <br />{" "}
@@ -61,14 +59,15 @@ const Hero = () => {
 
             
         </div>
-        <div className='flex-1 flex flex-col items-start  lg:h-full relative  justify-start '>
-           <div className=" rounded-2xl overflow-hidden">
+        <div className='flex-1 flex flex-col items-center relative right-20  lg:h-full justify-center bottom-5 '>
+           <div className=" rounded-[50px] overflow-hidden">
              <HeroSlider />
+             
+
            </div>
         </div>
     </div>
-
-
+             
  </div>
   )
 }
