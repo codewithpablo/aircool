@@ -62,55 +62,75 @@ const fechas = ["14", "15", "16", "17"];
         {/* Card que se desliza */}
 
 {/* Card que se desliza con rotación */}
-<div className="transform translate-x-[90%] group-hover:translate-x-0 group-hover:rotate-0 rotate-6 transition-transform duration-500 ease-in-out origin-right">
-  <Card
-    className="max-w-sm p-6 shadow-lg relative overflow-hidden"
-    style={{
-      backgroundImage: `
-        radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
-        radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)
-      `,
-      backgroundSize: '20px 20px',
-      backgroundPosition: '0 0, 10px 10px',
-    }}
-  >
-    <CardContent className="flex flex-col items-center justify-center gap-4 text-center">
-      {/* Título */}
-      <h3 className="text-2xl font-bold">Próximo evento</h3>
+<div className="group relative w-full max-w-md transform translate-x-[90%] group-hover:translate-x-0 group-hover:rotate-0 rotate-6 transition-transform duration-700 ease-out origin-right">
+      <Card
+        className="p-5 relative overflow-hidden rounded-2xl shadow-xl backdrop-blur-md border border-white/20 bg-white/40 text-gray-900 dark:text-white transition-all duration-500 hover:scale-[1.02]"
+      >
+        {/* Fondo con patrón y brillo */}
+        <div
+          className="absolute inset opacity-20"
+          style={{
+            backgroundImage: `
+              radial-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
+              radial-gradient(rgba(255,255,255,0.25) 1px, transparent 1px)
+            `,
+            backgroundSize: "20px 20px",
+            backgroundPosition: "0 0, 10px 10px",
+          }}
+        />
+        <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 via-transparent to-blue-400/10" />
 
-      {/* Lugar */}
-      <div className="flex flex-col items-start gap-2 text-gray-700 mt-2">
-        <div className="flex items-center gap-2">
-          <MapPin size={20} className="text-blue-500" />
-          <span className="text-lg font-semibold">Domo del Centenario</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Map size={20} className="text-blue-500" />
-          <span className="text-lg font-semibold">Resistencia, Chaco</span>
-        </div>
-      </div>
+        <CardContent className="relative flex flex-col items-center justify-center gap-5 py-8 text-center">
+          {/* Título */}
+          <h3 className="text-3xl font-extrabold tracking-tight">
+            Próximo evento
+          </h3>
 
-      {/* Mes */}
-      <p className="text-blue-500 font-semibold mt-2">Mes de Noviembre</p>
-
-      {/* Fechas */}
-      <div className="flex justify-center gap-6 mt-2">
-        {fechas.map((dia) => (
-          <div key={dia} className="flex flex-col items-center gap-1">
-            <Calendar size={20} className="text-blue-500" />
-            <p className="text-lg font-medium">{dia}</p>
+          {/* Lugar */}
+          <div className="flex flex-col items-start gap-3 text-gray-900 dark:text-gray-200 mt-1">
+            <div className="flex items-center gap-2">
+              <MapPin size={20} className="text-blue-500" />
+              <span className="text-lg font-semibold">
+                Domo del Centenario
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Map size={20} className="text-blue-500" />
+              <span className="text-lg font-semibold">
+                Resistencia, Chaco
+              </span>
+            </div>
           </div>
-        ))}
-      </div>
 
-      {/* Botón */}
-      <Button variant="default" size="lg" className="mt-4">
-        Asegurar mi lugar
-      </Button>
-    </CardContent>
-  </Card>
-</div>
+          {/* Mes */}
+          <p className="text-blue-600 dark:text-blue-400 font-semibold mt-2 tracking-wide">
+            Mes de Noviembre
+          </p>
 
+          {/* Fechas */}
+          <div className="flex justify-center gap-8 mt-2">
+            {fechas.map((dia) => (
+              <div
+                key={dia}
+                className="flex flex-col items-center gap-1 hover:scale-110 transition-transform"
+              >
+                <Calendar size={22} className="text-blue-500" />
+                <p className="text-lg font-medium">{dia}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Botón */}
+          <Button
+            variant="default"
+            size="lg"
+            className="mt-5 px-8 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all"
+          >
+            Asegurar mi lugar
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
         {/* Barra visible con texto y flecha horizontal */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-28 h-20 bg-blue-500 rounded-l-md flex flex-col items-center justify-center cursor-pointer group-hover:opacity-0 transition-opacity duration-300">
           <p className="text-white text-xs text-center font-semibold">

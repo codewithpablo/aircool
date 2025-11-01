@@ -8,7 +8,7 @@ const Hero = () => {
     
  
      <div className='flex flex-col lg:flex-row  lg:h-[90dvh] '>
-        <div className='flex-1 flex flex-col justify-start pt-10 h-full ' >
+        <div className='flex-1 flex flex-col justify-start h-full ' >
             <div className="w-[80%] flex flex-col gap-3 mx-auto">
               <h1 className="lg:hidden text-center text-6xl  font-semibold my-10 ">
             Aprendé a dominar  la<br />  refrigeracion <br /> y potencia tu <br />{" "}
@@ -29,24 +29,10 @@ const Hero = () => {
             />
           </h1>
               <h1 className="hidden lg:flex lg:flex-col   text-6xl  font-semibold my-5 ">
-            <span>Aprendé a dominar  la   refrigeracion  y potencia tu {" "}</span>
-            <TypeAnimation
-              sequence={[
-                "carrera",
-                1500,
-                "exito",
-                1500,
-                "futuro",
-                1500,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-              cursor={true}
-              className="inline-block text-blue-500"
-            />
+            <span>De cero a <span className="text-blue-400 italic ">ingresos reales</span>: aprendé sobre Refrigeracion Integral</span>
+           
           </h1>
-                <p className="text-gray-400">Tu crecimiento profesional comienza aquí: capacitaciones técnicas teoricas virtuales y practicas obligatoriamente presenciales, para dominar la refrigeración, el aire acondicionado y la climatización moderna.</p>
+                <p className="text-gray-400">Aprendé habilidades prácticas y muy demandadas que pocos ofrecen. Con docentes matriculados, que poseen décadas de trayectoria y formación en los mejores institutos del país, condensan años de experiencia en clases 100% prácticas para que las apliques vos mismo. Aprendé rápido, prácticalo en casos reales y ganá ventaja profesional.</p>
                 <div className="flex gap-2">
                 <Link href="/choose">
                     <AuthButton text="Ingresar al campus"/>

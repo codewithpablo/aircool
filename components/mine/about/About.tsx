@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 // Importamos 'Variants' y 'Transition' de Framer Motion para tipar correctamente
 import { motion, AnimatePresence, Variants, Transition } from "framer-motion";
