@@ -1,68 +1,102 @@
 'use client';
 
-import { ToolCase, Zap, Shield, DollarSign, BarChart2, CheckCircle } from 'lucide-react';
+import {
+  ToolCase,
+  Zap,
+  Shield,
+  DollarSign,
+  BarChart2,
+  CheckCircle,
+  Wrench,
+  Clock,
+  Layers,
+} from 'lucide-react';
 
 const learnUnits = [
   {
     title: 'Instalación práctica de split y aire de ventana',
-    description: 'Saber calcular, montar y dejar funcionando sin vueltas.',
-    icon: <ToolCase size={24} className="text-blue-400" />,
+    description: 'Aprendé a calcular, montar y dejar funcionando los equipos correctamente.',
+    icon: <ToolCase size={28} className="text-blue-400" />,
+    image: '/1.jpg',
   },
   {
     title: 'Diagnóstico y reparación rápida',
-    description: 'Encontrá la falla y solucionala en la primera visita.',
-    icon: <Zap size={24} className="text-blue-400" />,
+    description: 'Detectá fallas y resolvelas en la primera visita de manera eficiente.',
+    icon: <Zap size={28} className="text-blue-400" />,
+    image: '/2.jpg',
   },
   {
     title: 'Limpieza y mantenimiento profesional',
-    description: 'Los clientes repiten cada 6–12 meses.',
-    icon: <ToolCase size={24} className="text-blue-400" />,
+    description: 'Conocé técnicas de mantenimiento que garantizan equipos duraderos y clientes satisfechos.',
+    icon: <Wrench size={28} className="text-blue-400" />,
+    image: '/3.jpg',
   },
   {
     title: 'Seguridad laboral y normativas',
-    description: 'Trabajás sin quilombos legales y con seguridad real.',
-    icon: <Shield size={24} className="text-blue-400" />,
+    description: 'Trabajá seguro, cumpliendo todas las normas y evitando riesgos innecesarios.',
+    icon: <Shield size={28} className="text-blue-400" />,
+    image: '/4.jpg',
   },
   {
     title: 'Precios y tarifas por urgencia',
-    description: 'Aprendé a cobrar premium cuando el cliente está en emergencia.',
-    icon: <DollarSign size={24} className="text-blue-400" />,
+    description: 'Aprendé a cobrar correctamente en situaciones de emergencia y comunicar valor.',
+    icon: <DollarSign size={28} className="text-blue-400" />,
+    image: '/5.jpg',
   },
   {
     title: 'Modelos de ingreso recurrente',
-    description: 'Contratos, suscripciones y ventas complementarias que pagan todos los meses.',
-    icon: <BarChart2 size={24} className="text-blue-400" />,
+    description: 'Descubrí cómo generar ingresos estables con contratos y servicios recurrentes.',
+    icon: <BarChart2 size={28} className="text-blue-400" />,
+    image: '/6.jpg',
   },
   {
-    title: 'Taller práctico',
-    description: 'Aumentan confianza y abrí puertas con edificios y empresas, haciendo prácticas reales.',
-    icon: <CheckCircle size={24} className="text-blue-400" />,
+    title: 'Gestión del tiempo y productividad',
+    description: 'Optimiza tus tareas y lográlas en menos tiempo sin perder calidad.',
+    icon: <Clock size={28} className="text-blue-400" />,
+    image: '/7.jpg',
   },
+  {
+    title: 'Uso correcto de herramientas y materiales',
+    description: 'Evitá errores costosos y ganá confianza en cada trabajo.',
+    icon: <Layers size={28} className="text-blue-400" />,
+    image: '/8.jpg',
+  },
+ 
 ];
 
 export default function UnitsSection() {
   return (
-    <section className="w-full bg-linear-to-tl from-blue-400 via-white to-white py-20 px-6 md:px-20">
-      <h2 className="text-4xl md:text-4xl italic pb-10 font-semibold text-gray-900 text-center mb-10">
+    <section className="w-full min-h-screen flex flex-col justify-center bg-linear-to-tl from-blue-200 via-white to-white py-8 px-6 md:px-20 ">
+      <h2 className="text-3xl md:text-4xl italic font-semibold text-gray-900 text-center mb-6">
         ¿Qué vas a aprender?
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 flex-1">
         {learnUnits.map((unit, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 flex flex-col gap-4 border-l-4 border-blue-400"
+            className="bg-white/30 border border-white/50 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-3 flex flex-col h-full backdrop-blur-sm"
           >
-            <div className="flex items-center gap-3">
-              <div className="text-gray-500 font-bold">Unidad {index + 1}</div>
+            {/* Imagen */}
+            <img
+              src={unit.image}
+              alt={unit.title}
+              className="w-full h-28 object-cover rounded-xl mb-3"
+            />
+
+            {/* Icono + título */}
+            <div className="flex items-center gap-2 mb-2">
               {unit.icon}
+              <h3 className="text-sm md:text-base font-semibold text-gray-900 leading-snug">
+                {unit.title}
+              </h3>
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-gray-900">{unit.title}</h3>
-            <p className="text-gray-700 text-sm md:text-base">{unit.description}</p>
+
+            {/* Descripción */}
+            <p className="text-gray-900 text-xs md:text-sm">{unit.description}</p>
           </div>
         ))}
       </div>
-     
     </section>
   );
 }

@@ -1,76 +1,60 @@
 'use client';
 
-import React from 'react';
-import Reordering from '../takeAction/Reordering';
-import { TrendingUp, Wrench, Clock, Layers, ShieldCheck } from 'lucide-react';
+import {
+  TrendingUp,
+  Wrench,
+  Clock,
+  Layers,
+  ShieldCheck,
+  Zap,
+  DollarSign,
+  Users,
+  Star,
+} from 'lucide-react';
 
 export default function ActionSection() {
   return (
-    <section className="w-full min-h-screen bg-linear-to-tr from-blue-300 via-blue-50 to-white  px-6 md:px-20 flex flex-col md:flex-row items-center justify-center gap-8 overflow-hidden py-20 ">
-      {/* Texto principal con scroll vertical si se excede */}
-      <div className="md:w-1/2 pr-2 space-y-5">
-        <h2 className="text-4xl font-bold text-gray-900 leading-snug">
-          Esto es una oportunidad, <span className="text-blue-600">no una opción</span>:
-        </h2>
+    <section className="w-full bg-linear-to-lr from-blue-300 via-blue-50 to-white flex items-center justify-center px-6 md:px-20 py-16 md:py-0 md:min-h-screen">
+      <div className="flex flex-col items-center justify-center max-w-6xl w-full space-y-10">
+        {/* Título principal centrado */}
+        <div className="space-y-1 w-full mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-snug">
+            Esto es una oportunidad,{' '}
+            <span className="text-blue-600">no una opción</span>
+          </h2>
 
-        <p className="text-gray-700 text-base leading-relaxed">
-          La refrigeración hoy dejó de ser lujo y pasó a ser supervivencia. En olas de calor la gente paga rápido, sin dudar — están protegiendo vidas y eso se prioriza.
-          <br /><br />
+          <p className="text-gray-700 text-base md:text-lg max-w-3xl mx-auto">
+            La refrigeración hoy dejó de ser lujo y pasó a ser supervivencia. En olas de calor la gente paga rápido, sin dudar. Están protegiendo vidas y eso se prioriza.
+          </p>
+        </div>
 
-          {/* Ingresos previsibles */}
-          <span className="flex items-center gap-2 font-semibold text-gray-900">
-            <TrendingUp className="w-5 h-5 text-blue-600" />
-            Ingresos previsibles:
-          </span>
-          &nbsp; servicios de limpieza y mantenimiento se repiten cada 6–12 meses — clientes que vuelven solos, factura estable y previsibilidad financiera.
-          <br /><br />
-
-          {/* Baja barrera de entrada */}
-          <span className="flex items-center gap-2 font-semibold text-gray-900">
-            <Wrench className="w-5 h-5 text-blue-600" />
-            Baja barrera de entrada:
-          </span>
-          &nbsp; con alguien que te guíe aprendés lo práctico en pocas semanas; herramientas accesibles y puesta en marcha rápida.
-          <br /><br />
-
-          {/* Alta rentabilidad por hora */}
-          <span className="flex items-center gap-2 font-semibold text-gray-900">
-            <Clock className="w-5 h-5 text-blue-600" />
-            Alta rentabilidad por hora:
-          </span>
-          &nbsp; trabajo técnico, pocas horas, margen alto — perfecto para maximizar tiempo y ganancia.
-          <br /><br />
-
-          {/* Múltiples fuentes de ingreso */}
-          <span className="flex items-center gap-2 font-semibold text-gray-900">
-            <Layers className="w-5 h-5 text-blue-600" />
-            Múltiples fuentes de ingreso:
-          </span>
-          &nbsp; instalación, recargas, reparaciones, contratos de mantenimiento, venta de filtros y upgrades energéticos, etc.
-          <br /><br />
-
-          {/* Resiliencia ante crisis */}
-          <span className="flex items-center gap-2 font-semibold text-gray-900">
-            <ShieldCheck className="w-5 h-5 text-blue-600" />
-            Resiliencia ante crisis:
-          </span>
-          &nbsp; incluso en tiempos de crisis el mantenimiento del confort y la salud se priorizan — tu servicio se vuelve esencial.
-          <br /><br />
-
-          <span className="text-gray-900 font-semibold text-lg block mt-2">
-            Aprendé rápido, facturá alto, armá cartera recurrente y convertite en el técnico al que nadie deja de llamar.
-          </span>
-        </p>
-
-        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition-all text-base">
-          Inscribite y arrancás ya
-        </button>
-      </div>
-
-      {/* Componente Reordering */}
-      <div className="md:w-1/2 w-full flex justify-center items-center">
-        <div className="w-full max-w-sm">
-          <Reordering />
+        {/* GRID de beneficios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 w-full max-w-6xl">
+          {[
+            { icon: TrendingUp, title: 'Ingresos previsibles', text: 'Servicios que se repiten cada 6–12 meses — clientes fieles, ingresos estables.' },
+            { icon: Wrench, title: 'Baja barrera de entrada', text: 'Con guía práctica y herramientas simples podés arrancar rápido.' },
+            { icon: Clock, title: 'Alta rentabilidad', text: 'Pocas horas, margen alto — más tiempo libre y mejor ganancia.' },
+            { icon: Layers, title: 'Múltiples ingresos', text: 'Instalación, recargas, mantenimiento, repuestos y upgrades.' },
+            { icon: ShieldCheck, title: 'Resiliencia ante crisis', text: 'El confort y la salud siempre se priorizan — tu servicio se vuelve esencial.' },
+            { icon: Zap, title: 'Demanda todo el año', text: 'En verano por calor, en invierno por mantenimiento — el trabajo nunca frena.' },
+            { icon: DollarSign, title: 'Inversión mínima', text: 'Podés empezar con herramientas básicas y hacer crecer tu equipo con el tiempo.' },
+            { icon: Users, title: 'Comunidad de apoyo', text: 'Aprendé y compartí con técnicos de toda la región que ya viven de esto.' },
+            { icon: Star, title: 'Reconocimiento local', text: 'Con trabajo constante, te convertís en “el técnico de confianza” de tu zona.' },
+          ].map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <div key={index} className="flex flex-col">
+                {/* Título de cada viñeta alineado a la izquierda */}
+                <span className="flex items-center gap-3 font-semibold text-gray-900 mb-2.5 text-lg md:text-xl">
+                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />
+                  {benefit.title}
+                </span>
+                <p className="text-gray-700 text-sm md:text-[15px] leading-relaxed">
+                  {benefit.text}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

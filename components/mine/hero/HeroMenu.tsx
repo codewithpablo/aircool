@@ -1,4 +1,5 @@
 'use client';
+
 import Logo from "../other/Logo";
 import {
   NavigationMenu,
@@ -82,25 +83,26 @@ export default function NavigationMenuWithDropdown() {
 
   return (
     <div className="relative flex justify-center z-20 bg-blue-400 shadow-xl py-3 px-4 md:px-6 w-full max-w-[95%] mt-2 rounded-full mx-auto">
-     
-
       <NavigationMenu>
         <NavigationMenuList className="flex flex-wrap justify-center gap-2 md:gap-4">
+          {/* Nosotros */}
           <NavigationMenuItem>
             <NavigationMenuTrigger>Nosotros</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 lg:grid-cols-[.75fr_1fr] w-full max-w-full">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[.75fr_1fr] gap-3 p-2 sm:p-4 md:p-6 w-full max-w-full">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <Link
                       href="/"
-                      className="relative flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-2 sm:p-4 no-underline focus:shadow-md"
+                      className="relative flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-2 sm:p-4 md:p-6 no-underline focus:shadow-md"
                     >
                       <div className="relative w-full aspect-video rounded-md overflow-hidden">
-                        <Image src="/4.png" alt="" fill className="object-cover" />
+                        <Image src="/4.png" alt="Air Cool" fill className="object-cover" />
                       </div>
-                      <div className="mt-2 text-lg font-medium text-white">AIR COOL</div>
-                      <p className="text-sm leading-tight text-white/80">
+                      <div className="mt-2 text-lg sm:text-xl md:text-2xl font-medium text-white">
+                        AIR COOL
+                      </div>
+                      <p className="text-sm sm:text-base md:text-lg leading-tight text-white/80">
                         Nueva propuesta educativa
                       </p>
                     </Link>
@@ -120,10 +122,11 @@ export default function NavigationMenuWithDropdown() {
             </NavigationMenuContent>
           </NavigationMenuItem>
 
+          {/* Cursos */}
           <NavigationMenuItem>
             <NavigationMenuTrigger>Cursos</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-2 md:grid-cols-2 lg:grid-cols-3 w-full max-w-full">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2 sm:p-3 md:p-4 lg:p-6 w-full max-w-full">
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
@@ -137,6 +140,7 @@ export default function NavigationMenuWithDropdown() {
             </NavigationMenuContent>
           </NavigationMenuItem>
 
+          {/* Contacto */}
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link href="/docs" className={navigationMenuTriggerStyle()}>
@@ -161,13 +165,13 @@ const ListItem = React.forwardRef<
           href={href ?? "#"}
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-2 sm:p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-2 sm:p-3 md:p-4 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          <div className="text-sm sm:text-base font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm sm:text-sm md:text-base leading-snug text-muted-foreground">{children}</p>
         </Link>
       </NavigationMenuLink>
     </li>

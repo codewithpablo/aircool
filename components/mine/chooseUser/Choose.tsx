@@ -16,7 +16,6 @@ const AnimatedCard = ({ role, selected, setSelected }: any) => {
   const cardHeight = 176;
   const borderRadius = 16;
 
-  // Estado para detectar hover
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -24,9 +23,8 @@ const AnimatedCard = ({ role, selected, setSelected }: any) => {
       onClick={() => setSelected(role.id)}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="relative cursor-pointer flex flex-col items-center justify-center w-40 h-44 bg-blue-100 text-blue-600 rounded-2xl shadow-md"
+      className="relative cursor-pointer flex flex-col items-center justify-center w-32 sm:w-36 md:w-40 h-40 sm:h-44 bg-blue-100 text-blue-600 rounded-2xl shadow-md"
     >
-      {/* Solo renderizar SVG cuando está hover */}
       {isHover && (
         <motion.svg
           className="absolute inset-0 pointer-events-none"
@@ -52,10 +50,8 @@ const AnimatedCard = ({ role, selected, setSelected }: any) => {
           />
         </motion.svg>
       )}
-
-      {/* Contenido de la card */}
       <div className="mb-3 z-10">{role.icon}</div>
-      <p className="font-medium z-10">{role.label}</p>
+      <p className="font-medium z-10 text-sm sm:text-base">{role.label}</p>
     </div>
   );
 };
@@ -64,27 +60,27 @@ export default function ChooseUser() {
   const [selected, setSelected] = useState("student");
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-linear-to-br from-blue-100 via-white to-blue-200">
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-linear-to-br from-blue-100 via-white to-blue-200 px-4">
       
       {/* Fondos animados */}
       <motion.div
-        className="absolute -top-40 -left-40 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+        className="absolute -top-40 -left-40 w-72 sm:w-96 h-72 sm:h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
         animate={{ x: [0, 30, -30, 0], y: [0, 20, -20, 0] }}
         transition={{ duration: 12, repeat: Infinity }}
       />
       <motion.div
-        className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+        className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
         animate={{ x: [0, -30, 30, 0], y: [0, -20, 20, 0] }}
         transition={{ duration: 14, repeat: Infinity }}
       />
 
       {/* Título */}
-      <h2 className="text-2xl font-bold text-blue-600 mb-10 z-10">
+      <h2 className="text-xl sm:text-2xl font-bold text-blue-600 mb-10 z-10">
         SELECCIONAR TIPO DE USUARIO
       </h2>
 
       {/* Cards */}
-      <div className="flex gap-6 mb-10 z-10">
+      <div className="flex flex-wrap justify-center gap-6 mb-10 z-10">
         {roles.map((role) => (
           <AnimatedCard
             key={role.id}
@@ -96,12 +92,12 @@ export default function ChooseUser() {
       </div>
 
       {/* Botones */}
-      <div className="flex items-center gap-4 z-10">
-        <button className="flex items-center justify-center w-10 h-10 border border-blue-400 rounded-full text-blue-500 hover:bg-blue-100 transition">
-          <Link href="/">
-          <ArrowLeft size={18} />
-          </Link>
-        </button>
+      <div className="flex flex-col sm:flex-row items-center gap-4 z-10">
+        <Link href="/">
+          <button className="flex items-center justify-center w-10 h-10 border border-blue-400 rounded-full text-blue-500 hover:bg-blue-100 transition">
+            <ArrowLeft size={18} />
+          </button>
+        </Link>
         <button className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">
           Continuar
         </button>
