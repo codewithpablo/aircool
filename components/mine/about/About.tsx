@@ -6,19 +6,19 @@ import { motion, Variants } from "framer-motion";
 
 const teachers = [
   {
-    title: "Rolando Micheli",
+    title: "Rolando Miceli",
     badge: "Fundador",
     description: "Descubrió su vocación entre motores, herramientas y el sonido del metal. Fundó Aircool Refrigeración, dedicándose a la formación técnica y al servicio profesional.",
     image: "/3.jpg"
   },
   {
-    title: "Orlando Micheli",
+    title: "Orlando Miceli",
     badge: "Cofundador",
     description: "Ha sido un pilar de inspiración y enseñanza, guiando con paciencia y conocimiento técnico a muchas generaciones.",
-    image: "/12.jpg"
+    image: "/tionanocordoba.jpg"
   },
   {
-    title: "Verónica Micheli",
+    title: "Verónica Miceli",
     badge: "Cofundadora",
     description: "Es pieza clave en el proyecto y en la vida del equipo, organizando y coordinando todo con profesionalismo y constancia.",
     image: "/9.jpg"
@@ -42,7 +42,7 @@ const cardVariants: Variants = {
 export default function TeachersSection() {
   return (
     <section className="w-full py-16 px-6 md:px-20 bg-blue-200">
-      <h2 className="text-5xl md:text-6xl font-bold text-center text-gray-800 mb-12  ">FUNDADORES</h2>
+      <h2 className="text-5xl md:text-6xl font-bold text-center text-gray-800 mb-12 italic ">Fundadores</h2>
 
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center"

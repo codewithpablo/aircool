@@ -32,7 +32,7 @@ const Hero = () => {
 
             {/* Botones */}
             <div className="w-fit mx-auto md:w-[300px] md:mx-0 flex gap-3 mt-5">
-              <Link href="/choose">
+              <Link href="/links">
                 <Button className="text-white rounded-full bg-blue-400 hover:bg-blue-400">Ingresar al campus</Button>
               </Link>
               <Link href="/courses">
