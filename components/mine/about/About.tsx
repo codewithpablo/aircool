@@ -41,7 +41,7 @@ const cardVariants: Variants = {
 
 export default function TeachersSection() {
   return (
-    <section className="w-full py-16 px-6 md:px-20 bg-blue-200">
+    <section className="w-full py-16 px-6 md:px-20 ">
       <h2 className="text-5xl md:text-6xl font-bold text-center text-gray-800 mb-12 italic ">Fundadores</h2>
 
       <motion.div 

@@ -66,7 +66,7 @@ const learnUnits = [
 
 export default function UnitsSection() {
   return (
-    <section className="w-full min-h-screen flex flex-col justify-center bg-linear-to-tl from-blue-200 via-white to-white py-8 px-6 md:px-20 ">
+    <section className="w-full min-h-screen flex flex-col justify-center bg-linear-to-tl from-blue-400 via-white to-white py-8 px-6 md:px-20 ">
       <h2 className="text-3xl md:text-4xl italic font-semibold text-gray-900 text-center mb-6">
         ¿Qué vas a aprender?
       </h2>

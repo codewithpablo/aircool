@@ -174,3 +174,5 @@
   background-size: contain;       /* Hace que la imagen cubra todo el elemento */
   background-position: center;  /* Centra la imagen en el elemento */
 }
+
+@import "leaflet/dist/leaflet.css";

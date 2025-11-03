@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="w-[95%]">
 
         {/* --- Navbar Desktop --- */}
-        <nav className="hidden md:block bg-blue-400 rounded-full w-full mt-3 px-6 py-3 z-20">
+        <nav className="hidden md:block bg-blue-400 rounded-full w-full mt-3 py-1 z-20">
           <div className="flex justify-center items-center">
             <NavigationMenu className="bg-transparent">
               <NavigationMenuList className="flex space-x-6 items-center">

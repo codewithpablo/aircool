@@ -12,7 +12,7 @@ import ActionSection from "@/components/mine/takeAction/ActionSection";
 import UnitsSection from "@/components/mine/learn/UnitsSection";
 import Footer from "@/components/mine/other/Footer";
 import About from "@/components/mine/about/About";
-import EventSection from "@/components/event/EventSection";
+import EventSection from "@/components/mine/event/EventSection";
 
 export default function Home() {
   // 1. Estado para controlar si es la primera visita (true al inicio para mostrar el logo)
@@ -51,7 +51,7 @@ export default function Home() {
   if (!isFirstVisit) {
     return (
       <>
-        <div className="relative z-20">
+        <div className="relative z-20 bg-linear-to-tl from-blue-400 via-white to-white">
           <ScarcityBanner />
           <HeroMenu />
           <Hero />
