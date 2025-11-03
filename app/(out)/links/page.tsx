@@ -1,33 +1,117 @@
-// DashboardCompuesto.js (Simplificado, sin Tooltips)
+// DashboardCompuesto.js (Con Dropdowns al hacer Hover)
 "use client";
 
+import { useState } from 'react';
 import { motion } from "framer-motion";
-import { BookOpen, MonitorPlay, Calendar, Library, Bell } from "lucide-react"; 
-// Se eliminaron las importaciones de shadcn/ui (Tooltip)
-
+import { BookOpen, MonitorPlay, Calendar, Library, Bell, ChevronDown } from "lucide-react"; 
 
 // --------------------------------------------------
-// 1. COMPONENTE ButtonEnlace (Simplificado)
+// 1. COMPONENTE DropdownMenu
 // --------------------------------------------------
 
-// Ahora es un componente de botón/enlace simple sin lógica de estado ni tooltips.
-const ButtonEnlace = ({ children, colorClass, link, Icon }: any) => {
+interface DropdownItem {
+  name: string;
+  link: string;
+}
+
+interface DropdownMenuProps {
+  items: DropdownItem[];
+  isOpen: boolean;
+}
+
+const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
+  if (!isOpen) return null;
+
   return (
-    <a 
-      href={link} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap`} 
+    // Posicionamiento absoluto para que aparezca debajo del botón.
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      className="absolute top-full mt-2 w-full min-w-[200px] bg-gray-800 rounded-lg shadow-xl overflow-hidden z-20 border border-gray-700"
     >
-      <Icon size={20} /> 
-      <span>{children}</span>
-    </a>
+      <ul className="py-1">
+        {items.map((item, index) => (
+          <li key={index}>
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover:text-white transition duration-150"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+};
+
+// --------------------------------------------------
+// 2. COMPONENTE ButtonEnlace (MODIFICADO para Hover)
+// --------------------------------------------------
+
+interface ButtonEnlaceProps {
+  children: React.ReactNode;
+  colorClass: string;
+  link: string;
+  Icon: React.ElementType;
+  dropdownItems?: DropdownItem[]; 
+}
+
+const ButtonEnlace = ({ children, colorClass, link, Icon, dropdownItems }: ButtonEnlaceProps) => {
+  // Estado para controlar la visibilidad del dropdown.
+  const [isOpen, setIsOpen] = useState(false);
+  const hasDropdown = dropdownItems && dropdownItems.length > 0;
+
+  if (!hasDropdown) {
+    // Si no tiene dropdown, actúa como un enlace simple.
+    return (
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap`} 
+      >
+        <Icon size={20} /> 
+        <span>{children}</span>
+      </a>
+    );
+  }
+
+  // Si tiene dropdown, usa un div relativo con eventos de hover.
+  return (
+    <div 
+      className="relative inline-block"
+      // CAMBIO CLAVE: Abre al pasar el ratón por encima del área del botón/menú.
+      onMouseEnter={() => setIsOpen(true)} 
+      // CAMBIO CLAVE: Cierra al salir del área.
+      onMouseLeave={() => setIsOpen(false)} 
+    > 
+      {/* El botón en sí (sin lógica de click) */}
+      <div 
+        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`} 
+      >
+        <Icon size={20} /> 
+        <span>{children}</span>
+        {/* Flecha indicadora que rota al abrirse */}
+        <ChevronDown 
+          size={20} 
+          className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+        />
+      </div>
+
+      {/* Menú Desplegable */}
+      <DropdownMenu items={dropdownItems} isOpen={isOpen} />
+    </div>
   );
 };
 
 
 // --------------------------------------------------
-// 2. COMPONENTE PRINCIPAL DashboardCompuesto (Centrado con Botones Horizontales)
+// 3. COMPONENTE PRINCIPAL DashboardCompuesto
 // --------------------------------------------------
 
 const DashboardCompuesto = () => {
@@ -38,6 +122,20 @@ const DashboardCompuesto = () => {
     biblioteca: "https://plataforma.estudiante.com/biblioteca",
     avisos: "https://plataforma.estudiante.com/noticias",
   };
+  
+  // Datos para el dropdown de Cursos (3 items)
+  const cursosItems = [
+    { name: "Instalacion de Split", link: `${fakeLinks.cursos}/react-avanzado` },
+    { name: "Instalaciones electricas", link: `${fakeLinks.cursos}/node-db` },
+    { name: "Refrigeracion familiar", link: `${fakeLinks.cursos}/ia-fundamentos` },
+  ];
+
+  // Datos para el dropdown de Clases en Vivo (3 items)
+  const clasesItems = [
+    { name: "Instalacion de Split", link: `${fakeLinks.clases}/taller-hooks` },
+    { name: "Instalaciones electricas", link: `${fakeLinks.clases}/patrones-diseno` },
+    { name: "Refrigeracion familiar", link: `${fakeLinks.clases}/optimizacion` },
+  ];
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
@@ -62,7 +160,7 @@ const DashboardCompuesto = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Portal del Estudiante
+          Portal del estudiante
         </motion.h1>
 
         <motion.p
@@ -75,7 +173,6 @@ const DashboardCompuesto = () => {
         </motion.p>
 
         {/* --- Botones de Navegación (Horizontal) --- */}
-        {/* Se elimina TooltipProvider */}
         <motion.div
           className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl" 
           initial={{ opacity: 0, scale: 0.9 }} 
@@ -83,23 +180,27 @@ const DashboardCompuesto = () => {
           transition={{ delay: 1, staggerChildren: 0.1, duration: 0.5 }}
         >
           
-          {/* Los botones ahora usan el componente simple ButtonEnlace */}
+          {/* BOTÓN CURSOS con Dropdown (Hover) */}
           <ButtonEnlace
             colorClass="bg-blue-600 hover:bg-blue-700"
             link={fakeLinks.cursos}
             Icon={BookOpen}
+            dropdownItems={cursosItems} 
           >
             Cursos
           </ButtonEnlace>
 
+          {/* BOTÓN CLASES EN VIVO con Dropdown (Hover) */}
           <ButtonEnlace
             colorClass="bg-cyan-500 hover:bg-cyan-600"
             link={fakeLinks.clases}
             Icon={MonitorPlay}
+            dropdownItems={clasesItems} 
           >
             Clases en Vivo
           </ButtonEnlace>
 
+          {/* Botones Sin Dropdown (Enlaces Simples) */}
           <ButtonEnlace
             colorClass="bg-indigo-500 hover:bg-indigo-600"
             link={fakeLinks.calendario}
