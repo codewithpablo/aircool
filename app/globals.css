@@ -176,3 +176,15 @@
 }
 
 @import "leaflet/dist/leaflet.css";
+
+@layer base {
+    /* Base para Light Mode */
+    body {
+        @apply bg-white text-gray-900 transition-colors duration-500;
+    }
+
+    /* Estilos de Tailwind para Dark Mode */
+    .dark body {
+        @apply bg-gray-950 text-gray-50;
+    }
+}

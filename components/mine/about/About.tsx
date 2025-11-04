@@ -41,8 +41,8 @@ const cardVariants: Variants = {
 
 export default function TeachersSection() {
   return (
-    <section className="w-full py-16 px-6 md:px-20 ">
-      <h2 className="text-5xl md:text-6xl font-bold text-center text-gray-800 mb-12 italic ">Fundadores</h2>
+    <section className=" w-full py-16 px-6 md:px-20 dark:bg-gray-950"> {/* Opcional: Agregar un fondo oscuro a la sección si es necesario */}
+      <h2 className="text-5xl md:text-6xl font-bold text-center text-gray-800 mb-12 italic dark:text-white">Fundadores</h2>
 
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center"
@@ -54,10 +54,11 @@ export default function TeachersSection() {
         {teachers.map((teacher, index) => (
           <motion.div 
             key={index} 
-            className="bg-white/30 rounded-2xl shadow-md backdrop-blur-sm overflow-hidden flex flex-col w-full max-w-sm max-h-[420px]"
+            // CLASES MODIFICADAS: Añadido dark:bg-gray-800/60 y ajustes de sombra para el modo oscuro
+            className="bg-white/30 dark:bg-gray-800/60 rounded-2xl shadow-md dark:shadow-lg dark:shadow-gray-900/50 backdrop-blur-sm overflow-hidden flex flex-col w-full max-w-sm max-h-[420px]"
             variants={cardVariants}
           >
-            {/* Imagen más alta */}
+            {/* Imagen */}
             <div className="relative w-full h-64 md:h-80">
               <Image
                 src={teacher.image}
@@ -70,10 +71,12 @@ export default function TeachersSection() {
             {/* Nombre y badge */}
             <div className="p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xl font-semibold text-gray-900">{teacher.title}</h3>
+                {/* CLASE MODIFICADA: Añadido dark:text-white */}
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{teacher.title}</h3>
                 <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">{teacher.badge}</span>
               </div>
-              <p className="text-gray-700 text-sm line-clamp-3">{teacher.description}</p>
+              {/* CLASE MODIFICADA: Añadido dark:text-gray-300 */}
+              <p className="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">{teacher.description}</p>
             </div>
           </motion.div>
         ))}

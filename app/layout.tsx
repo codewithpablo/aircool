@@ -1,6 +1,10 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+// 👇 Importar el ThemeProvider
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -8,11 +12,8 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
-
-
 export const metadata: Metadata = {
-  title: "Aircool: Campus Virtual ",
+  title: "Aircool: Campus Virtual",
   description: "Refrigeracion integral",
 };
 
@@ -22,11 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // 💡 suppressHydrationWarning es necesario cuando se manipula el <html>
+    // El tema es aplicado por el ThemeProvider, no en el <html> directamente
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`  ${poppins.variable }antialiased  `}
+        className={`${poppins.variable} antialiased`}
       >
-        {children}
+        {/* 🔑 Envolvemos el contenido con el proveedor de temas */}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
