@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle, ArrowLeft, BookOpen, Trophy, Clock, Star } from "lucide-react";
@@ -56,7 +56,6 @@ export default function CursosPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
-  const [paymentFile, setPaymentFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [paid, setPaid] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -75,7 +74,6 @@ export default function CursosPage() {
     setShowInfoModal(false);
     setShowPayModal(false);
     setSelectedCourse(null);
-    setPaymentFile(null);
     setPreview("");
     setPaid(false);
     setFullName("");
@@ -256,17 +254,7 @@ export default function CursosPage() {
               />
             </div>
 
-            {/* Checkbox "Ya pagué" */}
-            <div className="flex items-center gap-2 mb-4">
-              <input
-                type="checkbox"
-                id="paid"
-                checked={paid}
-                onChange={() => setPaid(!paid)}
-                className="w-5 h-5 accent-[#00aee8]"
-              />
-              <label htmlFor="paid" className="text-gray-900 dark:text-white">Ya pagué</label>
-            </div>
+           
 
             {/* Preview del comprobante */}
             {preview && (
