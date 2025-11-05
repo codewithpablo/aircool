@@ -1,9 +1,10 @@
-// DashboardCompuesto.js (Con Dropdowns al hacer Hover)
+// DashboardCompuesto.tsx (Con Dropdowns al hacer Hover y tipado TS corregido)
 "use client";
 
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { BookOpen, MonitorPlay, Calendar, Library, Bell, ChevronDown } from "lucide-react"; 
+import { BookOpen, MonitorPlay, Calendar, Library, Bell, ChevronDown } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // --------------------------------------------------
 // 1. COMPONENTE DropdownMenu
@@ -23,7 +24,6 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    // Posicionamiento absoluto para que aparezca debajo del botón.
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -50,65 +50,56 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
 };
 
 // --------------------------------------------------
-// 2. COMPONENTE ButtonEnlace (MODIFICADO para Hover)
+// 2. COMPONENTE ButtonEnlace
 // --------------------------------------------------
 
 interface ButtonEnlaceProps {
   children: React.ReactNode;
   colorClass: string;
   link: string;
-  Icon: React.ElementType;
-  dropdownItems?: DropdownItem[]; 
+  Icon: LucideIcon; // <-- Tipado específico para iconos lucide
+  dropdownItems?: DropdownItem[];
 }
 
 const ButtonEnlace = ({ children, colorClass, link, Icon, dropdownItems }: ButtonEnlaceProps) => {
-  // Estado para controlar la visibilidad del dropdown.
   const [isOpen, setIsOpen] = useState(false);
   const hasDropdown = dropdownItems && dropdownItems.length > 0;
 
   if (!hasDropdown) {
-    // Si no tiene dropdown, actúa como un enlace simple.
     return (
-      <a 
-        href={link} 
-        target="_blank" 
+      <a
+        href={link}
+        target="_blank"
         rel="noopener noreferrer"
-        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap`} 
+        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap`}
       >
-        <Icon size={20} /> 
+        <Icon size={20} />
         <span>{children}</span>
       </a>
     );
   }
 
-  // Si tiene dropdown, usa un div relativo con eventos de hover.
   return (
-    <div 
+    <div
       className="relative inline-block"
-      // CAMBIO CLAVE: Abre al pasar el ratón por encima del área del botón/menú.
-      onMouseEnter={() => setIsOpen(true)} 
-      // CAMBIO CLAVE: Cierra al salir del área.
-      onMouseLeave={() => setIsOpen(false)} 
-    > 
-      {/* El botón en sí (sin lógica de click) */}
-      <div 
-        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`} 
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <div
+        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`}
       >
-        <Icon size={20} /> 
+        <Icon size={20} />
         <span>{children}</span>
-        {/* Flecha indicadora que rota al abrirse */}
-        <ChevronDown 
-          size={20} 
+        <ChevronDown
+          size={20}
           className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
 
-      {/* Menú Desplegable */}
       <DropdownMenu items={dropdownItems} isOpen={isOpen} />
     </div>
   );
 };
-
 
 // --------------------------------------------------
 // 3. COMPONENTE PRINCIPAL DashboardCompuesto
@@ -122,15 +113,13 @@ const DashboardCompuesto = () => {
     biblioteca: "https://plataforma.estudiante.com/biblioteca",
     avisos: "https://plataforma.estudiante.com/noticias",
   };
-  
-  // Datos para el dropdown de Cursos (3 items)
+
   const cursosItems = [
     { name: "Instalacion de Split", link: `${fakeLinks.cursos}/react-avanzado` },
     { name: "Instalaciones electricas", link: `${fakeLinks.cursos}/node-db` },
     { name: "Refrigeracion familiar", link: `${fakeLinks.cursos}/ia-fundamentos` },
   ];
 
-  // Datos para el dropdown de Clases en Vivo (3 items)
   const clasesItems = [
     { name: "Instalacion de Split", link: `${fakeLinks.clases}/taller-hooks` },
     { name: "Instalaciones electricas", link: `${fakeLinks.clases}/patrones-diseno` },
@@ -139,21 +128,16 @@ const DashboardCompuesto = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
-      
-      {/* --- Video de fondo --- */}
       <video
         src="/aircool.mp4"
         autoPlay
         loop
         muted
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover filter blur-[5px] scale-[1.1]" 
+        className="absolute top-0 left-0 w-full h-full object-cover filter blur-[5px] scale-[1.1]"
       />
 
-      {/* --- Contenido Centrado --- */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 lg:px-8">
-        
-        {/* --- Títulos --- */}
         <motion.h1
           className="text-5xl lg:text-7xl font-extrabold mb-4 text-center font-poppins drop-shadow-lg"
           initial={{ opacity: 0, y: -20 }}
@@ -172,35 +156,30 @@ const DashboardCompuesto = () => {
           Navegación rápida y recursos destacados
         </motion.p>
 
-        {/* --- Botones de Navegación (Horizontal) --- */}
         <motion.div
-          className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl" 
-          initial={{ opacity: 0, scale: 0.9 }} 
+          className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl"
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, staggerChildren: 0.1, duration: 0.5 }}
         >
-          
-          {/* BOTÓN CURSOS con Dropdown (Hover) */}
           <ButtonEnlace
             colorClass="bg-blue-600 hover:bg-blue-700"
             link={fakeLinks.cursos}
             Icon={BookOpen}
-            dropdownItems={cursosItems} 
+            dropdownItems={cursosItems}
           >
             Cursos
           </ButtonEnlace>
 
-          {/* BOTÓN CLASES EN VIVO con Dropdown (Hover) */}
           <ButtonEnlace
             colorClass="bg-cyan-500 hover:bg-cyan-600"
             link={fakeLinks.clases}
             Icon={MonitorPlay}
-            dropdownItems={clasesItems} 
+            dropdownItems={clasesItems}
           >
             Clases en Vivo
           </ButtonEnlace>
 
-          {/* Botones Sin Dropdown (Enlaces Simples) */}
           <ButtonEnlace
             colorClass="bg-indigo-500 hover:bg-indigo-600"
             link={fakeLinks.calendario}
@@ -208,7 +187,7 @@ const DashboardCompuesto = () => {
           >
             Calendario
           </ButtonEnlace>
-          
+
           <ButtonEnlace
             colorClass="bg-purple-600 hover:bg-purple-700"
             link={fakeLinks.biblioteca}
@@ -216,7 +195,7 @@ const DashboardCompuesto = () => {
           >
             Biblioteca
           </ButtonEnlace>
-          
+
           <ButtonEnlace
             colorClass="bg-rose-500 hover:bg-rose-600"
             link={fakeLinks.avisos}
@@ -225,8 +204,7 @@ const DashboardCompuesto = () => {
             Avisos
           </ButtonEnlace>
         </motion.div>
-
-      </div> 
+      </div>
     </div>
   );
 };
