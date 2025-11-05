@@ -271,7 +271,6 @@ export default function CursosPage() {
                   ? "bg-[#00aee8] hover:bg-[#0095c6] text-white"
                   : "bg-gray-400 dark:bg-gray-600 text-gray-300 cursor-not-allowed"
               }`}
-              disabled={!(paid && fullName.trim())}
             >
               <CheckCircle /> Enviar comprobante por WhatsApp
             </button>
