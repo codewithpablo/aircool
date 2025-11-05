@@ -57,7 +57,6 @@ export default function CursosPage() {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
   const [preview, setPreview] = useState("");
-  const [paid, setPaid] = useState(false);
   const [fullName, setFullName] = useState("");
 
   const openInfoModal = (id: number) => {
@@ -75,15 +74,10 @@ export default function CursosPage() {
     setShowPayModal(false);
     setSelectedCourse(null);
     setPreview("");
-    setPaid(false);
     setFullName("");
   };
 
   const handlePaymentSubmit = () => {
-    if (!paid) {
-      alert("Debes marcar 'Ya pagué' antes de enviar el comprobante.");
-      return;
-    }
     if (!fullName.trim()) {
       alert("Por favor ingresa nombre y apellido del alumno.");
       return;
@@ -120,7 +114,6 @@ export default function CursosPage() {
                   <Trophy className="w-5 h-5" /> {course.reward}
                 </p>
 
-                {/* Galería de imágenes */}
                 <div className="grid grid-cols-2 gap-2 mt-3">
                   {course.images.map((img, idx) => (
                     <div key={idx} className="relative w-full h-32 rounded-lg overflow-hidden">
@@ -218,7 +211,6 @@ export default function CursosPage() {
               <ArrowLeft /> Volver
             </button>
 
-            {/* Logos según modo */}
             <div className="flex justify-center mb-6 mt-6">
               <Image
                 src="/mp.png"
@@ -243,7 +235,6 @@ export default function CursosPage() {
               Transferí a nuestro alias <span className="font-bold">aircool.instituto</span> y subí tu comprobante para enviarlo por WhatsApp.
             </p>
 
-            {/* Input nombre */}
             <div className="mb-4">
               <input
                 type="text"
@@ -254,9 +245,6 @@ export default function CursosPage() {
               />
             </div>
 
-           
-
-            {/* Preview del comprobante */}
             {preview && (
               <div className="mb-4">
                 <img src={preview} alt="Preview pago" className="w-full h-40 object-cover rounded-lg" />
@@ -266,11 +254,7 @@ export default function CursosPage() {
             <button
               type="button"
               onClick={handlePaymentSubmit}
-              className={`w-full py-3 rounded-xl font-bold mt-2 flex items-center justify-center gap-2 shadow-md transition-colors duration-200 ${
-                paid && fullName.trim()
-                  ? "bg-[#00aee8] hover:bg-[#0095c6] text-white"
-                  : "bg-gray-400 dark:bg-gray-600 text-gray-300 cursor-not-allowed"
-              }`}
+              className="w-full py-3 rounded-xl font-bold mt-2 flex items-center justify-center gap-2 shadow-md transition-colors duration-200 bg-[#00aee8] hover:bg-[#0095c6] text-white"
             >
               <CheckCircle /> Enviar comprobante por WhatsApp
             </button>
