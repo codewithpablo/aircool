@@ -27,7 +27,7 @@ export default function RootLayout({
     // El tema es aplicado por el ThemeProvider, no en el <html> directamente
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased max-w-screen`}
       >
         {/* 🔑 Envolvemos el contenido con el proveedor de temas */}
         <ThemeProvider>

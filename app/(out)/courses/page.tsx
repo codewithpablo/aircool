@@ -86,7 +86,7 @@ export default function CursosPage() {
     const phone = "543624217417"; // reemplazar por tu número
     const courseTitle = courses.find(c => c.id === selectedCourse)?.title;
 
-    const message = `Hola, mi nombre *${fullName}*.\n\nAcabo de pagar el curso *${courseTitle}* al alias indicado *aircool.instituto*.\nA continuación, adjunto el comprobante de la transferencia.\n\nMuchas gracias por el curso y la atención brindada.`;
+    const message = `Hola, mi nombre *${fullName}*.\n\n *${courseTitle}* al alias indicado *aircool.instituto*.\nA continuación, adjunto el comprobante de la transferencia.\n\nMuchas gracias por el curso y la atención brindada.`;
 
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");

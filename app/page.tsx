@@ -1,18 +1,16 @@
-// CÓDIGO FINAL: Home.js
 "use client";
 import { useState, useEffect } from "react";
 import Hero from "@/components/mine/hero/Hero";
 import HeroMenu from "@/components/mine/hero/HeroMenu";
 import { motion, Variants } from "framer-motion";
 import ScarcityBanner from "@/components/mine/hero/ScarcityBanner";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Map, MapPin, ArrowBigRight } from "lucide-react";
 import ActionSection from "@/components/mine/takeAction/ActionSection";
 import UnitsSection from "@/components/mine/learn/UnitsSection";
 import Footer from "@/components/mine/other/Footer";
 import About from "@/components/mine/about/About";
 import EventSection from "@/components/mine/event/EventSection";
+import { LogIn } from "lucide-react"; // ✅ Ícono agregado
+import FAQChat from "@/components/FAQ/FAQChat";
 
 // --- VARIANTES DE ANIMACIÓN ---
 const contentVariants: Variants = {
@@ -79,6 +77,8 @@ export default function Home() {
             transition-colors duration-500
           `}
         >
+          <FAQChat />
+
           <ScarcityBanner />
           <HeroMenu />
           <Hero />
@@ -89,6 +89,26 @@ export default function Home() {
         <About />
         <EventSection />
         <Footer />
+              
+        {/* --- BOTÓN FIJO DERECHA --- */}
+        <motion.button
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5, type: "spring" }}
+          className="
+            fixed right-4 bottom-6 z-50
+            bg-[#00aee8] hover:bg-[#0095c6]
+            text-white font-semibold
+            flex items-center gap-2
+            px-6 py-3 rounded-full shadow-xl
+            transition-all duration-300
+            hover:scale-105
+          "
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <LogIn className="w-5 h-5" />
+          Asegurá tu lugar
+        </motion.button>
       </motion.div>
     );
   }
