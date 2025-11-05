@@ -77,7 +77,6 @@ export default function Home() {
             transition-colors duration-500
           `}
         >
-          <FAQChat />
 
           <ScarcityBanner />
           <HeroMenu />
@@ -88,6 +87,8 @@ export default function Home() {
         <UnitsSection />
         <About />
         <EventSection />
+          <FAQChat />
+
         <Footer />
               
         {/* --- BOTÓN FIJO DERECHA --- */}

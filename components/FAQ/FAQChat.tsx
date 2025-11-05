@@ -1,6 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Search, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, Book, Award, ToolCase, MessageSquare, ArrowDown, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+import RobotModel from './RobotModel';
 
 const faqs = [
   { question: '¿Qué cursos ofrecen?', answer: 'Ofrecemos cursos de refrigeración básica, avanzada e industrial.' },
@@ -16,123 +18,156 @@ const faqs = [
 ];
 
 export default function FAQChat() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [search, setSearch] = useState('');
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [showBubble, setShowBubble] = useState(true);
   const [typingText, setTypingText] = useState('');
-
-  const bubbleMessage =
-    "Hola, soy tu asistente virtual. Hacé click sobre mí y te mostraré las preguntas frecuentes.";
-
-  useEffect(() => {
-    if (!showBubble) return;
-    let index = 0;
-    const interval = setInterval(() => {
-      setTypingText(bubbleMessage.slice(0, index + 1));
-      index++;
-      if (index === bubbleMessage.length) clearInterval(interval);
-    }, 30);
-    return () => clearInterval(interval);
-  }, [showBubble]);
+  const [selectedFaqIndex, setSelectedFaqIndex] = useState<number | null>(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState(false);
 
   const filteredFaqs = faqs.filter((faq) =>
     faq.question.toLowerCase().replace(/[¿?]/g, '').includes(search.toLowerCase().replace(/[¿?]/g, ''))
   );
 
-  return (
-    <>
-      {/* ROBOT FLOTANTE */}
-      <div className="fixed bottom-20 md:bottom-24 right-4 md:right-6 z-50 flex flex-col items-end gap-2">
-        {/* Burbuja de bienvenida */}
-        {showBubble && (
-          <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-2xl shadow-md max-w-xs text-sm animate-fadeIn">
-            {typingText}
-            <span className="animate-pulse">|</span>
-            <button
-              onClick={() => setShowBubble(false)}
-              className="ml-2 text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-bold focus:outline-none"
-            >
-              ×
-            </button>
-          </div>
-        )}
+  // Función de typing fluido
+  const typeAnswer = (text: string) => {
+    setTypingText('');
+    setIsTyping(true);
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypingText(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        setIsTyping(false);
+      }
+    }, 25);
+  };
 
-        {/* GIF del robot */}
-        <button
-          onClick={() => setIsChatOpen(!isChatOpen)}
-          className="p-0 border-none bg-transparent focus:outline-none"
-        >
-          <img
-            src="/bot-asistente.gif"
-            alt="Asistente"
-            className="w-16 h-16 md:w-24 md:h-24 hover:scale-105 transition-transform duration-300"
+  const handleQuestionClick = (index: number) => {
+    setSelectedFaqIndex(index);
+    setTypingText('Hércules está pensando...');
+    setIsTyping(true);
+    setTimeout(() => {
+      const answer = filteredFaqs[index]?.answer || 'Lo siento, no tengo una respuesta para eso.';
+      typeAnswer(answer);
+    }, 800);
+  };
+
+  // Detectar scroll
+  useEffect(() => {
+    const div = scrollRef.current;
+    if (!div) return;
+    const checkScroll = () => setCanScroll(div.scrollHeight > div.clientHeight);
+    checkScroll();
+    div.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    return () => {
+      div.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', checkScroll);
+    };
+  }, [typingText]);
+
+  return (
+    <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-6 gap-6 md:gap-12">
+      {/* Columna izquierda: FAQ */}
+      <div className="w-full md:w-1/3 flex flex-col justify-center items-start h-auto md:h-[80vh]">
+        <h1 className="text-3xl md:text-xl lg:text-6xl font-bold leading-tight text-white mb-4">
+          Preguntas frecuentes
+        </h1>
+        <p className="text-sm md:text-base text-white mb-4">
+          Hacé click sobre una pregunta y nuestro asistente Hércules te responderá.
+        </p>
+
+        
+
+        {/* Buscador */}
+        <div className="w-full mb-4 flex items-center gap-2 flex-shrink-0">
+          <Search className="text-gray-300" size={18} />
+          <input
+            type="text"
+            placeholder="Buscar pregunta..."
+            className="flex-1 border-none outline-none text-sm md:text-base bg-transparent text-white placeholder-gray-300"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
-        </button>
+        </div>
+{/* Lista de preguntas */}
+<div className="w-full flex flex-col gap-3 overflow-y-auto hide-scrollbar max-h-[50vh]">
+  {filteredFaqs.length > 0 ? (
+    filteredFaqs.map((faq, index) => (
+      <button
+        key={index}
+        onClick={() => handleQuestionClick(index)}
+        className={`
+          w-full flex items-center justify-between p-4 rounded-xl 
+          bg-white/10 hover:bg-white/30 transition-all duration-300
+          shadow-sm hover:shadow-md text-white text-left
+          focus:outline-none focus:ring-2 focus:ring-blue-400
+        `}
+      >
+        <span className="flex-1">{faq.question}</span>
+        <span className="ml-2 text-gray-200">
+          {selectedFaqIndex === index ? '▲' : '▼'}
+        </span>
+      </button>
+    ))
+  ) : (
+    <p className="text-sm text-gray-200 text-center mt-2">No se encontraron resultados</p>
+  )}
+</div>
+
       </div>
 
-      {/* Ventana de chat separada del robot */}
-      {isChatOpen && (
-        <div className="fixed bottom-20 md:bottom-24 right-2 md:right-36 z-40 w-[90vw] max-w-[380px] h-[60vh] md:h-[400px] rounded-2xl shadow-2xl flex flex-col overflow-hidden bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-          {/* Encabezado fijo */}
-          <div className="bg-sky-600 text-white p-4 flex items-center justify-between flex-shrink-0">
-            <h2 className="text-lg font-semibold">Asistente de Cursos</h2>
-            <button onClick={() => setIsChatOpen(false)} className="hover:text-gray-200 transition">
-              <X size={22} />
-            </button>
-          </div>
+      {/* Columna centro: Robot + Bubble absoluto */}
+      <div className="flex flex-col items-center relative w-full md:w-auto">
+        <div className="h-[400px] sm:h-[450px] md:h-[600px] w-full sm:w-[350px] md:w-[400px] lg:w-[500px] relative">
+          <RobotModel modelPath="/result.gltf" />
 
-          {/* Buscador */}
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 flex-shrink-0">
-            <Search className="text-gray-500 dark:text-gray-400" size={18} />
-            <input
-              type="text"
-              placeholder="Escribí tu pregunta..."
-              className="flex-1 border-none outline-none text-sm bg-transparent text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-
-          {/* Contenido desplazable */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {filteredFaqs.length === 0 && (
-              <p className="text-sm text-gray-500 dark:text-gray-400 text-center">No se encontraron resultados</p>
-            )}
-            {filteredFaqs.map((faq, index) => (
+          {/* Bubble absoluto */}
+          {typingText && (
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-2xl shadow-md max-w-xs text-sm z-20">
               <div
-                key={index}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-800 shadow-sm"
+                className="max-h-40 overflow-y-auto pr-2 hide-scrollbar relative"
+                ref={scrollRef}
               >
-                <button
-                  className="w-full flex justify-between items-center p-3 text-left hover:bg-sky-50 dark:hover:bg-sky-900 transition-colors"
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                >
-                  <span className="font-medium">{faq.question}</span>
-                  {openIndex === index ? (
-                    <ChevronUp size={18} className="text-sky-600" />
-                  ) : (
-                    <ChevronDown size={18} className="text-gray-500 dark:text-gray-400" />
-                  )}
-                </button>
-                {openIndex === index && (
-                  <div className="p-3 text-sm text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-all duration-300">
-                    {faq.answer}
-                  </div>
+                {typingText}
+                <span className={isTyping ? 'animate-pulse' : ''}>|</span>
+
+                {canScroll && (
+                  <motion.div
+                    className="absolute bottom-1 right-1 text-gray-400"
+                    animate={{ y: [0, 5, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                  >
+                    <ArrowDown size={16} />
+                  </motion.div>
                 )}
               </div>
-            ))}
-          </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTypingText('');
+                  setSelectedFaqIndex(null);
+                }}
+                className="absolute top-1 right-2 text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-bold focus:outline-none"
+              >
+                ×
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
       `}</style>
-    </>
+    </section>
   );
 }
