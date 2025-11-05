@@ -181,23 +181,24 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-        <Link href={props.href!} passHref >
-          <a
-            ref={ref}
-            className={cn(
-              // HOVER/FOCUS: Ajuste de color de fondo y texto para el modo oscuro
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              "dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-gray-100", 
-              className
-            )}
-            {...props}
-          >
-            {/* TÍTULO: Blanco en dark mode */}
-            <div className="text-sm font-medium leading-none dark:text-white">{title}</div>
-            {/* DESCRIPCIÓN: Gris claro en dark mode */}
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-gray-300">{children}</p>
-          </a>
-        </Link>
+        <Link
+  href={props.href!}
+  ref={ref}
+  className={cn(
+    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+    "dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-gray-100",
+    className
+  )}
+  {...props}
+>
+  {/* TÍTULO: Blanco en dark mode */}
+  <div className="text-sm font-medium leading-none dark:text-white">{title}</div>
+
+  {/* DESCRIPCIÓN: Gris claro en dark mode */}
+  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-gray-300">
+    {children}
+  </p>
+</Link>
     </li>
   );
 });

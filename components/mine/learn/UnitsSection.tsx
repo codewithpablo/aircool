@@ -95,16 +95,15 @@ export default function UnitsSection() {
     dark:bg-gray-950 
       py-8 px-6 md:px-20"
     >
-      
       <motion.h2
-        initial={{ y: -50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ amount: 0.5 }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl italic font-semibold text-gray-900 dark:text-white text-center mb-8"
-      >
-        ¿Qué vas a aprender?
-      </motion.h2>
+              className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16  dark:text-white"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              ¿Qué vas a aprender?
+            </motion.h2>
+      
 
       <motion.div
         variants={containerVariants}
