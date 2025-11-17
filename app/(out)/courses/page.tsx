@@ -2,265 +2,540 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle, ArrowLeft, BookOpen, Trophy, Clock, Star } from "lucide-react";
+import {
+  CheckCircle,
+  ArrowLeft,
+  BookOpen,
+  Clock,
+  Mail,
+  Phone,
+  Instagram,
+  Target,
+  MapPin,
+  CreditCard,
+  FileText,
+  ChevronLeft,
+  ChevronRight
+} from "lucide-react";
 
+// --- ARRAY DE CURSOS ---
 const courses = [
   {
     id: 1,
-    title: "Refrigeración Integral Básica",
-    description: "Aprende los fundamentos de la refrigeración integral, el funcionamiento de los sistemas y cómo realizar mantenimientos eficientes.",
-    reward: "Certificado oficial + insignia digital",
-    duration: "4 semanas",
-    modality: "Online con prácticas virtuales",
-    requirements: "No se requieren conocimientos previos",
-    learningPoints: [
-      "Conocer los componentes de un sistema de refrigeración",
-      "Aprender a realizar mantenimiento básico",
-      "Seguridad en el manejo de gases refrigerantes",
-    ],
+    title: "REFRIGERACION I (Domicilio)",
+    preview: `Refrigeración I: Heladeras y Freezers.
+Aprende desde cero a reparar y mantener equipos, practicando directamente sobre heladeras y freezers reales, guiado por docentes expertos.
+
+Refrigeración Familiar: Heladeras y Freezers
+Duración: 90 días.
+Modalidad: Presencial con material virtual.
+Nivel: Inicial – Intermedio – Avanzado (según corresponda)
+Lo que aprenderás:
+- Desarme, diagnóstico y detección de fallas.
+- Reemplazo de componentes verificados.
+- Manipulación segura de los diferentes refrigerantes.`,
+    structuredContent: {
+      objective: "Formar técnicos capaces de analizar, diagnosticar, evaluar y ejecutar intervenciones profesionales en sistemas de refrigeración doméstica —heladeras de un frío, dos fríos, sistemas No Frost y freezers— aplicando procedimientos seguros de manipulación de refrigerantes conforme a normativas vigentes, y tomando decisiones técnicas fundamentadas para la puesta en funcionamiento óptimo de los equipos.",
+      modality: "Curso presencial y a distancia (b-learning)",
+      schedule: [
+        { days: "Martes y Jueves", hours: "18:00 a 19:30hs (Turno tarde)" },
+        { days: "Lunes y Miércoles", hours: "18:00 a 19:30hs (Turno tarde)" },
+      ],
+      location: "Av. Marconi 365, Resistencia – Chaco",
+      duration: "3 meses",
+      fees: [
+        { type: "Inscripción", amount: "$10.000 (cupos limitados)" },
+        { type: "Pago único", amount: "$145.000 (efectivo, transferencia)" },
+        { type: "2 cuotas", amount: "$80.000 (efectivo, transferencia)" },
+        { type: "3 cuotas", amount: "$65.000 (efectivo, transferencia)" },
+        { type: "Pago con tarjeta", amount: "Consultar valores" },
+      ],
+      contents: [
+        {
+          title: "Tema 1: Normas de seguridad en refrigeración doméstica",
+          points: [
+            "Reglas de seguridad personal y del entorno de trabajo",
+            "Riesgos en la manipulación de refrigerantes",
+            "Prohibiciones y procedimientos permitidos",
+            "Gestión de residuos y normativa ambiental vigente"
+          ]
+        },
+        {
+          title: "Tema 2: Diagnóstico y reparación de heladeras y freezers",
+          points: [
+            "Identificación de fallas comunes",
+            "Procedimientos de reparación seguros",
+            "Medición y control de temperaturas",
+            "Uso de herramientas y equipamiento especializado"
+          ]
+        },
+        {
+          title: "Tema 3: Sistemas No Frost y mantenimiento preventivo",
+          points: [
+            "Funcionamiento del sistema No Frost",
+            "Limpieza y mantenimiento de serpentines",
+            "Prevención de fallas y optimización del equipo"
+          ]
+        }
+      ],
+      contact: {
+        whatsapp: "+54 362 5490089",
+        email: "aircool.integral@gmail.com",
+        instagram: "@aircoolrefrigeracion"
+      }
+    },
     images: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"],
   },
   {
     id: 2,
-    title: "Refrigeración Integral Avanzada",
-    description: "Domina la instalación y reparación de sistemas de refrigeración complejos con técnicas profesionales.",
-    reward: "Certificado avanzado + premio sorpresa",
-    duration: "6 semanas",
-    modality: "Online + prácticas presenciales",
-    requirements: "Conocimientos básicos de refrigeración",
-    learningPoints: [
-      "Instalación y calibración de equipos",
-      "Diagnóstico de fallas avanzadas",
-      "Optimización energética de sistemas",
-    ],
-    images: ["/5.jpg", "/6.jpg", "/7.jpg", "/8.jpg"],
+    title: "Curso de Refrigeración II – Aire Acondicionado Split",
+    preview: `Formate como técnico especializado en Instalación, aprendiendo paso a paso a montar e instalar equipos Split y Mini Split.
+
+Aire Acondicionado Split
+Duración: 30 Días
+Modalidad: Presencial y a distancia (b-learning).
+Nivel: Inicial – Intermedio – Avanzado (según corresponda)
+Lo que aprenderás:
+- Fijación de unidad interior y exterior.
+- Correcto uso de gases refrigerantes.
+- Acoples flare, soldaduras y vacío profesional.`,
+    structuredContent: {
+      objective: `Lograr las capacidades y destrezas de un profesional técnico para el montaje e instalación de equipos Split y mini Split de baja potencia, sujeto a las condiciones y normativas vigentes.`,
+      modality: "Presencial y a distancia (b-learning)",
+      schedule: [
+        { days: "Martes y Jueves", hours: "15:30 a 17hs / 20:00 a 21:30" },
+        { days: "Lunes y Miércoles", hours: "15:30 a 17hs / 20:00 a 21:30" }
+      ],
+      location: "Av. Marconi 365, Resistencia – Chaco",
+      duration: "1 mes",
+      fees: [
+        { type: "Inscripción", amount: "$10.000" },
+        { type: "Pago único", amount: "$65.000" },
+        { type: "Pago con tarjeta en 2 cuotas", amount: "$35.000" }
+      ],
+      contents: [
+        { title: "Tema 1: Normas de seguridad y prohibiciones", points: ["Seguridad personal", "Seguridad del entorno"] },
+        { title: "Tema 2: Instalación de equipos", points: ["Montaje de split", "Conexión eléctrica", "Pruebas de funcionamiento"] }
+      ],
+      activities: [
+        "27 clases grabadas en nuestro Campus Virtual",
+        "Material PDF descargable",
+        "Soporte telefónico personalizado",
+        "Acceso ilimitado 24/7",
+        "Certificado con reconocimiento del Ingeniero Orlando Miceli y el Lic. Rolando Miceli"
+      ],
+      requirements: ["Diploma con aval institucional"],
+      contact: {
+        whatsapp: "+54 362 5490089",
+        email: "aircool.integral@gmail.com",
+        instagram: "@aircoolrefrigeracion"
+      }
+    },
+    images: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"]
   },
   {
     id: 3,
-    title: "Refrigeración Integral Profesional",
-    description: "Conviértete en un especialista en refrigeración profesional, liderando proyectos y aplicando innovación tecnológica.",
-    reward: "Certificado profesional + regalo exclusivo",
-    duration: "8 semanas",
-    modality: "Presencial y remoto",
-    requirements: "Conocimientos avanzados en refrigeración",
-    learningPoints: [
-      "Liderar proyectos de instalación",
-      "Aplicar innovación tecnológica",
-      "Gestión de equipos y clientes",
-    ],
-    images: ["/9.jpg", "/10.jpg", "/11.jpg", "/12.jpg"],
-  },
+    title: "Electricidad I - Instalaciones Eléctricas",
+    preview: `Conviértete en técnico en instalaciones eléctricas. Aprende a realizar instalaciones seguras, leer planos y elegir protecciones.
+Obtén un certificado que avala tus habilidades. El primer paso hacia un trabajo seguro y remunerado.
+
+Electricidad Domiciliaria
+Duración: 3 meses.
+Modalidad: Presencial y/o virtual.
+Nivel: Sin experiencia.
+Lo que aprenderás:
+- Circuitos y conexionado profesional.
+- Montaje y configuración de tableros eléctricos.
+- Técnicas de medición (multímetro y pinza amperométrica).
+- Aplicación de normas IRAM, AEA y prácticas de seguridad.`,
+    structuredContent: {
+      objective: `Capacitar a personas sin experiencia previa en el área, para que adquieran los conocimientos y habilidades necesarias para desempeñarse como técnicos en instalaciones eléctricas domiciliarias, conforme a las normas vigentes de seguridad y buenas prácticas.`,
+      modality: "Presencial y/o virtual",
+      schedule: [
+        { days: "3 días por semana", hours: "1,5hs por día (4,5hs semanales, 54hs totales)" }
+      ],
+      location: "Av. Marconi 365, Resistencia – Chaco",
+      duration: "3 meses",
+      fees: [
+        { type: "Inscripción", amount: "$10.000" },
+        { type: "Pago único", amount: "$120.000 (efectivo, transferencia)" },
+        { type: "2 cuotas", amount: "$65.000" },
+        { type: "3 cuotas", amount: "$45.000" },
+        { type: "Pago con tarjeta", amount: "Consultar valores" },
+      ],
+      contents: [
+        {
+          title: "Módulo 1: Fundamentos de Electricidad (2 semanas)",
+          points: [
+            "Magnitudes eléctricas básicas: tensión, corriente, potencia y resistencia.",
+            "Corriente continua y alterna.",
+            "Unidades y leyes fundamentales (Ohm, Joule, Watt).",
+            "Identificación de conductores y simbología eléctrica.",
+            "Normas de seguridad eléctrica."
+          ]
+        },
+        {
+          title: "Módulo 2: Instalaciones domiciliarias (4 semanas)",
+          points: [
+            "Interpretación de planos eléctricos",
+            "Instalación de tomas y circuitos de iluminación",
+            "Selección de materiales y herramientas",
+            "Prácticas seguras en instalaciones reales"
+          ]
+        }
+      ],
+      activities: [
+        "Armado de un tablero domiciliario básico.",
+        "Cableado e instalación de un circuito de iluminación y tomas.",
+        "Simulación de fallas y diagnóstico.",
+        "Aplicación de normas de seguridad en taller."
+      ],
+      requirements: [
+        "Edad mínima: 18 años.",
+        "Modalidad Presencial: completar el 80% de asistencia.",
+        "Modalidad Virtual: completar el 100% de descargas y 100% de trabajos online.",
+        "Evaluaciones – Modalidad Presencial: prácticas en taller y examen teórico-práctico final integrador.",
+        "Evaluaciones – Modalidad Virtual: examen teórico-práctico final integrador en taller.",
+        "Certificación: Instalador Domiciliario Nivel Inicial."
+      ],
+      contact: {
+        whatsapp: "+54 362 5490089",
+        email: "electricidad@example.com",
+        instagram: "@electricidadtecnica"
+      }
+    },
+    images: ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"]
+  }
 ];
 
+// --- COMPONENTE PRINCIPAL ---
 export default function CursosPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const [showPayModal, setShowPayModal] = useState(false);
-  const [preview, setPreview] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [showBuyModal, setShowBuyModal] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [buyerName, setBuyerName] = useState("");
+
+  const currentCourse = courses.find(c => c.id === selectedCourse);
 
   const openInfoModal = (id: number) => {
     setSelectedCourse(id);
     setShowInfoModal(true);
+    setActiveSlide(0);
   };
 
-  const openPayModal = (id: number) => {
+  const openBuyModal = (id: number) => {
     setSelectedCourse(id);
-    setShowPayModal(true);
+    setShowBuyModal(true);
   };
 
   const closeModals = () => {
     setShowInfoModal(false);
-    setShowPayModal(false);
+    setShowBuyModal(false);
     setSelectedCourse(null);
-    setPreview("");
-    setFullName("");
+    setActiveSlide(0);
+    setBuyerName("");
   };
 
-  const handlePaymentSubmit = () => {
-    if (!fullName.trim()) {
-      alert("Por favor ingresa nombre y apellido del alumno.");
-      return;
-    }
+  const slides = currentCourse ? [
+    { title: "Objetivo", icon: <Target />, content: currentCourse.structuredContent.objective },
+    { title: "Duración y Modalidad", icon: <Clock />, content: (
+      <div className="space-y-2">
+        <div><strong>Duración:</strong> {currentCourse.structuredContent.duration}</div>
+        <div><strong>Modalidad:</strong> {currentCourse.structuredContent.modality}</div>
+        <div><strong>Días y horarios:</strong></div>
+        <ul className="list-disc list-inside ml-5">
+          {currentCourse.structuredContent.schedule.map((s, idx) => (
+            <li key={idx}>{s.days} → {s.hours}</li>
+          ))}
+        </ul>
+      </div>
+    )},
+    { title: "Lugar", icon: <MapPin />, content: currentCourse.structuredContent.location },
+    { title: "Inversión", icon: <CreditCard />, content: (
+      <ul className="list-disc list-inside ml-5 space-y-1">
+        {currentCourse.structuredContent.fees.map((f, idx) => (
+          <li key={idx}>{f.type}: {f.amount}</li>
+        ))}
+      </ul>
+    )},
+    { title: "Contenidos", icon: <FileText />, content: (
+      <div className="space-y-2">
+        {currentCourse.structuredContent.contents.map((topic, idx) => (
+          <div key={idx}>
+            <h4 className="font-semibold">{topic.title}</h4>
+            <ul className="list-disc list-inside ml-5">
+              {topic.points.map((p, i) => <li key={i}>{p}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    )},
+    { title: "Contacto", icon: <Mail />, content: (
+      <ul className="space-y-1">
+        <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> {currentCourse.structuredContent.contact.whatsapp}</li>
+        <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> {currentCourse.structuredContent.contact.email}</li>
+        <li className="flex items-center gap-2"><Instagram className="w-4 h-4" /> {currentCourse.structuredContent.contact.instagram}</li>
+      </ul>
+    )}
+  ] : [];
 
-    const phone = "543624217417"; // reemplazar por tu número
-    const courseTitle = courses.find(c => c.id === selectedCourse)?.title;
-
-    const message = `Hola, mi nombre *${fullName}*.\n\n *${courseTitle}* al alias indicado *aircool.instituto*.\nA continuación, adjunto el comprobante de la transferencia.\n\nMuchas gracias por el curso y la atención brindada.`;
-
-    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-    closeModals();
+  const sendWhatsapp = () => {
+    if (!buyerName || !currentCourse) return;
+    const message = `Hola, soy ${buyerName} y voy a enviar el comprobante de pago para el curso ${currentCourse.title}`;
+    const phone = currentCourse.structuredContent.contact.whatsapp.replace(/\D/g,''); 
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
-
-  const currentCourse = courses.find(c => c.id === selectedCourse);
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+    <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
       <main className="py-10 px-5 md:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {courses.map((course) => (
-            <motion.div
-              key={course.id}
-              whileHover={{ scale: 1.02 }}
-              className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 flex flex-col justify-between overflow-hidden transition-colors duration-300"
-            >
-              <div>
-                <h2 className="text-2xl font-bold text-blue-300 flex items-center gap-2">
-                  <BookOpen className="w-6 h-6" /> {course.title}
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300 mt-2">{course.description}</p>
-                <p className="mt-3 font-semibold text-blue-300 flex items-center gap-2">
-                  <Trophy className="w-5 h-5" /> {course.reward}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
+    {courses.map((course, index) => (
+      <motion.div
+        key={course.id}
+        whileHover={{ scale: 1.02 }}
+        className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 flex flex-col justify-between overflow-hidden transition-colors duration-300 max-w-sm w-full"
+      >
+        <div>
+          <h2 className="text-2xl font-bold text-blue-300 flex items-center gap-2 mb-3">
+            <BookOpen className="w-6 h-6" /> {course.title}
+          </h2>
+
+          {/* Descripción con títulos e iconos */}
+          <div className="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
+            {index === 0 && (
+              <>
+                <div className="flex items-center gap-2 font-semibold">
+                  <Target className="w-4 h-4 text-blue-300" /> Objetivo
+                </div>
+                <p>
+                  Refrigeración I: Heladeras y Freezers.<br />
+                  Aprende desde cero a reparar y mantener equipos, practicando directamente sobre heladeras y freezers reales, guiado por docentes expertos.
                 </p>
 
-                <div className="grid grid-cols-2 gap-2 mt-3">
-                  {course.images.map((img, idx) => (
-                    <div key={idx} className="relative w-full h-32 rounded-lg overflow-hidden">
-                      <Image
-                        src={img}
-                        alt={`Imagen curso ${course.title}`}
-                        fill
-                        className="object-cover transition-transform duration-300"
-                      />
-                    </div>
-                  ))}
+                <div className="flex items-center gap-2 font-semibold">
+                  <Clock className="w-4 h-4 text-blue-300" /> Duración y Modalidad
                 </div>
-              </div>
+                <p>
+                  Refrigeración Familiar: Heladeras y Freezers<br />
+                  Duración: 90 días<br />
+                  Modalidad: Presencial con material virtual<br />
+                  Nivel: Inicial – Intermedio – Avanzado (según corresponda)
+                </p>
 
-              <div className="mt-5 flex gap-3">
-                <button
-                  onClick={() => openInfoModal(course.id)}
-                  className="w-1/2 bg-blue-300 hover:bg-blue-400 text-white py-2 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-1"
-                >
-                  <BookOpen className="w-5 h-5" /> Ver más
-                </button>
-                <button
-                  onClick={() => openPayModal(course.id)}
-                  className="w-1/2 bg-blue-300 hover:bg-blue-400 text-white py-2 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-1"
-                >
-                  <CheckCircle className="w-5 h-5" /> Comprar
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </main>
-
-      {/* MODAL DE INFORMACIÓN */}
-      {showInfoModal && currentCourse && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50"
-          onClick={closeModals}
-        >
-          <motion.div
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-lg w-full relative shadow-lg overflow-auto transition-colors duration-300"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="my-5 left-4 text-gray-900 dark:text-white font-bold text-xl flex items-center gap-1"
-              onClick={closeModals}
-            >
-              <ArrowLeft /> Volver
-            </button>
-
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
-              <BookOpen className="w-6 h-6" /> {currentCourse.title}
-            </h2>
-
-            <div className="flex items-center gap-2 mb-3">
-              <Clock className="w-5 h-5" /> <span className="text-gray-700 dark:text-gray-300">Duración: {currentCourse.duration}</span>
-            </div>
-            <div className="flex items-center gap-2 mb-3">
-              <Star className="w-5 h-5" /> <span className="text-gray-700 dark:text-gray-300">Modalidad: {currentCourse.modality}</span>
-            </div>
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen className="w-5 h-5" /> <span className="text-gray-700 dark:text-gray-300">Requisitos: {currentCourse.requirements}</span>
-            </div>
-
-            <h3 className="mt-4 mb-2 font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-              <Trophy className="w-5 h-5" /> Lo que aprenderás:
-            </h3>
-            <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
-              {currentCourse.learningPoints.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      )}
-
-      {/* MODAL DE PAGO */}
-      {showPayModal && currentCourse && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50"
-          onClick={closeModals}
-        >
-          <motion.div
-            className="bg-white dark:bg-black rounded-2xl p-8 max-w-md w-full relative shadow-lg overflow-hidden transition-colors duration-300"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-4 left-4 text-gray-900 dark:text-white font-bold text-xl flex items-center gap-1"
-              onClick={closeModals}
-            >
-              <ArrowLeft /> Volver
-            </button>
-
-            <div className="flex justify-center mb-6 mt-6">
-              <Image
-                src="/mp.png"
-                alt="Mercado Pago"
-                width={240}
-                height={80}
-                className="hidden dark:block object-contain"
-              />
-              <Image
-                src="/mpwhite.png"
-                alt="Mercado Pago"
-                width={240}
-                height={80}
-                className="block dark:hidden object-contain"
-              />
-            </div>
-
-            <h2 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">
-              Completa tu pago
-            </h2>
-            <p className="text-center text-gray-700 dark:text-gray-300 mb-5">
-              Transferí a nuestro alias <span className="font-bold">aircool.instituto</span> y subí tu comprobante para enviarlo por WhatsApp.
-            </p>
-
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Nombre completo de la persona que va a cursar"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00aee8]"
-              />
-            </div>
-
-            {preview && (
-              <div className="mb-4">
-                <img src={preview} alt="Preview pago" className="w-full h-40 object-cover rounded-lg" />
-              </div>
+                <div className="flex items-center gap-2 font-semibold">
+                  <FileText className="w-4 h-4 text-blue-300" /> Lo que aprenderás
+                </div>
+                <ul className="list-disc list-inside ml-5">
+                  <li>Desarme, diagnóstico y detección de fallas</li>
+                  <li>Reemplazo de componentes verificados</li>
+                  <li>Manipulación segura de los diferentes refrigerantes</li>
+                </ul>
+              </>
             )}
 
-            <button
-              type="button"
-              onClick={handlePaymentSubmit}
-              className="w-full py-3 rounded-xl font-bold mt-2 flex items-center justify-center gap-2 shadow-md transition-colors duration-200 bg-[#00aee8] hover:bg-[#0095c6] text-white"
-            >
-              <CheckCircle /> Enviar comprobante por WhatsApp
-            </button>
-          </motion.div>
+            {index === 1 && (
+              <>
+                <div className="flex items-center gap-2 font-semibold">
+                  <Target className="w-4 h-4 text-blue-300" /> Objetivo
+                </div>
+                <p>
+                  Curso de Refrigeración II – Aire Acondicionado Split<br />
+                  Fórmate como técnico especializado en Instalación, aprendiendo paso a paso a montar e instalar equipos Split y Mini Split.
+                </p>
+
+                <div className="flex items-center gap-2 font-semibold">
+                  <Clock className="w-4 h-4 text-blue-300" /> Duración y Modalidad
+                </div>
+                <p>
+                  Aire Acondicionado Split<br />
+                  Duración: 30 Días<br />
+                  Modalidad: Presencial y a distancia (b-learning)<br />
+                  Nivel: Inicial – Intermedio – Avanzado (según corresponda)
+                </p>
+
+                <div className="flex items-center gap-2 font-semibold">
+                  <FileText className="w-4 h-4 text-blue-300" /> Lo que aprenderás
+                </div>
+                <ul className="list-disc list-inside ml-5">
+                  <li>Fijación de unidad interior y exterior</li>
+                  <li>Correcto uso de gases refrigerantes</li>
+                  <li>Acoples flare, soldaduras y vacío profesional</li>
+                </ul>
+              </>
+            )}
+
+            {index === 2 && (
+              <>
+                <div className="flex items-center gap-2 font-semibold">
+                  <Target className="w-4 h-4 text-blue-300" /> Objetivo
+                </div>
+                <p>
+                  Electricidad I - Instalaciones Eléctricas<br />
+                  Conviértete en técnico en instalaciones eléctricas. Aprende a realizar instalaciones seguras, leer planos y elegir protecciones.
+                </p>
+
+                <div className="flex items-center gap-2 font-semibold">
+                  <Clock className="w-4 h-4 text-blue-300" /> Duración y Modalidad
+                </div>
+                <p>
+                  Electricidad Domiciliaria<br />
+                  Duración: 3 meses<br />
+                  Modalidad: Presencial y/o virtual<br />
+                  Nivel: Sin experiencia
+                </p>
+
+                <div className="flex items-center gap-2 font-semibold">
+                  <FileText className="w-4 h-4 text-blue-300" /> Lo que aprenderás
+                </div>
+                <ul className="list-disc list-inside ml-5">
+                  <li>Circuitos y conexionado profesional</li>
+                  <li>Montaje y configuración de tableros eléctricos</li>
+                  <li>Técnicas de medición (multímetro y pinza amperométrica)</li>
+                  <li>Aplicación de normas IRAM, AEA y prácticas de seguridad</li>
+                </ul>
+              </>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 mt-3">
+            {course.images.map((img, idx) => (
+              <div key={idx} className="relative w-full h-32 rounded-lg overflow-hidden">
+                <Image
+                  src={img}
+                  alt={`Imagen curso ${course.title}`}
+                  fill
+                  className="object-cover transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      )}
+
+        <div className="mt-5 flex gap-3">
+          <button
+            onClick={() => openInfoModal(course.id)}
+            className="w-1/2 bg-blue-300 hover:bg-blue-400 text-white py-2 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-1"
+          >
+            <BookOpen className="w-5 h-5" /> Ver más
+          </button>
+          <button
+            onClick={() => openBuyModal(course.id)}
+            className="w-1/2 bg-blue-300 hover:bg-blue-400 text-white py-2 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-1"
+          >
+            <CheckCircle className="w-5 h-5" /> Comprar
+          </button>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</main>
+
+
+     {/* MODAL INFO */}
+{showInfoModal && currentCourse && (
+  <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4" onClick={closeModals}>
+    <motion.div
+      className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[40vw] h-[90vh] flex flex-col relative overflow-hidden"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header */}
+      <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 sticky top-0 z-10">
+        <div className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white">
+          <BookOpen className="w-6 h-6" /> {currentCourse.title}
+        </div>
+        <button onClick={closeModals} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+          <ArrowLeft className="w-5 h-5 text-gray-900 dark:text-white" />
+        </button>
+      </div>
+
+      {/* Slides */}
+      <div className="relative flex-1 flex items-center px-6 py-4 overflow-hidden">
+        <button
+          onClick={() => setActiveSlide((prev) => Math.max(prev - 1, 0))}
+          disabled={activeSlide === 0}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-blue-300 dark:bg-gray-700 disabled:opacity-50 z-20 shadow"
+        >
+          <ChevronLeft className="w-5 h-5 text-white" />
+        </button>
+        <button
+          onClick={() => setActiveSlide((prev) => Math.min(prev + 1, slides.length -1))}
+          disabled={activeSlide === slides.length -1}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-blue-300 dark:bg-gray-700 disabled:opacity-50 z-20 shadow"
+        >
+          <ChevronRight className="w-5 h-5 text-white" />
+        </button>
+
+        <motion.div
+          key={activeSlide}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
+          className="w-full h-full overflow-y-auto px-4 py-2"
+        >
+          <div className="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+            {slides[activeSlide].icon} {slides[activeSlide].title}
+          </div>
+          <div className="text-gray-700 dark:text-gray-300 text-sm md:text-base space-y-2">
+            {slides[activeSlide].content}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Indicador */}
+      <div className="flex justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 sticky bottom-0">
+        {slides.map((_, idx) => (
+          <span
+            key={idx}
+            className={`w-3 h-3 rounded-full transition-colors ${idx === activeSlide ? "bg-blue-400 dark:bg-blue-300" : "bg-gray-300 dark:bg-gray-600 dark:bg-gray-500"}`}
+          ></span>
+        ))}
+      </div>
+    </motion.div>
+  </div>
+)}
+
+{/* MODAL COMPRA */}
+{showBuyModal && currentCourse && (
+  <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4" onClick={closeModals}>
+    <motion.div
+      className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[40vw] p-6 flex flex-col relative overflow-hidden"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">{currentCourse.title}</h2>
+        <button onClick={closeModals} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+          <ArrowLeft className="w-5 h-5 text-gray-900 dark:text-white" />
+        </button>
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 text-gray-700 dark:text-gray-300">Tu nombre:</label>
+        <input
+          type="text"
+          value={buyerName}
+          onChange={(e) => setBuyerName(e.target.value)}
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="Ingresa tu nombre"
+        />
+      </div>
+      <button
+        onClick={sendWhatsapp}
+        className="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold transition-colors duration-200"
+      >
+        Enviar comprobante por WhatsApp
+      </button>
+    </motion.div>
+  </div>
+)}
+
     </div>
   );
 }
