@@ -7,7 +7,7 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
 export default function CarouselVertical() {
-  const totalItems = 5;
+  const totalItems = 25;
 
   return (
     <div className="flex justify-center items-center w-full">
@@ -26,7 +26,7 @@ export default function CarouselVertical() {
           <SwiperSlide key={index} className="flex justify-center items-center">
             <div className="w-full h-11/12 rounded-4xl overflow-hidden shadow-lg md:relative md:top-3">
               <img
-                src={`/${index + 1}.jpg`}
+                src={`/TITULO/${index + 1}.jpeg`}
                 alt={`Image ${index + 1}`}
                 className="w-full h-full object-cover"
               />

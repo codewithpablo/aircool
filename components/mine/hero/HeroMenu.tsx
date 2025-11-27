@@ -41,63 +41,12 @@ export default function Navbar() {
               <NavigationMenuList className="flex space-x-6 items-center">
                 <ThemeToggle />
                 {/* Getting Started */}
-                <NavigationMenuItem>
-                  {/* Texto sigue siendo text-gray-800 en light mode */}
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white">Getting started</NavigationMenuTrigger>
-                  
-                  {/* CONTENIDO DESPLEGABLE: Fondo blanco -> Gris oscuro */}
-                  <NavigationMenuContent className="mt-2">
-                    <ul className="grid gap-3 p-2 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] grid-cols-1 md:grid-cols-2 lg:grid-cols-[.75fr_1fr] 
-                      bg-white rounded-lg shadow-lg dark:bg-gray-950 dark:text-gray-100"
-                    >
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <Link href="/" passHref>
-                            <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md
-                              /* FONDO PROMO: Oscuro en dark mode */
-                              dark:bg-gray-950 dark:focus:shadow-xl dark:focus:shadow-gray-700/50"
-                            >
-                              {/* TEXTO PROMO: Blanco en dark mode */}
-                              <div className="mb-2 mt-4 text-lg font-medium text-gray-950 dark:text-white">Shadcn UI Blocks</div>
-                              <p className="text-sm leading-tight text-gray-700 dark:text-gray-300">
-                                Collection of customized Shadcn UI blocks and components
-                              </p>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <ListItem href="/docs" title="Introduction">Re‑usable components built using Radix UI and Tailwind CSS.</ListItem>
-                      <ListItem href="/docs/installation" title="Installation">How to install dependencies and structure your app.</ListItem>
-                      <ListItem href="/docs/primitives/typography" title="Typography">Styles for headings, paragraphs, lists… etc</ListItem>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-
+                
                 {/* Components */}
-                <NavigationMenuItem>
-                  {/* Texto sigue siendo text-gray-800 en light mode */}
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white">Components</NavigationMenuTrigger>
-                  <NavigationMenuContent className="mt-2">
-                    {/* CONTENIDO DESPLEGABLE: Fondo blanco -> Gris oscuro */}
-                    <ul className="grid gap-3 p-2 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 
-                      bg-white rounded-lg shadow-lg dark:bg-gray-950 dark:text-gray-100"
-                    >
-                      {components.map((component) => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                
 
                 {/* Documentation */}
-                <NavigationMenuItem>
-                    <Link href="/docs" passHref>
-                      {/* Texto sigue siendo text-gray-800 en light mode */}
-                      <div className={cn(navigationMenuTriggerStyle(), "text-gray-800 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white")}>Documentation</div>
-                    </Link>
-                </NavigationMenuItem>
+                
 
               </NavigationMenuList>
             </NavigationMenu>

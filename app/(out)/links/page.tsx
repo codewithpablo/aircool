@@ -1,4 +1,4 @@
-// DashboardCompuesto.tsx (Con Dropdowns al hacer Hover y tipado TS corregido)
+// DashboardCompuesto.tsx (Dropdown Pegado + Hover Robusto)
 "use client";
 
 import { useState } from 'react';
@@ -29,7 +29,8 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2 }}
-      className="absolute top-full mt-2 w-full min-w-[200px] bg-gray-800 rounded-lg shadow-xl overflow-hidden z-20 border border-gray-700"
+      // CAMBIO CLAVE: Volvemos a mt-0 (pegado) para que se vea junto al botón.
+      className="absolute top-full mt-0 w-full min-w-[200px] bg-gray-800 rounded-lg shadow-xl overflow-hidden z-20 border border-gray-700" 
     >
       <ul className="py-1">
         {items.map((item, index) => (
@@ -57,7 +58,7 @@ interface ButtonEnlaceProps {
   children: React.ReactNode;
   colorClass: string;
   link: string;
-  Icon: LucideIcon; // <-- Tipado específico para iconos lucide
+  Icon: LucideIcon;
   dropdownItems?: DropdownItem[];
 }
 
@@ -80,13 +81,16 @@ const ButtonEnlace = ({ children, colorClass, link, Icon, dropdownItems }: Butto
   }
 
   return (
+    // SOLUCIÓN DE HOVER: Se usa m-[-0.5rem] p-2 para expandir el área de detección 
+    // del contenedor padre. Esto crea un "radar" invisible alrededor del botón
+    // y del menú pegado, asegurando que no se cierre accidentalmente.
     <div
-      className="relative inline-block"
+      className="relative inline-block m-[-0.5rem] p-2" 
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       <div
-        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`}
+        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`} 
       >
         <Icon size={20} />
         <span>{children}</span>
@@ -157,7 +161,7 @@ const DashboardCompuesto = () => {
         </motion.p>
 
         <motion.div
-          className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl"
+          className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl" 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, staggerChildren: 0.1, duration: 0.5 }}

@@ -8,17 +8,17 @@ const teachers = [
   {
     title: "Rolando Miceli",
     badge: "Fundador",
-    image: "/3.jpg"
+    image: "/ROLANDO/3.jpeg"
   },
   {
     title: "Orlando Miceli",
     badge: "Cofundador",
-    image: "/tionanocordoba.jpg"
+    image: "/NANO/2.jpeg"
   },
   {
     title: "Verónica Miceli",
     badge: "Cofundadora",
-    image: "/veronica.jpg"
+    image: "/VERONICA/1.jpeg"
   }
 ];
 

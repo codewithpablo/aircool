@@ -12,12 +12,12 @@ interface RobotModelProps {
 function RotatingModel({ scene, scale, offsetY }: { scene: any; scale: number; offsetY: number }) {
   const groupRef = useRef<Group>(null);
 
-  // Rotación automática
-  useFrame((_, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.5; // giro lento
-    }
-  });
+  // Si quieres que quede estático, no uses useFrame para rotación
+  // useFrame((_, delta) => {
+  //   if (groupRef.current) {
+  //     groupRef.current.rotation.y += delta * 0.5;
+  //   }
+  // });
 
   return (
     <group ref={groupRef} position={[0, offsetY, 0]} scale={scale}>

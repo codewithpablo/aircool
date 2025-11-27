@@ -11,6 +11,7 @@ import About from "@/components/mine/about/About";
 import EventSection from "@/components/mine/event/EventSection";
 import { LogIn } from "lucide-react"; // ✅ Ícono agregado
 import FAQChat from "@/components/FAQ/FAQChat";
+import Link from "next/link";
 
 // --- VARIANTES DE ANIMACIÓN ---
 const contentVariants: Variants = {
@@ -92,7 +93,8 @@ export default function Home() {
         <Footer />
               
         {/* --- BOTÓN FIJO DERECHA --- */}
-        <motion.button
+        <Link href="/courses">
+            <motion.button
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5, type: "spring" }}
@@ -110,6 +112,7 @@ export default function Home() {
           <LogIn className="w-5 h-5" />
           Asegurá tu lugar
         </motion.button>
+        </Link>
       </motion.div>
     );
   }
