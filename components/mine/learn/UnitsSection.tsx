@@ -14,52 +14,53 @@ import { motion, Variants } from 'framer-motion';
 
 const learnUnits = [
   {
-    title: 'Instalación práctica de split y aire de ventana',
-    description: 'Aprendé a calcular, montar y dejar funcionando los equipos correctamente.',
+    title: 'Fundamentos y práctica de instalación',
+    description: 'Montaje, sellado y correcta puesta en marcha de los equipos.',
     icon: <ToolCase size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/1.jpg',
   },
   {
     title: 'Diagnóstico y reparación rápida',
-    description: 'Detectá fallas y resolvelas en la primera visita de manera eficiente.',
+    description: 'Uso de manómetros y detectores de fugas para resolver fallas con eficiencia.',
     icon: <Zap size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/2.jpg',
   },
+
   {
-    title: 'Limpieza y mantenimiento profesional',
-    description: 'Conocé técnicas de mantenimiento que garantizan equipos duraderos y clientes satisfechos.',
-    icon: <Wrench size={30} className="text-blue-400 dark:text-teal-400" />,
-    image: '/3.jpg',
-  },
-  {
-    title: 'Seguridad laboral y normativas',
-    description: 'Trabajá seguro, cumpliendo todas las normas y evitando riesgos innecesarios.',
+    title: 'Manejo seguro de refrigerantes',
+    description: 'Recuperación, reciclado, reemplazo y manejo responsable de refrigerantes.',
     icon: <Shield size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/4.jpg',
   },
   {
-    title: 'Precios y tarifas por urgencia',
-    description: 'Aprendé a cobrar correctamente en situaciones de emergencia y comunicar valor.',
-    icon: <DollarSign size={30} className="text-blue-400 dark:text-teal-400" />,
+    title: 'Limpieza y mantenimiento profesional',
+    description: 'Servicios que hacen que los clientes repitan cada 6 a 12 meses.',
+    icon: <Wrench size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/5.jpg',
   },
   {
-    title: 'Modelos de ingreso recurrente',
-    description: 'Descubrí cómo generar ingresos estables con contratos y servicios recurrentes.',
-    icon: <BarChart2 size={30} className="text-blue-400 dark:text-teal-400" />,
+    title: 'Seguridad laboral y normativas locales',
+    description: 'Trabajo en altura, riesgos eléctricos y documentación legal para evitar problemas.',
+    icon: <Shield size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/6.jpg',
   },
   {
-    title: 'Gestión del tiempo y productividad',
-    description: 'Optimiza tus tareas y lográlas en menos tiempo sin perder calidad.',
-    icon: <Clock size={30} className="text-blue-400 dark:text-teal-400" />,
+    title: 'Ventas orientadas al rubro',
+    description: 'Mostrá el riesgo, ofrecé la solución inmediata y cerrá el trabajo en el momento.',
+    icon: <DollarSign size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/7.jpg',
   },
   {
-    title: 'Uso correcto de herramientas y materiales',
-    description: 'Evitá errores costosos y ganá confianza en cada trabajo.',
-    icon: <Layers size={30} className="text-blue-400 dark:text-teal-400" />,
+    title: 'Modelos de ingreso recurrente',
+    description: 'Contratos, suscripciones y ventas complementarias para ingresos estables.',
+    icon: <BarChart2 size={30} className="text-blue-400 dark:text-teal-400" />,
     image: '/8.jpg',
+  },
+  {
+    title: 'Taller práctico y salidas a campo',
+    description: 'Trabajo con unidades reales para que lo hagas vos, no solo teoría.',
+    icon: <Clock size={30} className="text-blue-400 dark:text-teal-400" />,
+    image: '/9.jpg',
   },
 ];
 
@@ -90,20 +91,15 @@ const itemVariants: Variants = {
 
 export default function UnitsSection() {
   return (
-    <section 
-      className="w-full min-h-screen flex flex-col justify-center 
-    dark:bg-gray-950 
-      py-8 px-6 md:px-20"
-    >
+    <section className="w-full min-h-screen flex flex-col justify-center dark:bg-gray-950 py-8 px-6 md:px-20">
       <motion.h2
-              className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16  dark:text-white"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              ¿Qué vas a aprender?
-            </motion.h2>
-      
+        className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16 dark:text-white"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        ¿Qué vas a aprender?
+      </motion.h2>
 
       <motion.div
         variants={containerVariants}

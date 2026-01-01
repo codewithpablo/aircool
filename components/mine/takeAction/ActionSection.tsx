@@ -33,16 +33,54 @@ const itemVariants: Variants = {
 };
 
 const benefitsData = [
-    { icon: TrendingUp, title: 'Ingresos previsibles', text: 'Servicios que se repiten cada 6–12 meses — clientes fieles, ingresos estables.' },
-    { icon: Wrench, title: 'Baja barrera de entrada', text: 'Con guía práctica y herramientas simples podés arrancar rápido.' },
-    { icon: Clock, title: 'Alta rentabilidad', text: 'Pocas horas, margen alto — más tiempo libre y mejor ganancia.' },
-    { icon: Layers, title: 'Múltiples ingresos', text: 'Instalación, recargas, mantenimiento, repuestos y upgrades.' },
-    { icon: ShieldCheck, title: 'Resiliencia ante crisis', text: 'El confort y la salud siempre se priorizan — tu servicio se vuelve esencial.' },
-    { icon: Zap, title: 'Demanda todo el año', text: 'En verano por calor, en invierno por mantenimiento — el trabajo nunca frena.' },
-    { icon: DollarSign, title: 'Inversión mínima', text: 'Podés empezar con herramientas básicas y hacer crecer tu equipo con el tiempo.' },
-    { icon: Users, title: 'Comunidad de apoyo', text: 'Aprendé y compartí con técnicos de toda la región que ya viven de esto.' },
-    { icon: Star, title: 'Reconocimiento local', text: 'Con trabajo constante, te convertís en “el técnico de confianza” de tu zona.' },
+  {
+    icon: TrendingUp,
+    title: 'Previsibilidad financiera',
+    text: 'Previsibilidad financiera. Servicios de limpieza y mantenimiento se repiten cada 6 a 12 meses, factura estable e ingresos previsibles.'
+  },
+  {
+    icon: Clock,
+    title: 'Rentabilidad alta',
+    text: 'Rentabilidad alta. Trabajo técnico, tiempo reducido, margen alto perfecto para maximizar tiempo y ganancia.'
+  },
+  {
+    icon: Layers,
+    title: 'Múltiples fuentes de ingreso',
+    text: 'Múltiples fuentes de ingreso. Instalación, recargas, reparaciones, contratos de mantenimiento, venta de filtros y upgrades energéticos, etc.'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Resiliencia a crisis',
+    text: 'Resiliencia a crisis. En tiempos de crisis el mantenimiento y la salud se priorizan.'
+  },
+  {
+    icon: Wrench,
+    title: 'Práctica',
+    text: 'Práctica. No va a “mirar cómo se hace”. Va a hacerlo usted mismo guiado por profesionales.'
+  },
+  {
+    icon: Star,
+    title: 'Certificación',
+    text: 'Certificación. Mostrar certificados y comprobantes eleva la conversión.'
+  },
+  {
+    icon: DollarSign,
+    title: 'Ventas en urgencia',
+    text: 'Ventas en urgencia. Una avería en verano implica una mayor disposición de pago por parte del cliente. Frente al calor extremo el cliente antepone reparar o instalar antes que gastar en otras cosas.'
+  },
+  {
+    icon: Zap,
+    title: 'Salud',
+    text: 'Salud. Las olas de calor son una amenaza mortal, y el aire acondicionado salva vidas.'
+  },
+  {
+    icon: Users,
+    title: 'Sector en alza',
+    text: 'Sector en alza. La demanda de refrigeración es la que más crece en energía de edificios, más equipos, más clientes todo el año.'
+  }
 ];
+
+
 
 export default function ActionSection() {
   // Puedes aplicar una animación simple de 'fade-in' al título si lo deseas
@@ -69,7 +107,7 @@ export default function ActionSection() {
           </h2>
 
           <p className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
-            La refrigeración hoy dejó de ser lujo y pasó a ser supervivencia. En olas de calor la gente paga rápido, sin dudar. Están protegiendo vidas y eso se prioriza.
+            La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, lo cual constituye una prioridad ineludible. 
           </p>
         </motion.div>
 

@@ -20,26 +20,27 @@ const Hero = () => {
               text-gray-900 dark:text-white 
             ">
               <span>
-                De cero a <span className="text-blue-400 italic">ingresos reales</span>: aprendé sobre Refrigeración Integral
+                De cero a<span className="text-blue-400 italic">tecnico certificado</span>
               </span>
             </h1>
 
             {/* Título escritorio */}
-            <h1 className="hidden lg:flex lg:flex-col text-4xl xl:text-6xl font-semibold my-5
+            <h1 className="hidden lg:flex lg:flex-col text-4xl xl:text-7xl font-semibold my-5
               /* 🟢 DARK MODE: El texto principal es blanco/claro */
               text-gray-900 dark:text-white
             ">
               <span>
-                De cero a <span className="text-blue-400 italic">ingresos reales</span>: aprendé sobre Refrigeración Integral
+                De cero a <span className="text-blue-400 italic">tecnico certificado</span>
               </span>
             </h1>
 
             {/* Descripción */}
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed
+            <p className="text-gray-600 text-sm sm:text-sm lg:text-sm leading-relaxed
               /* 🟢 DARK MODE: El texto secundario es un gris claro */
               dark:text-gray-300
             ">
-              Aprendé habilidades prácticas y muy demandadas que pocos ofrecen. Con docentes matriculados, que poseen décadas de trayectoria y formación en los mejores institutos del país, condensan años de experiencia en clases 100% prácticas para que las apliques vos mismo. Aprendé rápido, prácticalo en casos reales y ganá ventaja profesional.
+              Adquirí habilidades prácticas de alta demanda y escasa oferta en el mercado. Nuestro cuerpo docente de Ingenieros y Licenciados, con décadas de trayectoria en instituciones de referencia nacional, reúne más de 25 años de experiencia, ahora dedicados a la formación de técnicos. Las clases, principalmente prácticas y orientadas a la aplicación inmediata, se desarrollan en escenarios reales donde cada estudiante construye conocimientos significativos y sólidos.
+Formate con bases técnicas firmes y desarrollá las competencias necesarias para desempeñarte con seguridad y criterio profesional.
             </p>
 
             {/* Botones */}

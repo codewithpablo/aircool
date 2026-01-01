@@ -12,6 +12,7 @@ import EventSection from "@/components/mine/event/EventSection";
 import { LogIn } from "lucide-react"; // ✅ Ícono agregado
 import FAQChat from "@/components/FAQ/FAQChat";
 import Link from "next/link";
+import HeroBrandsCarrousel from "@/components/mine/hero/HeroBrandsCarrousel";
 
 // --- VARIANTES DE ANIMACIÓN ---
 const contentVariants: Variants = {
@@ -73,7 +74,7 @@ export default function Home() {
         <div
           className={`
             relative z-20 
-            bg-linear-to-tl from-blue-400 via-blue-100 to-white
+           
             dark:bg-gray-950 dark:bg-none
             transition-colors duration-500
           `}
@@ -82,6 +83,7 @@ export default function Home() {
           <ScarcityBanner />
           <HeroMenu />
           <Hero />
+          <HeroBrandsCarrousel />
         </div>
 
         <ActionSection />
