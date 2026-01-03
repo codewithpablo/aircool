@@ -17,8 +17,8 @@ import {
 import Image from "next/image";
 
 /* ======================= CONFIG ======================= */
-const WORDS_PER_CHUNK = 4; // palabras por bloque
-const CHUNK_DELAY = 2000; // ms entre bloques
+const WORDS_PER_CHUNK = 10; // palabras por bloque
+const CHUNK_DELAY = 3000; // ms entre bloques
 
 /* ======================= DATA ======================= */
 export const faqs = [
@@ -233,10 +233,10 @@ export default function FaqSection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="mt-20 w-80 h-32 p-5 rounded-[26px] relative overflow-hidden -mb-4
+                className="mt-20 w-[500px] h-32 py-16 px-8 rounded-[26px] relative overflow-hidden -mb-4
                            bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
                            border border-blue-200 dark:border-white/10
-                           shadow-2xl flex items-center justify-center text-center
+                           shadow-2xl flex items-center justify-center 
                            max-sm:w-64 max-sm:h-28 max-sm:p-4 max-sm:overflow-y-auto"
               >
                 <AnimatePresence mode="wait">
