@@ -75,6 +75,7 @@ export default function FaqSection() {
   const [openFaq, setOpenFaq] = useState<typeof faqs[0] | null>(null);
   const [chunks, setChunks] = useState<string[][]>([]);
   const [chunkIndex, setChunkIndex] = useState(0);
+  const [isTalking, setIsTalking] = useState(false);
 
   const listRef = useRef<HTMLDivElement>(null);
   const [showMoreBadge, setShowMoreBadge] = useState(false);
@@ -95,6 +96,7 @@ export default function FaqSection() {
     if (!openFaq) {
       setChunks([]);
       setChunkIndex(0);
+      setIsTalking(false);
       return;
     }
 
@@ -107,6 +109,7 @@ export default function FaqSection() {
 
     setChunks(grouped);
     setChunkIndex(0);
+    setIsTalking(grouped.length > 0);
   }, [openFaq]);
 
   /* ======================= ANIMACIÓN DE BLOQUES ======================= */
@@ -117,7 +120,8 @@ export default function FaqSection() {
       setChunkIndex((prev) => {
         if (prev + 1 >= chunks.length) {
           clearInterval(interval);
-          return prev; // se queda en el último bloque
+          setIsTalking(false); // Termina de hablar cuando se muestra el último bloque
+          return prev;
         }
         return prev + 1;
       });
@@ -270,7 +274,7 @@ export default function FaqSection() {
               className="max-sm:w-64 max-sm:h-64"
             >
               <Image
-                src="/game.gif"
+                src={isTalking ? "/talking.gif" : "/game.gif"}
                 alt="Asistente técnico"
                 width={320}
                 height={320}
