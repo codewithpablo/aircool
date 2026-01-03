@@ -120,7 +120,10 @@ export default function FaqSection() {
       setChunkIndex((prev) => {
         if (prev + 1 >= chunks.length) {
           clearInterval(interval);
-          setIsTalking(false); // Termina de hablar cuando se muestra el último bloque
+          setIsTalking(false); // deja de hablar
+          setChunks([]);        // limpia la nube
+          setChunkIndex(0);
+          setOpenFaq(null);     // opcional: cierra la FAQ automáticamente
           return prev;
         }
         return prev + 1;
@@ -237,7 +240,7 @@ export default function FaqSection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="mt-20 w-[500px] h-32 py-16 px-8 rounded-[26px] relative overflow-hidden -mb-4
+                className="mt-32 w-[500px] h-32 py-16 px-8 rounded-[26px] relative overflow-hidden -mb-4
                            bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
                            border border-blue-200 dark:border-white/10
                            shadow-2xl flex items-center justify-center 
@@ -256,7 +259,7 @@ export default function FaqSection() {
                       {chunks[chunkIndex].join(" ")}
                     </motion.span>
                   ) : (
-                    <span className="text-gray-900 dark:text-white text-sm max-sm:text-xs">
+                    <span className="text-gray-900 text-3xl dark:text-white  max-sm:text-xs">
                       Seleccioná una pregunta para ver la respuesta
                     </span>
                   )}
