@@ -270,10 +270,10 @@ export default function FaqSection() {
               className="max-sm:w-64 max-sm:h-64"
             >
               <Image
-                src="/realgiff.gif"
+                src="/game.gif"
                 alt="Asistente técnico"
-                width={300}
-                height={300}
+                width={320}
+                height={320}
                 priority
               />
             </motion.div>
