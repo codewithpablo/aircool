@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Hero from "@/components/mine/hero/Hero";
-import HeroMenu from "@/components/mine/hero/HeroMenu";
+
 import { motion, Variants } from "framer-motion";
 import ScarcityBanner from "@/components/mine/hero/ScarcityBanner";
 import ActionSection from "@/components/mine/takeAction/ActionSection";
@@ -80,10 +80,11 @@ export default function Home() {
           `}
         >
 
-          <ScarcityBanner />
-          <HeroMenu />
+          <div >
+            <ScarcityBanner />
           <Hero />
-          <HeroBrandsCarrousel />
+          </div>
+         
         </div>
 
         <ActionSection />
@@ -164,7 +165,6 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <ScarcityBanner />
-              <HeroMenu />
               <Hero />
             </motion.div>
 

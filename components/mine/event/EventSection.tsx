@@ -162,7 +162,7 @@ const SeccionEventoMonitor = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex flex-col bg-gradient-to-tl from-blue-400 via-blue-200 to-white dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 text-gray-900 dark:text-gray-100"
+      className="min-h-screen flex flex-col  dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 text-gray-900 dark:text-gray-100"
     >
       <div className="flex flex-col md:flex-row-reverse md:items-center md:justify-center p-8 md:p-12 lg:p-16 xl:p-24 space-y-5 md:space-y-0 md:space-x-12 grow">
         
@@ -334,7 +334,6 @@ const SeccionEventoMonitor = () => {
           </motion.div>
         </div>
       </div>
-      <hr className="w-full border-gray-300 dark:border-gray-700" />
     </section>
   );
 };

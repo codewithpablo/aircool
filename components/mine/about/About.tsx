@@ -97,7 +97,7 @@ export default function TeachersSection() {
   };
 
   return (
-    <section className="w-full py-20 px-6 md:px-20  dark:from-gray-900 dark:to-gray-950">
+    <section className="w-full pt-20 px-6 md:px-20  dark:from-gray-900 dark:to-gray-950">
       <motion.h2
         className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16 dark:text-white"
         initial={{ opacity: 0, y: -20 }}

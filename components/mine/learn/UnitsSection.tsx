@@ -91,7 +91,7 @@ const itemVariants: Variants = {
 
 export default function UnitsSection() {
   return (
-    <section className="w-full min-h-screen flex flex-col justify-center dark:bg-gray-950 py-8 px-6 md:px-20">
+    <section className="w-full min-h-screen flex flex-col justify-center dark:bg-gray-950 pt-20 px-6 md:px-20">
       <motion.h2
         className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16 dark:text-white"
         initial={{ opacity: 0, y: -20 }}
