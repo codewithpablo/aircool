@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  useMemo,
-  useState,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Plus,
@@ -20,8 +15,12 @@ import {
   ChevronDown,
 } from "lucide-react";
 import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
 
+/* ======================= CONFIG ======================= */
+const WORDS_PER_CHUNK = 4; // palabras por bloque
+const CHUNK_DELAY = 2000; // ms entre bloques
+
+/* ======================= DATA ======================= */
 export const faqs = [
   {
     question: "¿Cada cuanto tiempo se debe hacer el mantenimiento?",
@@ -70,12 +69,17 @@ export const faqs = [
   },
 ];
 
+/* ======================= COMPONENT ======================= */
 export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
-  const [canScroll, setCanScroll] = useState(false);
-  const listRef = useRef<HTMLDivElement>(null);
+  const [openFaq, setOpenFaq] = useState<typeof faqs[0] | null>(null);
+  const [chunks, setChunks] = useState<string[][]>([]);
+  const [chunkIndex, setChunkIndex] = useState(0);
 
+  const listRef = useRef<HTMLDivElement>(null);
+  const [showMoreBadge, setShowMoreBadge] = useState(false);
+
+  /* ======================= FILTER ======================= */
   const filteredFaqs = useMemo(() => {
     const q = query.toLowerCase().trim();
     if (!q) return faqs;
@@ -86,181 +90,193 @@ export default function FaqSection() {
     );
   }, [query]);
 
+  /* ======================= SPLIT ANSWER EN BLOQUES ======================= */
   useEffect(() => {
+    if (!openFaq) {
+      setChunks([]);
+      setChunkIndex(0);
+      return;
+    }
+
+    const words = openFaq.answer.split(" ");
+    const grouped: string[][] = [];
+
+    for (let i = 0; i < words.length; i += WORDS_PER_CHUNK) {
+      grouped.push(words.slice(i, i + WORDS_PER_CHUNK));
+    }
+
+    setChunks(grouped);
+    setChunkIndex(0);
+  }, [openFaq]);
+
+  /* ======================= ANIMACIÓN DE BLOQUES ======================= */
+  useEffect(() => {
+    if (!chunks.length) return;
+
+    const interval = setInterval(() => {
+      setChunkIndex((prev) => {
+        if (prev + 1 >= chunks.length) {
+          clearInterval(interval);
+          return prev; // se queda en el último bloque
+        }
+        return prev + 1;
+      });
+    }, CHUNK_DELAY);
+
+    return () => clearInterval(interval);
+  }, [chunks]);
+
+  /* ======================= SCROLL BADGE ======================= */
+  const checkScroll = () => {
     const el = listRef.current;
     if (!el) return;
 
-    const check = () => {
-      setCanScroll(el.scrollHeight > el.clientHeight + 5);
-    };
+    const canScroll =
+      el.scrollHeight > el.clientHeight &&
+      el.scrollTop + el.clientHeight < el.scrollHeight - 4;
 
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    setShowMoreBadge(canScroll);
+  };
+
+  useEffect(() => {
+    checkScroll();
   }, [filteredFaqs]);
 
-  const toggle = (index: number) =>
-    setOpenIndex(openIndex === index ? null : index);
-
-  const currentAnswer =
-    openIndex !== null ? filteredFaqs[openIndex]?.answer : "";
-
+  /* ======================= RENDER ======================= */
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-20">
-      <h2 className="text-3xl font-semibold text-center mb-14">
-        Preguntas frecuentes
-      </h2>
-
-      <div className="flex flex-col lg:flex-row gap-14">
+    <section className="h-screen overflow-hidden px-4 py-10 bg-white dark:bg-transparent">
+      <div className="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-14">
         {/* IZQUIERDA */}
-        <div className="flex-1 relative">
+        <div className="flex-1 flex flex-col min-h-0 relative">
+          <h1 className="text-center text-2xl mb-5">Preguntas frecuentes</h1>
+
           <input
             type="text"
             placeholder="Buscar una pregunta..."
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
-              setOpenIndex(null);
+              setOpenFaq(null);
             }}
-            className="
-              w-full mb-6 rounded-xl
-              border border-white/10 bg-white/5 backdrop-blur-md
-              px-4 py-3 outline-none
-              focus:ring-2 focus:ring-white/20
-            "
+            className="mb-6 rounded-xl border border-blue-200 dark:border-white/10
+                       bg-blue-50 dark:bg-white/5
+                       px-4 py-3 text-gray-900 dark:text-white
+                       placeholder:text-blue-500/60 dark:placeholder:text-white/40
+                       outline-none w-full"
           />
 
           <div
             ref={listRef}
-            className="relative max-h-[420px] overflow-hidden space-y-4"
+            onScroll={checkScroll}
+            className="flex-1 overflow-y-auto hideScrollbar space-y-4 pr-2"
           >
-            {filteredFaqs.map((faq, index) => {
-              const isOpen = openIndex === index;
+            {filteredFaqs.map((faq) => {
+              const isOpen = openFaq?.question === faq.question;
               const Icon = faq.icon;
 
               return (
                 <button
-                  key={index}
-                  onClick={() => toggle(index)}
-                  className={`
-                    w-full flex items-center justify-between gap-4
-                    px-6 py-5 text-left
-                    rounded-xl backdrop-blur-md border border-white/10
-                    transition-all duration-300
-                    hover:bg-white/10 hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
-                    hover:-translate-y-0.5
+                  key={faq.question}
+                  onClick={() => setOpenFaq(isOpen ? null : faq)}
+                  className={`w-full flex items-center justify-between gap-4 px-6 py-5 rounded-xl border transition
                     ${
                       isOpen
-                        ? "bg-white/15 shadow-[0_0_35px_rgba(255,255,255,0.15)]"
-                        : "bg-white/5"
-                    }
-                  `}
+                        ? "bg-blue-200 border-blue-300 dark:bg-white/15 dark:border-white/10"
+                        : "bg-blue-50 border-blue-200 dark:bg-white/5 dark:border-white/10"
+                    }`}
                 >
                   <div className="flex items-center gap-4">
                     <Icon
                       size={22}
-                      className={`transition-colors ${
-                        isOpen ? "text-sky-400" : "text-gray-400"
-                      }`}
+                      className={
+                        isOpen
+                          ? "text-blue-700 dark:text-sky-400"
+                          : "text-blue-500 dark:text-gray-400"
+                      }
                     />
-                    <span className="font-medium">{faq.question}</span>
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      {faq.question}
+                    </span>
                   </div>
-
-                  {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                  {isOpen ? <Minus /> : <Plus />}
                 </button>
               );
             })}
           </div>
 
-          {/* BADGE SCROLL */}
           <AnimatePresence>
-            {canScroll && (
+            {showMoreBadge && (
               <motion.div
-                initial={{ opacity: 0, y: -6 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.25 }}
-                className="
-                  pointer-events-none
-                  absolute bottom-2 left-1/2 -translate-x-1/2
-                  flex items-center gap-2
-                  px-4 py-1.5
-                  rounded-full
-                  bg-black/60 text-white text-xs
-                  backdrop-blur-md
-                  shadow-lg
-                "
+                exit={{ opacity: 0, y: 8 }}
+                className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
+                           bg-blue-100 dark:bg-black/60
+                           border border-blue-300 dark:border-white/10
+                           text-blue-700 dark:text-white/80 text-sm"
               >
-                <span>Deslizá para ver más</span>
-                <motion.span
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.2 }}
-                >
-                  <ChevronDown size={14} />
-                </motion.span>
+                Ver más{" "}
+                <ChevronDown size={14} className="inline animate-bounce" />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
         {/* DERECHA */}
-        <div className="flex-1 relative flex justify-center items-start">
-          <div className="relative">
-            <div className="absolute inset-0 -z-10 blur-3xl bg-gradient-to-r from-indigo-500/20 via-sky-400/20 to-cyan-300/20 rounded-full" />
+        <div className="flex-1 flex justify-center items-center">
+          <div className="flex flex-col items-center gap-6">
+            {/* NUBE */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={openFaq?.question ?? "placeholder"}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="mt-20 w-80 h-32 p-5 rounded-[26px] relative overflow-hidden -mb-4
+                           bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
+                           border border-blue-200 dark:border-white/10
+                           shadow-2xl flex items-center justify-center text-center
+                           max-sm:w-64 max-sm:h-28 max-sm:p-4 max-sm:overflow-y-auto"
+              >
+                <AnimatePresence mode="wait">
+                  {chunks[chunkIndex] ? (
+                    <motion.span
+                      key={chunkIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.4 }}
+                      className="text-gray-900 dark:text-white text-3xl max-sm:text-base"
+                    >
+                      {chunks[chunkIndex].join(" ")}
+                    </motion.span>
+                  ) : (
+                    <span className="text-gray-900 dark:text-white text-sm max-sm:text-xs">
+                      Seleccioná una pregunta para ver la respuesta
+                    </span>
+                  )}
+                </AnimatePresence>
 
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4
+                                bg-blue-50 dark:bg-zinc-900 rotate-45" />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* ROBOT */}
             <motion.div
-              animate={currentAnswer ? { scale: [1, 1.05, 1] } : {}}
-              transition={{ duration: 0.4 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+              className="max-sm:w-64 max-sm:h-64"
             >
               <Image
                 src="/realgiff.gif"
                 alt="Asistente técnico"
-                width={420}
-                height={420}
+                width={300}
+                height={300}
                 priority
               />
             </motion.div>
-
-            <AnimatePresence>
-              {currentAnswer && (
-                <motion.div
-                  key={currentAnswer}
-                  initial={{ opacity: 0, scale: 0.92, y: 30 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                  className="
-                    absolute -top-8 left-1/2 -translate-x-1/2
-                    w-80 h-44 p-4
-                    rounded-[28px]
-                    bg-white/65 backdrop-blur-xl
-                    shadow-[0_20px_50px_rgba(0,0,0,0.25)]
-                    border border-white/40
-                  "
-                >
-                  <div className="pointer-events-none absolute top-1 left-3 right-3 h-6 rounded-full bg-white/70 blur-md" />
-
-                  <div className="relative h-full pr-2 overflow-y-auto">
-                    <TypeAnimation
-                      sequence={["Pensando...", 500, currentAnswer]}
-                      speed={32}
-                      wrapper="p"
-                      repeat={0}
-                      className="text-gray-800 text-sm leading-relaxed"
-                    />
-                  </div>
-
-                  <div
-                    className="
-                      absolute -bottom-2 left-1/2 -translate-x-1/2
-                      w-5 h-5 bg-white/70 backdrop-blur-md
-                      rotate-45 rounded-br-[12px]
-                      shadow-[2px_2px_8px_rgba(0,0,0,0.18)]
-                    "
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </div>
       </div>
