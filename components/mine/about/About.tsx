@@ -16,7 +16,7 @@ const teachers = [
   {
     title: "Rolando Miceli",
     badge: "Fundador",
-    images: ["/ROLANDO/3.jpeg", "/ROLANDO/3b.jpeg"],
+    images: ["/ROLANDO/3.jpeg", "/ROLANDO/2.jpeg"],
     description: `
       Mi nombre es Rolando Miceli, soy Técnico Electromecánico matriculado (MP 1621, Consejo de Ingenieros, Arquitectos y Técnicos del Chaco), Profesor de Educación Técnica de nivel terciario (egresado en 2016), Licenciado en Tecnología Educativa, especialista en refrigeración, con formación universitaria en Ingeniería Química, y más de 25 años de experiencia en refrigeración, climatización y electromecánica aplicada.
 
@@ -38,7 +38,7 @@ Con más de 2.500 clientes atendidos, una trayectoria sostenida y una visión a 
   {
     title: "Orlando Miceli",
     badge: "Cofundador",
-    images: ["/NANO/1.jpeg", "/NANO/2.jpeg"],
+    images: ["/NANO/2.jpeg", "/NANO/1.jpeg"],
     description: `
     Soy Ingeniero Electrónico y Técnico Frigorista, con amplia experiencia en refrigeración comercial e industrial, mantenimiento electromecánico y automatización de sistemas térmicos.
 

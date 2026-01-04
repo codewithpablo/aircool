@@ -14,73 +14,168 @@ import {
   Wrench,
   ChevronDown,
 } from "lucide-react";
-import Image from "next/image";
 
-/* ======================= CONFIG ======================= */
-const WORDS_PER_CHUNK = 10; // palabras por bloque
-const CHUNK_DELAY = 3000; // ms entre bloques
+const WORDS_PER_CHUNK = 15;
+const CHUNK_DELAY = 5000;
 
-/* ======================= DATA ======================= */
+
 export const faqs = [
   {
-    question: "¿Cada cuanto tiempo se debe hacer el mantenimiento?",
+    question: "¿Qué títulos o certificaciones se obtienen al finalizar cada curso?",
     answer:
-      "Se recomienda realizar mantenimiento preventivo cada 6 a 12 meses para asegurar el correcto funcionamiento del equipo.",
-    icon: Clock,
-  },
-  {
-    question: "¿Que pasa si no hago mantenimiento?",
-    answer:
-      "La falta de mantenimiento puede generar mayor consumo eléctrico, fallas prematuras y menor vida útil del equipo. Además, puede generar riesgos eléctricos y costos mayores a largo plazo.",
-    icon: AlertTriangle,
-  },
-  {
-    question: "¿Trabajan con equipos industriales?",
-    answer:
-      "Sí, realizamos mantenimiento y reparaciones en equipos comerciales e industriales.",
-    icon: Factory,
-  },
-  {
-    question: "¿Ofrecen garantía?",
-    answer: "Sí, todos nuestros trabajos cuentan con garantía escrita.",
-    icon: ShieldCheck,
-  },
-  {
-    question: "¿Realizan urgencias?",
-    answer:
-      "Sí, contamos con servicio de urgencias según disponibilidad y tipo de trabajo.",
-    icon: AlertTriangle,
-  },
-  {
-    question: "¿En que zonas trabajan?",
-    answer: "Brindamos servicio en toda la provincia y zonas aledañas.",
-    icon: MapPin,
-  },
-  {
-    question: "¿Emiten factura?",
-    answer: "Sí, emitimos factura conforme a la normativa vigente.",
+      "Se entrega un Diploma con aval institucional; en modalidad virtual el certificado tiene reconocimiento del Ingeniero Orlando Miceli y del Lic. Rolando Miceli. Para Electricidad la certificación es la siguiente: Instalador Domiciliario Nivel Inicial.",
     icon: Receipt,
   },
   {
-    question: "¿Que marcas trabajan?",
+    question: "¿Los certificados que otorgan son válidos ante empresas, obras y organismos oficiales?",
+    answer: "Sí, los certificados cuentan con reconocimiento institucional y profesional.",
+    icon: ShieldCheck,
+  },
+  {
+    question: "¿Necesito experiencia previa para inscribirme en los cursos (Split, heladeras, electricidad)?",
     answer:
-      "Trabajamos con las principales marcas del mercado, tanto nacionales como internacionales.",
+      "Para Electricidad Domiciliaria el nivel es Sin experiencia. Los cursos de Refrigeración y Split se dictan según el nivel del estudiante (Inicial – Intermedio – Avanzado).",
+    icon: AlertTriangle,
+  },
+  {
+    question: "¿Cuál es la duración exacta de cada curso?",
+    answer:
+      "Electricidad Domiciliaria I: 3 meses; carga horaria total 54 horas (4,5 h semanales). Instalador de Split: 1 mes. Refrigeración Familiar (Heladeras y Freezers): 90 días.",
+    icon: Clock,
+  },
+  {
+    question: "¿Qué diferencia hay entre los niveles Inicial, Intermedio y Avanzado?",
+    answer:
+      "El nivel se asigna según la situación analizada por la institución, es decir la institución evalúa y determina el nivel correspondiente de cada estudiante.",
+    icon: AlertTriangle,
+  },
+  {
+    question: "¿Ofrecen clases teóricas online y prácticas presenciales en el mismo programa (b-learning)?",
+    answer:
+      "Sí. Las modalidades incluyen presencial y a distancia (b-learning); algunas ofertas combinan presencial y material descargable.",
+    icon: Factory,
+  },
+  {
+    question: "¿Con qué equipos y marcas vamos a practicar en los talleres?",
+    answer:
+      "Se practica sobre equipos reales: Aire Acondicionado Split y Mini Split, heladeras de un frío, dos fríos, sistemas No Frost y freezers.",
+    icon: Factory,
+  },
+  {
+    question: "¿Las prácticas se hacen sobre unidades de verdad y trabajos reales?",
+    answer:
+      "Sí: los cursos incluyen taller con unidades reales y salidas a campo para prácticas supervisadas.",
     icon: Wrench,
+  },
+  {
+    question: "¿Incluyen formación para manipular refrigerantes (recuperación, reciclado, reemplazo)?",
+    answer:
+      "Sí: el programa contempla manejo seguro de refrigerantes, incluyendo recuperación, reciclado y reemplazo, y procedimientos de carga y puesta en funcionamiento.",
+    icon: Wrench,
+  },
+  {
+    question: "¿El curso prepara para certificaciones legales o reglamentarias (por ejemplo, manejo de refrigerantes)?",
+    answer:
+      "Se entrega certificado/diploma con aval institucional y el programa aborda documentación legal y manejo de refrigerantes conforme a normativas vigentes.",
+    icon: Receipt,
+  },
+  {
+    question: "¿Qué requisitos legales y documentación necesito para trabajar luego (factura, habilitaciones, ART)?",
+    answer: "Se proporciona información sobre requisitos legales y documentación necesaria según cada curso y normativa vigente.",
+    icon: Receipt,
+  },
+  {
+    question: "¿Ofrecen formación específica sobre normativas locales (IRAM/AEA u otras) y seguridad laboral?",
+    answer:
+      "Sí: en Electricidad Domiciliaria se incluyen normas IRAM y reglamento AEA y módulos sobre seguridad laboral, trabajo en altura y protocolos eléctricos.",
+    icon: ShieldCheck,
+  },
+  {
+    question: "¿Hay evaluación práctica y teórica? ¿Cómo acreditan la competencia real?",
+    answer:
+      "Para Electricidad Domiciliaria hay evaluaciones prácticas en taller y un examen teórico-práctico final integrador; en modalidad virtual el examen final integrador se realiza en taller. Para otros cursos se realizan ejercicios de diagnóstico en equipos reales y se exige competencia práctica al finalizar.",
+    icon: Wrench,
+  },
+  {
+    question: "¿Los docentes son técnicos en actividad o con experiencia comprobable en campo?",
+    answer:
+      "Sí: el programa fue diseñado por profesionales con trayectoria (mención de más de 25 años en el oficio) y los certificados cuentan con reconocimiento de profesionales (Ing. Orlando Miceli y Lic. Rolando Miceli).",
+    icon: ShieldCheck,
+  },
+  {
+    question: "¿Se proveen herramientas o debo comprar un kit inicial? ¿Tienen lista de herramientas y costos estimados?",
+    answer:
+      "La institución informa sobre herramientas necesarias y kits opcionales según cada curso; consultar detalle de lista y costos.",
+    icon: Wrench,
+  },
+  {
+    question: "¿Ofrecen financiamiento, cuotas o planes de pago?",
+    answer:
+      "Sí. Se detallan formas de pago y cuotas: inscripción $10.000; ejemplos de aranceles y opciones en efectivo/transferencia y en cuotas. Pago con tarjeta: consultar valores.",
+    icon: Receipt,
+  },
+  {
+    question: "¿Tienen becas, descuentos por pago al contado o promociones por inscripción anticipada?",
+    answer:
+      "Sí, existen descuentos por pago al contado y promociones por inscripción anticipada; consultar disponibilidad.",
+    icon: Receipt,
+  },
+  {
+    question: "¿Cuál es el costo total aproximado de cada curso y qué está incluido/excluido?",
+    answer:
+      "Refrigeración I (Domicilio): Inscripción $10.000; Pago único $145.000; Pago en 2 cuotas $80.000; Pago en 3 cuotas $65.000. Instalador de Split: Inscripción $10.000; Pago único $65.000; Pago con tarjeta en 2 cuotas $35.000. Consultar condiciones exactas.",
+    icon: Receipt,
+  },
+  {
+    question: "¿Hay posibilidad de hacer prácticas rentadas o pasantías con empresas colaboradoras?",
+    answer:
+      "Sí, algunos cursos ofrecen prácticas supervisadas y convenios con empresas colaboradoras.",
+    icon: Factory,
+  },
+  {
+    question: "¿Ofrecen ayuda para la búsqueda de empleo o bolsa de trabajo para egresados?",
+    answer:
+      "Sí, se ofrece soporte post-curso, acceso a bolsa de trabajo y orientación para egresados.",
+    icon: ShieldCheck,
+  },
+  {
+    question: "¿Qué salida laboral puedo esperar: técnico a domicilio, instalación, servicio para empresas, o abrir mi propio taller?",
+    answer:
+      "Salidas esperables: técnico en refrigeración doméstica, técnico en instalación y puesta en marcha de Split/MiniSplit, trabajos de reparación, recargas, contratos de mantenimiento, venta de filtros y upgrades energéticos, y posibilidad de iniciar tu propio servicio/taller.",
+    icon: Factory,
+  },
+  {
+    question: "¿Cuánto puede cobrar un técnico recién formado y en cuánto tiempo podré recuperar la inversión del curso?",
+    answer:
+      "Los ingresos varían según zona y demanda; se enseñan modelos de ingresos y planificación para recuperar la inversión.",
+    icon: Clock,
+  },
+  {
+    question: "¿Dan formación comercial y de marketing (cómo conseguir clientes, precios, contratos de mantenimiento)?",
+    answer:
+      "Sí: incluye ventas orientadas al rubro, modelos de ingresos recurrentes (contratos, suscripciones) y marketing práctico, además de cotización y presentación ante clientes.",
+    icon: ShieldCheck,
+  },
+  {
+    question: "¿Enseñan a confeccionar presupuestos, contratos y garantías para los clientes?",
+    answer:
+      "Sí, se enseña cómo cotizar, estructurar ingresos recurrentes y documentación legal.",
+    icon: Receipt,
   },
 ];
 
-/* ======================= COMPONENT ======================= */
 export default function FaqSection() {
   const [query, setQuery] = useState("");
   const [openFaq, setOpenFaq] = useState<typeof faqs[0] | null>(null);
-  const [chunks, setChunks] = useState<string[][]>([]);
+
+  const [chunks, setChunks] = useState<string[]>([]);
   const [chunkIndex, setChunkIndex] = useState(0);
   const [isTalking, setIsTalking] = useState(false);
+  const [currentChunk, setCurrentChunk] = useState("");
 
   const listRef = useRef<HTMLDivElement>(null);
   const [showMoreBadge, setShowMoreBadge] = useState(false);
 
-  /* ======================= FILTER ======================= */
   const filteredFaqs = useMemo(() => {
     const q = query.toLowerCase().trim();
     if (!q) return faqs;
@@ -91,49 +186,59 @@ export default function FaqSection() {
     );
   }, [query]);
 
-  /* ======================= SPLIT ANSWER EN BLOQUES ======================= */
   useEffect(() => {
     if (!openFaq) {
       setChunks([]);
       setChunkIndex(0);
       setIsTalking(false);
+      setCurrentChunk("");
       return;
     }
 
     const words = openFaq.answer.split(" ");
-    const grouped: string[][] = [];
+    const grouped: string[] = [];
 
     for (let i = 0; i < words.length; i += WORDS_PER_CHUNK) {
-      grouped.push(words.slice(i, i + WORDS_PER_CHUNK));
+      grouped.push(words.slice(i, i + WORDS_PER_CHUNK).join(" "));
     }
 
     setChunks(grouped);
     setChunkIndex(0);
-    setIsTalking(grouped.length > 0);
+    setCurrentChunk(grouped[0] || "");
+    setIsTalking(true);
   }, [openFaq]);
 
-  /* ======================= ANIMACIÓN DE BLOQUES ======================= */
   useEffect(() => {
-    if (!chunks.length) return;
+    if (!isTalking || chunks.length === 0) return;
 
-    const interval = setInterval(() => {
-      setChunkIndex((prev) => {
-        if (prev + 1 >= chunks.length) {
-          clearInterval(interval);
-          setIsTalking(false); // deja de hablar
-          setChunks([]);        // limpia la nube
+    if (chunkIndex >= chunks.length) {
+      setIsTalking(false);
+      setTimeout(() => {
+        setOpenFaq(null);
+        setChunkIndex(0);
+        setCurrentChunk("");
+      }, 800);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      const nextIndex = chunkIndex + 1;
+      if (nextIndex < chunks.length) {
+        setCurrentChunk(chunks[nextIndex]);
+        setChunkIndex(nextIndex);
+      } else {
+        setIsTalking(false);
+        setTimeout(() => {
+          setOpenFaq(null);
           setChunkIndex(0);
-          setOpenFaq(null);     // opcional: cierra la FAQ automáticamente
-          return prev;
-        }
-        return prev + 1;
-      });
+          setCurrentChunk("");
+        }, 800);
+      }
     }, CHUNK_DELAY);
 
-    return () => clearInterval(interval);
-  }, [chunks]);
+    return () => clearTimeout(timer);
+  }, [chunkIndex, chunks, isTalking]);
 
-  /* ======================= SCROLL BADGE ======================= */
   const checkScroll = () => {
     const el = listRef.current;
     if (!el) return;
@@ -149,7 +254,6 @@ export default function FaqSection() {
     checkScroll();
   }, [filteredFaqs]);
 
-  /* ======================= RENDER ======================= */
   return (
     <section className="h-screen overflow-hidden px-4 py-10 bg-white dark:bg-transparent">
       <div className="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-14">
@@ -194,13 +298,11 @@ export default function FaqSection() {
                 >
                   <div className="flex items-center gap-4">
                     <Icon
-                      size={22}
-                      className={
-                        isOpen
-                          ? "text-blue-700 dark:text-sky-400"
-                          : "text-blue-500 dark:text-gray-400"
-                      }
-                    />
+  size={24} // tamaño fijo para todos
+  className={`shrink-0 ${
+    isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
+  }`}
+/>
                     <span className="font-medium text-gray-900 dark:text-white">
                       {faq.question}
                     </span>
@@ -218,9 +320,9 @@ export default function FaqSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 8 }}
                 className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
-                           bg-blue-100 dark:bg-black/60
-                           border border-blue-300 dark:border-white/10
-                           text-blue-700 dark:text-white/80 text-sm"
+                          bg-blue-100 dark:bg-black/60
+                          border border-blue-300 dark:border-white/10
+                          text-blue-700 dark:text-white/80 text-sm"
               >
                 Ver más{" "}
                 <ChevronDown size={14} className="inline animate-bounce" />
@@ -231,59 +333,64 @@ export default function FaqSection() {
 
         {/* DERECHA */}
         <div className="flex-1 flex justify-center items-center">
-          <div className="flex flex-col items-center gap-6">
-            {/* NUBE */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={openFaq?.question ?? "placeholder"}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="mt-32 w-[500px] h-32 py-16 px-8 rounded-[26px] relative overflow-hidden -mb-4
-                           bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
-                           border border-blue-200 dark:border-white/10
-                           shadow-2xl flex items-center justify-center 
-                           max-sm:w-64 max-sm:h-28 max-sm:p-4 max-sm:overflow-y-auto"
-              >
-                <AnimatePresence mode="wait">
-                  {chunks[chunkIndex] ? (
-                    <motion.span
-                      key={chunkIndex}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4 }}
-                      className="text-gray-900 dark:text-white text-3xl max-sm:text-base"
-                    >
-                      {chunks[chunkIndex].join(" ")}
-                    </motion.span>
-                  ) : (
-                    <span className="text-gray-900 text-3xl dark:text-white  max-sm:text-xs">
-                      Seleccioná una pregunta para ver la respuesta
-                    </span>
-                  )}
-                </AnimatePresence>
+          <div className="relative w-[400px] h-[400px] max-sm:w-64 max-sm:h-64 flex justify-center items-end">
 
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4
-                                bg-blue-50 dark:bg-zinc-900 rotate-45" />
-              </motion.div>
+            {/* FONDO CIRCULAR DIFUMINADO */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                            size-[500px] max-sm:w-64 max-sm:h-64
+                            rounded-full
+                            bg-gradient-to-br from-blue-400 to-blue-50
+                            filter blur-2xl
+                            pointer-events-none
+                            z-0" />
+
+            {/* NUBE */}
+            <AnimatePresence>
+              {isTalking && chunks.length > 0 && (
+                <motion.div
+                  key="speechBubble"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className="-top-[300px] w-[320px] h-[180px] 
+                             py-4 px-6 rounded-[26px] relative overflow-hidden
+                             bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
+                             border border-blue-200 dark:border-white/10
+                             shadow-2xl flex items-center justify-center z-20"
+                >
+                  <span className="text-gray-900  dark:text-white text-lg sm:text-lg  font-semibold ">
+                    {currentChunk}
+                  </span>
+
+               
+                </motion.div>
+              )}
             </AnimatePresence>
 
-            {/* ROBOT */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
-              className="max-sm:w-64 max-sm:h-64"
-            >
-              <Image
-                src={isTalking ? "/talking.gif" : "/game.gif"}
-                alt="Asistente técnico"
-                width={320}
-                height={320}
-                priority
-              />
-            </motion.div>
+            {/* GIF idle */}
+            <motion.img
+              src="/game.gif"
+              alt="Robot Idle"
+              animate={{
+                opacity: isTalking ? 0 : 1,
+                scale: 1.2,
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute top-20 left-0 w-full h-full object-contain z-10"
+            />
+
+            {/* GIF talking */}
+            <motion.img
+              src="/talking.gif"
+              alt="Robot Talking"
+              animate={{
+                opacity: isTalking ? 1 : 0,
+                scale: 1.2,
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute top-20 left-0 w-full h-full object-contain z-10"
+            />
           </div>
         </div>
       </div>
