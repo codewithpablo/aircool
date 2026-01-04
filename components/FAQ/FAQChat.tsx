@@ -262,7 +262,7 @@ export default function FaqSection() {
   }, [filteredFaqs]);
 
   return (
-    <section className="h-[900px] lg:h-screen overflow-hidden px-4 pb-20 dark:bg-transparent">
+    <section className="h-[900px] lg:h-screen overflow-visible px-4 pb-20 dark:bg-transparent">
       <div className="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-60 lg:gap-0">
 
         {/* IZQUIERDA */}
@@ -295,7 +295,7 @@ export default function FaqSection() {
               <div
                 ref={listRef}
                 onScroll={checkScroll}
-                className="flex-1 overflow-y-auto hideScrollbar space-y-4 pr-2"
+                className="flex-1  relative z-10 overflow-y-auto hideScrollbar space-y-4 pr-2"
               >
                 {filteredFaqs.map((faq) => {
                   const isOpen = openFaq?.question === faq.question;
@@ -354,10 +354,10 @@ export default function FaqSection() {
           <div className="relative w-[400px] h-[400px] max-sm:w-64 max-sm:h-64 flex justify-center items-end">
 
             {/* FONDO CIRCULAR DIFUMINADO */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                            w-[500px] h-[500px] max-sm:w-64 max-sm:h-64
+              <div className="z-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                            w-[600px] h-[600px] max-sm:w-64 max-sm:h-64
                             rounded-full
-                            bg-gradient-to-br from-blue-400 to-blue-50
+                            bg-gradient-to-br from-blue-400 to-blue-200
                             dark:bg-gradient-to-br dark:from-blue-800 dark:to-blue-400
                             filter blur-2xl
                             pointer-events-none
@@ -372,13 +372,13 @@ export default function FaqSection() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="-top-[325px] lg:-top-[300px] w-[320px] h-[180px] 
+                  className="-top-[325px] lg:-top-[325px] 
                              py-4 px-6 rounded-[26px] relative overflow-hidden
-                             bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
+                             bg-white/40  backdrop-blur-3xl dark:from-zinc-900 dark:to-zinc-800
                              border border-blue-200 dark:border-white/10
-                             shadow-2xl flex items-center justify-center z-20"
+                             shadow-2xl  z-20"
                 >
-                  <span className="text-gray-900 dark:text-white text-lg sm:text-lg font-semibold">
+                  <span className="text-gray-700 dark:text-white text-lg sm:text-lg font-semibold">
                     {currentChunk}
                   </span>
                 </motion.div>
