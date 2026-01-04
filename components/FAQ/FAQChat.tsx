@@ -18,7 +18,6 @@ import {
 const WORDS_PER_CHUNK = 15;
 const CHUNK_DELAY = 5000;
 
-
 export const faqs = [
   {
     question: "¿Qué títulos o certificaciones se obtienen al finalizar cada curso?",
@@ -164,17 +163,18 @@ export const faqs = [
   },
 ];
 
+
 export default function FaqSection() {
   const [query, setQuery] = useState("");
   const [openFaq, setOpenFaq] = useState<typeof faqs[0] | null>(null);
-
   const [chunks, setChunks] = useState<string[]>([]);
   const [chunkIndex, setChunkIndex] = useState(0);
   const [isTalking, setIsTalking] = useState(false);
   const [currentChunk, setCurrentChunk] = useState("");
+  const [showMoreBadge, setShowMoreBadge] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const listRef = useRef<HTMLDivElement>(null);
-  const [showMoreBadge, setShowMoreBadge] = useState(false);
 
   const filteredFaqs = useMemo(() => {
     const q = query.toLowerCase().trim();
@@ -185,6 +185,14 @@ export default function FaqSection() {
         faq.answer.toLowerCase().includes(q)
     );
   }, [query]);
+
+  // Detectar si es mobile
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!openFaq) {
@@ -197,7 +205,6 @@ export default function FaqSection() {
 
     const words = openFaq.answer.split(" ");
     const grouped: string[] = [];
-
     for (let i = 0; i < words.length; i += WORDS_PER_CHUNK) {
       grouped.push(words.slice(i, i + WORDS_PER_CHUNK).join(" "));
     }
@@ -255,91 +262,103 @@ export default function FaqSection() {
   }, [filteredFaqs]);
 
   return (
-    <section className="h-screen overflow-hidden px-4 py-10 bg-white dark:bg-transparent">
-      <div className="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-14">
+    <section className="h-[900px] lg:h-screen overflow-hidden px-4 pb-20 dark:bg-transparent">
+      <div className="h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-60 lg:gap-0">
+
         {/* IZQUIERDA */}
-        <div className="flex-1 flex flex-col min-h-0 relative">
-          <h1 className="text-center text-2xl mb-5">Preguntas frecuentes</h1>
+        <AnimatePresence>
+          {(!isMobile || !isTalking) && (
+            <motion.div
+              className="flex-1 flex flex-col relative min-h-[550px]"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.4 }}
+            >
+              <h1 className="text-center text-2xl mb-5">Preguntas frecuentes</h1>
 
-          <input
-            type="text"
-            placeholder="Buscar una pregunta..."
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setOpenFaq(null);
-            }}
-            className="mb-6 rounded-xl border border-blue-200 dark:border-white/10
-                       bg-blue-50 dark:bg-white/5
-                       px-4 py-3 text-gray-900 dark:text-white
-                       placeholder:text-blue-500/60 dark:placeholder:text-white/40
-                       outline-none w-full"
-          />
+              <input
+                type="text"
+                placeholder="Buscar una pregunta..."
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setOpenFaq(null);
+                }}
+                className="mb-6 rounded-xl border border-blue-200 dark:border-white/10
+                           bg-blue-50 dark:bg-white/5
+                           px-4 py-3 text-gray-900 dark:text-white
+                           placeholder:text-blue-500/60 dark:placeholder:text-white/40
+                           outline-none w-full"
+              />
 
-          <div
-            ref={listRef}
-            onScroll={checkScroll}
-            className="flex-1 overflow-y-auto hideScrollbar space-y-4 pr-2"
-          >
-            {filteredFaqs.map((faq) => {
-              const isOpen = openFaq?.question === faq.question;
-              const Icon = faq.icon;
-
-              return (
-                <button
-                  key={faq.question}
-                  onClick={() => setOpenFaq(isOpen ? null : faq)}
-                  className={`w-full flex items-center justify-between gap-4 px-6 py-5 rounded-xl border transition
-                    ${
-                      isOpen
-                        ? "bg-blue-200 border-blue-300 dark:bg-white/15 dark:border-white/10"
-                        : "bg-blue-50 border-blue-200 dark:bg-white/5 dark:border-white/10"
-                    }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <Icon
-  size={24} // tamaño fijo para todos
-  className={`shrink-0 ${
-    isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
-  }`}
-/>
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {faq.question}
-                    </span>
-                  </div>
-                  {isOpen ? <Minus /> : <Plus />}
-                </button>
-              );
-            })}
-          </div>
-
-          <AnimatePresence>
-            {showMoreBadge && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
-                          bg-blue-100 dark:bg-black/60
-                          border border-blue-300 dark:border-white/10
-                          text-blue-700 dark:text-white/80 text-sm"
+              <div
+                ref={listRef}
+                onScroll={checkScroll}
+                className="flex-1 overflow-y-auto hideScrollbar space-y-4 pr-2"
               >
-                Ver más{" "}
-                <ChevronDown size={14} className="inline animate-bounce" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                {filteredFaqs.map((faq) => {
+                  const isOpen = openFaq?.question === faq.question;
+                  const Icon = faq.icon;
+
+                  return (
+                    <button
+                      key={faq.question}
+                      onClick={() => setOpenFaq(isOpen ? null : faq)}
+                      className={`w-full flex items-center justify-between gap-4 px-6 py-5 rounded-xl border transition
+                        ${
+                          isOpen
+                            ? "bg-blue-200 border-blue-300 dark:bg-white/15 dark:border-white/10"
+                            : "bg-blue-50 border-blue-200 dark:bg-white/5 dark:border-white/10"
+                        }`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <Icon
+                          size={24}
+                          className={`shrink-0 ${
+                            isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
+                          }`}
+                        />
+                        <span className="font-medium text-gray-900 dark:text-white">
+                          {faq.question}
+                        </span>
+                      </div>
+                      {isOpen ? <Minus /> : <Plus />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <AnimatePresence>
+                {showMoreBadge && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
+                              bg-blue-100 dark:bg-black/60
+                              border border-blue-300 dark:border-white/10
+                              text-blue-700 dark:text-white/80 text-sm"
+                  >
+                    Ver más{" "}
+                    <ChevronDown size={14} className="inline animate-bounce" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* DERECHA */}
         <div className="flex-1 flex justify-center items-center">
           <div className="relative w-[400px] h-[400px] max-sm:w-64 max-sm:h-64 flex justify-center items-end">
 
             {/* FONDO CIRCULAR DIFUMINADO */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                            size-[500px] max-sm:w-64 max-sm:h-64
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                            w-[500px] h-[500px] max-sm:w-64 max-sm:h-64
                             rounded-full
                             bg-gradient-to-br from-blue-400 to-blue-50
+                            dark:bg-gradient-to-br dark:from-blue-800 dark:to-blue-400
                             filter blur-2xl
                             pointer-events-none
                             z-0" />
@@ -353,17 +372,15 @@ export default function FaqSection() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="-top-[300px] w-[320px] h-[180px] 
+                  className="-top-[325px] lg:-top-[300px] w-[320px] h-[180px] 
                              py-4 px-6 rounded-[26px] relative overflow-hidden
                              bg-gradient-to-br from-blue-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-800
                              border border-blue-200 dark:border-white/10
                              shadow-2xl flex items-center justify-center z-20"
                 >
-                  <span className="text-gray-900  dark:text-white text-lg sm:text-lg  font-semibold ">
+                  <span className="text-gray-900 dark:text-white text-lg sm:text-lg font-semibold">
                     {currentChunk}
                   </span>
-
-               
                 </motion.div>
               )}
             </AnimatePresence>
@@ -377,7 +394,7 @@ export default function FaqSection() {
                 scale: 1.2,
               }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute top-20 left-0 w-full h-full object-contain z-10"
+              className="absolute -top-[150px] lg:top-20 left-0 w-full h-full object-contain z-10"
             />
 
             {/* GIF talking */}
@@ -389,7 +406,7 @@ export default function FaqSection() {
                 scale: 1.2,
               }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute top-20 left-0 w-full h-full object-contain z-10"
+              className="absolute  -top-[50px] lg:top-20 left-0 w-full h-full object-contain z-10"
             />
           </div>
         </div>

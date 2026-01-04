@@ -15,32 +15,15 @@ const Hero = () => {
 
         {/* Texto */}
         <div className="flex-1 flex flex-col justify-center h-full px-4 sm:px-6 lg:px-12 py-10 lg:py-0">
-          <div className="max-w-[90%] sm:max-w-[80%] lg:max-w-full mx-auto flex flex-col gap-4 relative md:bottom-10">
+          <div className="max-w-[90%] sm:max-w-[80%] lg:max-w-full mx-auto flex flex-col  relative md:bottom-10">
 
-            {/* 🟦 TÍTULO MOBILE */}
-            <h1 className="lg:hidden text-left text-5xl sm:text-6xl font-semibold text-gray-900 dark:text-white">
+
+            {/* 🟦 TÍTULO DESKTOP */}
+            <h1 className=" lg:flex-col text-6xl  h-48 xl:text-7xl font-semibold mt-20 text-gray-900 dark:text-white">
               <span>De cero a </span>
               <TypeAnimation
                 sequence={[
-                  "técnico certificado",
-                  5000,
-                  "",
-                  800,
-                ]}
-                wrapper="span"
-                speed={50}
-                deletionSpeed={40}
-                repeat={Infinity}
-                className="text-blue-400 italic block"
-              />
-            </h1>
-
-            {/* 🟦 TÍTULO DESKTOP */}
-            <h1 className="hidden lg:flex lg:flex-col text-4xl xl:text-7xl font-semibold my-5 text-gray-900 dark:text-white">
-              <span>De cero a</span>
-              <TypeAnimation
-                sequence={[
-                  "técnico certificado",
+                  " técnico certificado",
                   5000,
                   "",
                   800,
@@ -59,14 +42,14 @@ const Hero = () => {
             </p>
 
             {/* Botones */}
-            <div className="w-fit mx-auto md:w-[300px] md:mx-0 flex gap-3 mt-5">
+            <div className=" md:w-[300px] md:mx-0 flex lg:flex-row  flex-col gap-3 mt-5">
               <Link href="/links">
-                <Button className="text-white rounded-full bg-blue-400 hover:bg-blue-500">
+                <Button className="text-white rounded-full bg-blue-400 hover:bg-blue-500 w-full lg:w-[200px]">
                   Ingresar al campus
                 </Button>
               </Link>
               <Link href="/courses">
-                <Button className="bg-white rounded-full text-gray-900 hover:bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700">
+                <Button className="lg:w-[200px] w-full bg-white border border-blue-400 rounded-full text-gray-900 hover:bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700">
                   Ver todos los cursos
                 </Button>
               </Link>
