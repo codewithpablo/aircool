@@ -353,16 +353,7 @@ export default function FaqSection() {
         <div className="flex-1 flex justify-center items-center">
           <div className="relative w-[400px] h-[400px] max-sm:w-64 max-sm:h-64 flex justify-center items-end">
 
-            {/* FONDO CIRCULAR DIFUMINADO */}
-              <div className="z-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                            w-[600px] h-[600px] max-sm:w-64 max-sm:h-64
-                            rounded-full
-                            bg-gradient-to-br from-blue-400 to-blue-200
-                            dark:bg-gradient-to-br dark:from-blue-800 dark:to-blue-400
-                            filter blur-2xl
-                            pointer-events-none
-                            z-0" />
-
+          
             {/* NUBE */}
             <AnimatePresence>
               {isTalking && chunks.length > 0 && (
