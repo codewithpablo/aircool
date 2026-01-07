@@ -14,11 +14,12 @@ const logos = [
   "/logos/9.png",
   "/logos/11.png",
   "/logos/12.png",
+  "/logos/13.png",
 ];
 
 export default function HeroBrandsCarrousel() {
   return (
-    <div className="w-full overflow-hidden mb-12 mt-6">
+    <div className="w-full  mb-12 mt-6 overflow-visible">
       <div className="flex w-max animate-marquee gap-14">
         {/* Primera pasada */}
         {logos.map((logo, index) => (

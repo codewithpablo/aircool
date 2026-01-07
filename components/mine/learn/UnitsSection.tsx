@@ -8,131 +8,176 @@ import {
   BarChart2,
   Wrench,
   Clock,
-  Layers,
 } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
+
+/* =======================
+   Data
+======================= */
 
 const learnUnits = [
   {
     title: 'Fundamentos y práctica de instalación',
     description: 'Montaje, sellado y correcta puesta en marcha de los equipos.',
-    icon: <ToolCase size={30} className="text-blue-400 dark:text-teal-400" />,
+    icon: <ToolCase size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/1.jpg',
   },
   {
     title: 'Diagnóstico y reparación rápida',
     description: 'Uso de manómetros y detectores de fugas para resolver fallas con eficiencia.',
-    icon: <Zap size={30} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Zap size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/2.jpg',
   },
-
   {
     title: 'Manejo seguro de refrigerantes',
-    description: 'Recuperación, reciclado, reemplazo y manejo responsable de refrigerantes.',
-    icon: <Shield size={30} className="text-blue-400 dark:text-teal-400" />,
+    description: 'Recuperación, reciclado y manejo responsable.',
+    icon: <Shield size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/4.jpg',
   },
   {
     title: 'Limpieza y mantenimiento profesional',
-    description: 'Servicios que hacen que los clientes repitan cada 6 a 12 meses.',
-    icon: <Wrench size={30} className="text-blue-400 dark:text-teal-400" />,
+    description: 'Servicios que generan recurrencia cada 6 a 12 meses.',
+    icon: <Wrench size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/5.jpg',
   },
   {
-    title: 'Seguridad laboral y normativas locales',
-    description: 'Trabajo en altura, riesgos eléctricos y documentación legal para evitar problemas.',
-    icon: <Shield size={30} className="text-blue-400 dark:text-teal-400" />,
+    title: 'Seguridad laboral y normativas',
+    description: 'Altura, electricidad y documentación legal.',
+    icon: <Shield size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/6.jpg',
   },
   {
     title: 'Ventas orientadas al rubro',
-    description: 'Mostrá el riesgo, ofrecé la solución inmediata y cerrá el trabajo en el momento.',
-    icon: <DollarSign size={30} className="text-blue-400 dark:text-teal-400" />,
+    description: 'Detectar el riesgo y cerrar la solución en el momento.',
+    icon: <DollarSign size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/7.jpg',
   },
   {
     title: 'Modelos de ingreso recurrente',
-    description: 'Contratos, suscripciones y ventas complementarias para ingresos estables.',
-    icon: <BarChart2 size={30} className="text-blue-400 dark:text-teal-400" />,
+    description: 'Contratos, suscripciones y ventas complementarias.',
+    icon: <BarChart2 size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/8.jpg',
   },
   {
     title: 'Taller práctico y salidas a campo',
-    description: 'Trabajo con unidades reales para que lo hagas vos, no solo teoría.',
-    icon: <Clock size={30} className="text-blue-400 dark:text-teal-400" />,
+    description: 'Trabajo con equipos reales, no solo teoría.',
+    icon: <Clock size={28} className="text-blue-400 dark:text-teal-400" />,
     image: '/9.jpg',
   },
 ];
+
+/* =======================
+   Animaciones
+======================= */
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
+      staggerChildren: 0.12,
+      delayChildren: 0.25,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0, scale: 0.9 },
+  hidden: {
+    y: 24,
+    opacity: 0,
+    filter: 'blur(6px)',
+  },
   visible: {
     y: 0,
     opacity: 1,
-    scale: 1,
+    filter: 'blur(0px)',
     transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 10,
+      duration: 0.7,
+      ease: 'easeOut',
     },
   },
 };
 
+/* =======================
+   Component
+======================= */
+
 export default function UnitsSection() {
   return (
-    <section className="w-full min-h-screen flex flex-col justify-center dark:bg-gray-950 pt-20 px-6 md:px-20">
-      <motion.h2
-        className="uppercase text-5xl md:text-6xl font-bold text-center text-gray-800 mb-16 dark:text-white"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        ¿Qué vas a aprender?
-      </motion.h2>
+    <section className="relative w-full min-h-screen overflow-visible bg-white dark:bg-gray-950 pt-24 px-6 md:px-20">
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.3 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[1fr]"
-      >
-        {learnUnits.map((unit, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            className="flex flex-col bg-white/30 border border-white/50 dark:bg-white/5 dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-4 backdrop-blur-sm"
-          >
-            <img
-              src={unit.image}
-              alt={unit.title}
-              className="w-full h-24 object-cover rounded-xl mb-3"
-            />
+      {/* 🎥 Fondo cinematográfico */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-400/20 dark:bg-blue-500/15 blur-[140px]" />
+        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-cyan-300/20 dark:bg-cyan-400/15 blur-[140px]" />
+        <div className="absolute bottom-[-300px] left-1/3 w-[700px] h-[700px] rounded-full bg-indigo-400/15 dark:bg-indigo-500/10 blur-[160px]" />
+      </div>
 
-            <div className="flex items-center gap-2 mb-2">
-              {unit.icon}
-              <h3 className="text-sm md:text-base font-semibold text-gray-900 dark:text-white leading-snug">
-                {unit.title}
-              </h3>
-            </div>
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col items-center">
 
-            <p className="text-gray-800 dark:text-gray-400 text-xs md:text-sm">
-              {unit.description}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+        {/* Título */}
+        <motion.h2
+          className="uppercase text-4xl md:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-20"
+          initial={{ opacity: 0, y: -30, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          ¿Qué vas a aprender?
+        </motion.h2>
+
+        {/* Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full"
+        >
+          {learnUnits.map((unit, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="
+                group flex flex-col rounded-2xl
+                bg-white/40 dark:bg-white/5
+                border border-white/50 dark:border-white/10
+                backdrop-blur-md
+                shadow-sm hover:shadow-lg
+                transition-all duration-300
+                overflow-hidden
+              "
+            >
+              {/* Imagen */}
+              <div className="relative">
+                <img
+                  src={unit.image}
+                  alt={unit.title}
+                  className="w-full h-28 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+              </div>
+
+              {/* Texto */}
+              <div className="p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  {unit.icon}
+                  <h3 className="text-sm md:text-base font-medium text-gray-900 dark:text-white leading-snug">
+                    {unit.title}
+                  </h3>
+                </div>
+
+                <p className="text-gray-700 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
+                  {unit.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }

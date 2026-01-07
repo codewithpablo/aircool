@@ -35,6 +35,18 @@ const phoneVariants: Variants = {
   },
 };
 
+// --- Cinematic background ---
+const CinematicBackground = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-visible z-0">
+    <motion.div
+      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
+      animate={{ x: [0, 50, 0], y: [0, 30, 0], rotate: [0, 15, 0] }}
+      transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+    />
+    
+  </div>
+);
+
 const SeccionEventoMonitor = () => {
   const iconSize = 22;
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -48,7 +60,6 @@ const SeccionEventoMonitor = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const totalPages = 2;
 
-  // Detectar si la sección está en vista
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -63,7 +74,7 @@ const SeccionEventoMonitor = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Control del video
+  // Video control
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -79,12 +90,8 @@ const SeccionEventoMonitor = () => {
     video.addEventListener("loadedmetadata", setVideoDuration);
     video.addEventListener("ended", handleEnded);
 
-    // Reproduce automáticamente sin sonido
     video.muted = true;
-    video
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
+    video.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
 
     return () => {
       video.removeEventListener("timeupdate", updateTime);
@@ -96,9 +103,8 @@ const SeccionEventoMonitor = () => {
   const togglePlay = () => {
     const video = videoRef.current;
     if (!video) return;
-    if (video.paused) {
-      video.play().then(() => setIsPlaying(true));
-    } else {
+    if (video.paused) video.play().then(() => setIsPlaying(true));
+    else {
       video.pause();
       setIsPlaying(false);
     }
@@ -152,7 +158,7 @@ const SeccionEventoMonitor = () => {
             "_blank"
           )
         }
-        className="z-30 w-full bg-blue-500 text-white py-2 rounded-full font-semibold hover:bg-blue-600 transition-colors"
+        className="z-30 w-full bg-blue-500 text-white py-2 rounded-full font-semibold hover:bg-blue-600 transition-all shadow-lg hover:shadow-2xl hover:scale-[1.03]"
       >
         Ver Ruta en Google Maps
       </button>
@@ -162,9 +168,11 @@ const SeccionEventoMonitor = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex flex-col  dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 text-gray-900 dark:text-gray-100"
+      className="relative min-h-screen flex flex-col dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 text-gray-900 dark:text-gray-100 overflow-visible"
     >
-      <div className="flex flex-col md:flex-row-reverse md:items-center md:justify-center p-8 md:p-12 lg:p-16 xl:p-24 space-y-5 md:space-y-0 md:space-x-12 grow">
+      <CinematicBackground />
+
+      <div className="flex flex-col md:flex-row-reverse md:items-center md:justify-center p-8 md:p-12 lg:p-16 xl:p-24 space-y-5 md:space-y-0 md:space-x-12 grow z-10 relative">
         
         {/* 📱 Teléfono */}
         <motion.div
@@ -173,10 +181,14 @@ const SeccionEventoMonitor = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <div className="relative bg-gray-900 p-1.5 rounded-[3rem] shadow-2xl border-4 border-gray-950/90 aspect-[9/17] w-full max-w-[280px] max-h-[85vh] z-10">
+          <motion.div
+            className="relative bg-gray-900 p-1.5 rounded-[3rem] shadow-2xl border-4 border-gray-950/90 aspect-[9/17] w-full max-w-[280px] max-h-[85vh] z-10"
+            animate={{ rotate: [0, 1, -1, 0], scale: [1, 1.02, 0.98, 1] }}
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+          >
             
             {/* Pantalla */}
-            <div className="relative bg-black rounded-[2.5rem] overflow-hidden h-full w-full">
+            <div className="relative bg-black rounded-[2.5rem] overflow-hidden h-full w-full shadow-inner">
               {/* Notch */}
               <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-7 bg-black rounded-full z-20 flex items-center justify-center">
                 <div className="w-1.5 h-1.5 bg-gray-700 rounded-full mr-2" />
@@ -226,7 +238,7 @@ const SeccionEventoMonitor = () => {
                       <span>{formatTime(currentTime)}</span>
                       <div className="w-3/4 h-1 bg-gray-400 rounded-full">
                         <div
-                          className="h-1 bg-blue-500 rounded-full"
+                          className="h-1 bg-blue-500 rounded-full transition-all"
                           style={{ width: `${(currentTime / duration) * 100}%` }}
                         />
                       </div>
@@ -267,7 +279,7 @@ const SeccionEventoMonitor = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* ℹ️ Info del evento */}
@@ -290,7 +302,7 @@ const SeccionEventoMonitor = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight text-gray-950 dark:text-white"
           >
             <span className="block">Bienal</span>
-            <span className="block text-blue-400">Tecnológica</span>
+            <span className="block text-blue-400 drop-shadow-lg">Tecnológica</span>
           </motion.h1>
 
           <motion.div
@@ -327,7 +339,7 @@ const SeccionEventoMonitor = () => {
             </p>
             <a
               href="#register"
-              className="inline-block bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-500 transition-transform hover:scale-[1.02] tracking-wider"
+              className="inline-block bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-500 transition-transform hover:scale-[1.05] hover:shadow-2xl tracking-wider"
             >
               Confirmar Asistencia
             </a>

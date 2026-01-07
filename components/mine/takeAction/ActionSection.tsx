@@ -11,128 +11,178 @@ import {
   Users,
   Star,
 } from 'lucide-react';
-import { motion, Variants } from 'framer-motion'; // 👈 Importamos motion y Variants
+import {
+  motion,
+  Variants,
+  useMotionValue,
+  useSpring,
+} from 'framer-motion';
+import { useEffect } from 'react';
 
-// 1. Definir las variantes para el CONTENEDOR (la cuadrícula)
+/* =========================
+   Animaciones
+========================= */
+
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
-      // 2. Usar staggerChildren para animar los hijos secuencialmente
-      staggerChildren: 0.1, // Retraso de 0.1s entre cada hijo
-      delayChildren: 0.2,   // Pequeño retraso antes de que empiece el primer hijo
+      staggerChildren: 0.12,
+      delayChildren: 0.25,
     },
   },
 };
 
-// 3. Definir las variantes para los ITEMS (cada beneficio)
 const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0 }, // Estado inicial: movido 20px hacia abajo y transparente
-  visible: { y: 0, opacity: 1 },  // Estado visible: posición original y opaco
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: 'blur(6px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.9,
+      ease: 'easeOut',
+    },
+  },
 };
+
+const titleVariants: Variants = {
+  hidden: { opacity: 0, y: -25, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.9, ease: 'easeOut' },
+  },
+};
+
+/* =========================
+   Items
+========================= */
 
 const benefitsData = [
   {
     icon: TrendingUp,
     title: 'Previsibilidad financiera',
-    text: 'Previsibilidad financiera. Servicios de limpieza y mantenimiento se repiten cada 6 a 12 meses, factura estable e ingresos previsibles.'
+    text: 'Servicios de limpieza y mantenimiento se repiten cada 6 a 12 meses.',
   },
   {
     icon: Clock,
     title: 'Rentabilidad alta',
-    text: 'Rentabilidad alta. Trabajo técnico, tiempo reducido, margen alto perfecto para maximizar tiempo y ganancia.'
+    text: 'Trabajo técnico, tiempo reducido, margen alto perfecto para maximizar tiempo y ganancia.',
   },
   {
     icon: Layers,
     title: 'Múltiples fuentes de ingreso',
-    text: 'Múltiples fuentes de ingreso. Instalación, recargas, reparaciones, contratos de mantenimiento, venta de filtros y upgrades energéticos, etc.'
+    text: 'Instalaciones, cargas de refrigerante, reparaciones, limpiezas, ventas, etc.',
   },
   {
     icon: ShieldCheck,
     title: 'Resiliencia a crisis',
-    text: 'Resiliencia a crisis. En tiempos de crisis el mantenimiento y la salud se priorizan.'
+    text: 'En tiempos de crisis, las personas dejan de comprar muchas cosas, pero nunca dejan de alimentarse ni de buscar cómo protegerse del calor.',
   },
   {
     icon: Wrench,
     title: 'Práctica',
-    text: 'Práctica. No va a “mirar cómo se hace”. Va a hacerlo usted mismo guiado por profesionales.'
+    text: 'No vas a “mirar cómo se hace”. Vas a hacerlo vos mismo guiado por profesionales.',
   },
   {
     icon: Star,
     title: 'Certificación',
-    text: 'Certificación. Mostrar certificados y comprobantes eleva la conversión.'
+    text: 'Certificarse con docentes profesionales universitarios respalda tu conocimiento y aumenta la credibilidad.',
   },
   {
     icon: DollarSign,
     title: 'Ventas en urgencia',
-    text: 'Ventas en urgencia. Una avería en verano implica una mayor disposición de pago por parte del cliente. Frente al calor extremo el cliente antepone reparar o instalar antes que gastar en otras cosas.'
+    text: 'Cada falla extrema abre una oportunidad: una venta impulsiva y un cliente eternamente agradecido.',
   },
   {
     icon: Zap,
     title: 'Salud',
-    text: 'Salud. Las olas de calor son una amenaza mortal, y el aire acondicionado salva vidas.'
+    text: 'Las olas de calor/frío son una amenaza mortal, y la refrigeración salva vidas.',
   },
   {
     icon: Users,
     title: 'Sector en alza',
-    text: 'Sector en alza. La demanda de refrigeración es la que más crece en energía de edificios, más equipos, más clientes todo el año.'
-  }
+    text: 'La demanda de refrigeración es una de las que más crece, más equipos, más clientes todo el año.',
+  },
 ];
 
-
+/* =========================
+   Component
+========================= */
 
 export default function ActionSection() {
-  // Puedes aplicar una animación simple de 'fade-in' al título si lo deseas
-  const titleVariants: Variants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothX = useSpring(mouseX, { stiffness: 120, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 120, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
-    <section className="w-full bg-linear-to-lr from-blue-300 via-blue-50 to-white flex  items-center justify-center px-6 md:px-20 py-16 md:py-0 md:min-h-screen">
-      <div className="flex flex-col items-center justify-center max-w-6xl w-full space-y-10">
-        
-        {/* Título principal centrado con animación */}
-        <motion.div 
-          className="space-y-1 w-full mb-12 text-center"
+    <section className="relative w-full overflow-visible bg-white dark:bg-gray-950 px-6 md:px-20 ">
+
+      {/* CONTENIDO */}
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-20">
+
+        {/* TÍTULO PRINCIPAL + SUBTÍTULO */}
+        <motion.div
+          className="text-center space-y-4 max-w-4xl"
           variants={titleVariants}
           initial="hidden"
-          whileInView="visible" // 👈 Se anima al entrar a la vista
-          viewport={{ once: true, amount: 0.5 }} // Se anima solo una vez, cuando el 50% del elemento está visible
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white ading-snug">
-            Esto es una oportunidad,{' '}
-            <span className="text-blue-600 dark:text-gray-100 ">no una opción</span>
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-white leading-tight">
+            El valor de ser imprescindible
           </h2>
 
-          <p className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
-            La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, lo cual constituye una prioridad ineludible. 
+          <p className="text-gray-500 dark:text-gray-400 text-base md:text-lg">
+            La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, y en invierno asegura la conservación vital de los alimentos, industrias y comercios funcionales, lo cual constituye una prioridad ineludible.
           </p>
         </motion.div>
 
-        {/* GRID de beneficios con animación escalonada */}
+        {/* GRID DE ITEMS */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 w-full max-w-6xl "
-          variants={containerVariants} // 4. Asignamos variantes de contenedor
+          className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-14 w-full"
+          variants={containerVariants}
           initial="hidden"
-          whileInView="visible" // 5. Animación al entrar a la vista
-          viewport={{ once: true, amount: 0.2 }} // Se anima solo una vez, cuando el 20% del elemento está visible
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
         >
           {benefitsData.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <motion.div // 6. Cada item es un motion.div
+              <motion.div
                 key={index}
-                className="flex flex-col"
-                variants={itemVariants} // 7. Asignamos variantes de item
+                variants={itemVariants}
+                className="flex flex-col gap-3"
               >
-                {/* Título de cada viñeta alineado a la izquierda */}
-                <span className="flex items-center gap-3 font-semibold dark:text-white  text-gray-900 mb-2.5 text-lg md:text-xl">
-                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />
-                  {benefit.title}
-                </span>
-                <p className="dark:text-gray-400 text-gray-700 text-sm md:text-[15px] leading-relaxed">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full" />
+                    <Icon className="relative w-7 h-7 text-blue-600 dark:text-blue-400" />
+                  </div>
+
+                  <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+                    {benefit.title}
+                  </h3>
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-[15px] leading-relaxed">
                   {benefit.text}
                 </p>
               </motion.div>

@@ -1,48 +1,45 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Autoplay } from "swiper/modules";
+
+import "swiper/css";
 
 const images = Array.from({ length: 25 }, (_, i) => `/TITULO/${i + 1}.jpeg`);
 
-const SLIDE_HEIGHT = 500;
-const GAP = 24; // space-y-6 = 24px
-const STEP = SLIDE_HEIGHT + GAP;
-
-export default function ContinuousSlider() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function VerticalSwiper() {
   return (
-    <div className="relative w-full max-w-3xl h-[500px] overflow-hidden mx-auto rounded-[2.5rem] shadow-lg">
-      <motion.div
-        className="flex flex-col space-y-6"
-        animate={{ y: -index * STEP }}
-        transition={{
-          duration: 0.8,
-          ease: "easeInOut",
+    <div className="relative w-full h-[500px] mx-auto rounded-[2.5rem] overflow-hidden shadow-lg">
+      <Swiper
+        direction="vertical"
+        slidesPerView={1}
+        spaceBetween={24}
+        speed={400}
+        modules={[Mousewheel, Autoplay]}
+        mousewheel={{
+          forceToAxis: true,
+          sensitivity: 1,
+          thresholdDelta: 50, // 👈 clave: una intención = un slide
         }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: true,
+        }}
+        className="w-full h-full"
       >
         {images.map((src, idx) => (
-          <div
-            key={idx}
-            className="w-full h-[500px] flex-shrink-0 rounded-[2.5rem] overflow-hidden"
-          >
-            <img
-              src={src}
-              alt={`Imagen ${idx + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <SwiperSlide key={idx}>
+            <div className="w-full h-[500px] rounded-[2.5rem] overflow-hidden">
+              <img
+                src={src}
+                alt={`Imagen ${idx + 1}`}
+                className="w-full h-full object-cover select-none pointer-events-none"
+                draggable={false}
+              />
+            </div>
+          </SwiperSlide>
         ))}
-      </motion.div>
+      </Swiper>
     </div>
   );
 }
