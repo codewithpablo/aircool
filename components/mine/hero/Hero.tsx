@@ -6,7 +6,7 @@ import HeroBrandsCarrousel from "./HeroBrandsCarrousel";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../other/ThemeToggle";
-import { motion, easeOut } from "framer-motion"; // <-- importamos easeOut
+import { motion, Variants } from "framer-motion";
 
 /* =======================
    Animaciones de texto
@@ -22,13 +22,13 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, ease: easeOut }, // <-- corregido
+    transition: { duration: 0.8, type: "tween", ease: "easeOut" },
   },
 };
 
@@ -40,11 +40,11 @@ const buttonHover = {
   whileHover: {
     y: -3,
     scale: 1.03,
-  },
-  transition: {
-    type: "spring",
-    stiffness: 300,
-    damping: 20,
+    transition: {
+      type: "spring" as const,
+      stiffness: 300,
+      damping: 20,
+    },
   },
 };
 
@@ -131,7 +131,7 @@ const Hero = () => {
           className="flex-1 flex justify-center items-center relative bottom-5 md:bottom-16 px-4 sm:pl-6 lg:px-0 md:mt-24"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: easeOut }} // <-- corregido
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="w-[500px] sm:w-[450px] md:w-[500px] lg:w-[600px] h-[300px] sm:h-[450px] md:h-[300px] lg:h-[430px] overflow-hidden rounded-[2.5rem] shadow-2xl shadow-black/30">
             <HeroSlider />
@@ -145,7 +145,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: easeOut }} // <-- corregido
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <HeroBrandsCarrousel />
       </motion.div>
