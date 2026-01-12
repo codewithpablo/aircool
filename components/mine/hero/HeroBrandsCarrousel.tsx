@@ -3,18 +3,22 @@
 import Image from "next/image";
 
 const logos = [
-  "/logos/1.png",
-  "/logos/2.png",
-  "/logos/3.png",
-  "/logos/4.png",
-  "/logos/5.png",
-  "/logos/6.png",
-  "/logos/7.png",
-  "/logos/8.png",
-  "/logos/9.png",
-  "/logos/11.png",
-  "/logos/12.png",
-  "/logos/13.png",
+  "/logosa/1.png",
+  "/logosa/2.png",
+  "/logosa/3.png",
+  "/logosa/4.png",
+  "/logosa/5.png",
+  "/logosa/6.png",
+  "/logosa/7.png",
+  "/logosa/8.png",
+  "/logosa/9.png",
+  "/logosa/11.png",
+  "/logosa/12.png",
+  "/logosa/13.png",
+  "/logosa/14.png",
+  "/logosa/15.png",
+  "/logosa/16.png",
+  "/logosa/17.png",
 ];
 
 export default function HeroBrandsCarrousel() {

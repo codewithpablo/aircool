@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -41,53 +40,14 @@ const teachers = [
 ];
 
 /* =========================
-   ANIMACIONES
-========================= */
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const imageVariants: Variants = {
-  enter: { opacity: 0, scale: 1.1 },
-  center: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.96,
-    transition: { duration: 0.5, ease: "easeInOut" },
-  },
-};
-
-/* =========================
    CINEMATIC BACKGROUND
 ========================= */
 
 const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
-    <motion.div
-      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
-      animate={{ x: [0, 60, 0], y: [0, 40, 0], rotate: [0, 20, 0] }}
-      transition={{ repeat: Infinity, duration: 25, ease: "easeInOut" }}
-    />
-    <motion.div
-      className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]"
-      animate={{ x: [0, -50, 0], y: [0, -30, 0], rotate: [0, -15, 0] }}
-      transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
-    />
-    <motion.div
-      className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]"
-      animate={{ x: [0, 30, 0], y: [0, 20, 0], rotate: [0, 10, 0] }}
-      transition={{ repeat: Infinity, duration: 22, ease: "easeInOut" }}
-    />
+    <div className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]" />
+    <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]" />
+    <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]" />
   </div>
 );
 
@@ -135,34 +95,20 @@ export default function TeachersSection() {
           const active = imgIndex[i] || 0;
 
           return (
-            <motion.div
+            <div
               key={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl group"
+              className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl group hover:-translate-y-2 hover:scale-105 transition-transform"
             >
               {/* IMAGEN */}
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={active}
-                  variants={imageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={t.images[active]}
-                    alt={t.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <div className="absolute inset-0">
+                <Image
+                  src={t.images[active]}
+                  alt={t.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
               {/* OVERLAY */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -199,7 +145,7 @@ export default function TeachersSection() {
               >
                 <ChevronRight size={18} />
               </button>
-            </motion.div>
+            </div>
           );
         })}
       </div>

@@ -11,54 +11,6 @@ import {
   Users,
   Star,
 } from 'lucide-react';
-import {
-  motion,
-  Variants,
-  useMotionValue,
-  useSpring,
-} from 'framer-motion';
-import { useEffect } from 'react';
-
-/* =========================
-   Animaciones
-========================= */
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.25,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    filter: 'blur(6px)',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.9,
-      ease: 'easeOut',
-    },
-  },
-};
-
-const titleVariants: Variants = {
-  hidden: { opacity: 0, y: -25, filter: 'blur(6px)' },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.9, ease: 'easeOut' },
-  },
-};
 
 /* =========================
    Items
@@ -117,35 +69,14 @@ const benefitsData = [
 ========================= */
 
 export default function ActionSection() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const smoothX = useSpring(mouseX, { stiffness: 120, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 120, damping: 20 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
   return (
-    <section className="relative w-full overflow-visible bg-white dark:bg-gray-950 px-6 md:px-20 ">
+    <section className="relative w-full overflow-visible bg-white dark:bg-gray-950 px-6 md:px-20">
 
       {/* CONTENIDO */}
       <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-20">
 
         {/* TÍTULO PRINCIPAL + SUBTÍTULO */}
-        <motion.div
-          className="text-center space-y-4 max-w-4xl"
-          variants={titleVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-        >
+        <div className="text-center space-y-4 max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-white leading-tight">
             El valor de ser imprescindible
           </h2>
@@ -153,22 +84,15 @@ export default function ActionSection() {
           <p className="text-gray-500 dark:text-gray-400 text-base md:text-lg">
             La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, y en invierno asegura la conservación vital de los alimentos, industrias y comercios funcionales, lo cual constituye una prioridad ineludible.
           </p>
-        </motion.div>
+        </div>
 
         {/* GRID DE ITEMS */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-14 w-full"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-14 w-full">
           {benefitsData.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
                 className="flex flex-col gap-3"
               >
                 <div className="flex items-center gap-3">
@@ -185,10 +109,10 @@ export default function ActionSection() {
                 <p className="text-gray-600 dark:text-gray-400 text-sm md:text-[15px] leading-relaxed">
                   {benefit.text}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

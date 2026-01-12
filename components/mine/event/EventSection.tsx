@@ -1,7 +1,6 @@
 'use client';
 import Map from "./MapComponent";
 import React, { useRef, useState, useEffect } from "react";
-import { motion, Variants } from "framer-motion";
 import {
   CalendarDays,
   MapPin,
@@ -15,35 +14,10 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-// --- Animaciones ---
-const leftVariants: Variants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: i * 0.2, type: "spring", stiffness: 100 },
-  }),
-};
-
-const phoneVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.8, y: 50 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { delay: 0.5, type: "spring", stiffness: 70, damping: 15 },
-  },
-};
-
 // --- Cinematic background ---
 const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none overflow-visible z-0">
-    <motion.div
-      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
-      animate={{ x: [0, 50, 0], y: [0, 30, 0], rotate: [0, 15, 0] }}
-      transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-    />
-    
+    <div className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]" />
   </div>
 );
 
@@ -175,17 +149,8 @@ const SeccionEventoMonitor = () => {
       <div className="flex flex-col md:flex-row-reverse md:items-center md:justify-center p-8 md:p-12 lg:p-16 xl:p-24 space-y-5 md:space-y-0 md:space-x-12 grow z-10 relative">
         
         {/* 📱 Teléfono */}
-        <motion.div
-          className="w-full md:w-1/2 relative mx-auto flex justify-center items-center h-full"
-          variants={phoneVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <motion.div
-            className="relative bg-gray-900 p-1.5 rounded-[3rem] shadow-2xl border-4 border-gray-950/90 aspect-[9/17] w-full max-w-[280px] max-h-[85vh] z-10"
-            animate={{ rotate: [0, 1, -1, 0], scale: [1, 1.02, 0.98, 1] }}
-            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          >
+        <div className="w-full md:w-1/2 relative mx-auto flex justify-center items-center h-full">
+          <div className="relative bg-gray-900 p-1.5 rounded-[3rem] shadow-2xl border-4 border-gray-950/90 aspect-[9/17] w-full max-w-[280px] max-h-[85vh] z-10 transform transition-transform hover:scale-[1.02]">
             
             {/* Pantalla */}
             <div className="relative bg-black rounded-[2.5rem] overflow-hidden h-full w-full shadow-inner">
@@ -279,39 +244,21 @@ const SeccionEventoMonitor = () => {
                 </button>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* ℹ️ Info del evento */}
         <div className="w-full md:w-1/2 flex flex-col justify-start items-start space-y-4 md:pt-0 grow">
-          <motion.p
-            custom={0}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={leftVariants}
-            className="text-xl md:text-2xl font-light tracking-widest uppercase text-gray-600 dark:text-gray-400"
-          >
+          <p className="text-xl md:text-2xl font-light tracking-widest uppercase text-gray-600 dark:text-gray-400">
             Próximo Evento
-          </motion.p>
+          </p>
 
-          <motion.h1
-            custom={1}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={leftVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight text-gray-950 dark:text-white"
-          >
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight text-gray-950 dark:text-white">
             <span className="block">Bienal</span>
             <span className="block text-blue-400 drop-shadow-lg">Tecnológica</span>
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            custom={2}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={leftVariants}
-            className="relative pl-6 md:pl-8 border-l-4 border-blue-500 space-y-2"
-          >
+          <div className="relative pl-6 md:pl-8 border-l-4 border-blue-500 space-y-2">
             <p className="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-200 flex items-center">
               <MapPin className="inline-block mr-3 text-blue-500" size={24} />
               Domo del Centenario
@@ -323,15 +270,9 @@ const SeccionEventoMonitor = () => {
               <CalendarDays className="inline-block mr-3 text-blue-500" size={24} />
               14 al 17 de Noviembre 2025
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            custom={3}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={leftVariants}
-            className="mt-5 pt-5 border-t border-gray-300 dark:border-gray-700 space-y-4"
-          >
+          <div className="mt-5 pt-5 border-t border-gray-300 dark:border-gray-700 space-y-4">
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               La Bienal Tecnológica es el epicentro de la innovación en la región.
               Reúne a <strong>más de 50 oradores</strong> de renombre internacional,
@@ -343,7 +284,7 @@ const SeccionEventoMonitor = () => {
             >
               Confirmar Asistencia
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

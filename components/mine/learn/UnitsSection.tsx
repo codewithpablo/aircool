@@ -9,7 +9,6 @@ import {
   Wrench,
   Clock,
 } from 'lucide-react';
-import { motion, Variants } from 'framer-motion';
 
 /* =======================
    Data
@@ -67,38 +66,6 @@ const learnUnits = [
 ];
 
 /* =======================
-   Animaciones
-======================= */
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.25,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: {
-    y: 24,
-    opacity: 0,
-    filter: 'blur(6px)',
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
-};
-
-/* =======================
    Component
 ======================= */
 
@@ -117,30 +84,15 @@ export default function UnitsSection() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <motion.h2
-          className="uppercase text-4xl md:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-20"
-          initial={{ opacity: 0, y: -30, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.9, ease: 'easeOut' }}
-          viewport={{ once: true }}
-        >
+        <h2 className="uppercase text-4xl md:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-20 transition-opacity duration-1000">
           ¿Qué vas a aprender?
-        </motion.h2>
+        </h2>
 
         {/* Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
           {learnUnits.map((unit, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
               className="
                 group flex flex-col rounded-2xl
                 bg-white/40 dark:bg-white/5
@@ -149,6 +101,7 @@ export default function UnitsSection() {
                 shadow-sm hover:shadow-lg
                 transition-all duration-300
                 overflow-hidden
+                hover:-translate-y-1
               "
             >
               {/* Imagen */}
@@ -174,9 +127,9 @@ export default function UnitsSection() {
                   {unit.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
