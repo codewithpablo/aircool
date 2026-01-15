@@ -19,13 +19,13 @@ const Hero = () => {
       </div>
 
       {/* CONTENIDO */}
-      <div className="relative z-10 flex flex-col h-[900px] lg:flex-row lg:h-[90dvh]">
+      <div className="relative z-10 flex flex-col h-auto sm:h-[900px] lg:flex-row lg:h-[90dvh]">
 
         {/* TEXTO */}
-        <div className="flex-1 flex flex-col justify-center h-full px-4 sm:px-6 lg:px-12 py-10 lg:py-0">
-          <div className="w-full mx-auto relative md:bottom-10">
+        <div className="flex-1 flex flex-col justify-center h-full px-3 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-0">
+          <div className="w-full mx-auto relative md:bottom-10 ">
 
-            <h1 className="text-6xl h-48 w-full xl:text-7xl font-semibold mt-20 text-gray-900 dark:text-white">
+            <h1 className="text-7xl md:text-6xl  sm:h-48 w-[70%]  h-[300px]  mx-auto lg:text-6xl xl:text-7xl font-semibold mt-10 sm:mt-20 text-gray-900 dark:text-white leading-tight sm:leading-normal">
               <span>De cero a </span>
               <TypeAnimation
                 sequence={[" técnico certificado", 5000, "", 800]}
@@ -37,37 +37,39 @@ const Hero = () => {
               />
             </h1>
 
-            <p className="mt-6 max-w-xl text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+            <p className="mt-4 w-[90%] mx-auto sm:mt-6 max-w-xl sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               Adquirí habilidades prácticas de alta demanda y escasa oferta en el mercado.
               Nuestro cuerpo docente de Ingenieros y Licenciados, con décadas de trayectoria,
               reúne más de 25 años de experiencia dedicados a la formación técnica.
             </p>
 
             {/* BOTONES */}
-            <div className="mt-8 flex flex-col lg:flex-row gap-4 items-start">
-              <Link href="/links">
-                <Button className="rounded-full px-8 py-6 text-base bg-blue-400 hover:bg-blue-400 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 transition-shadow">
+            <div className="mt-6   w-[90%] mx-auto flex  sm:flex-row lg:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
+              <Link href="/links" className="w-full sm:w-auto">
+                <Button className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base w-full sm:w-auto bg-blue-400 hover:bg-blue-400 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 transition-shadow">
                   Ingresar al campus
                 </Button>
               </Link>
 
-              <Link href="/courses">
+              <Link href="/courses" className="w-full sm:w-auto">
                 <Button
                   variant="outline"
-                  className="rounded-full px-8 py-6 text-base border-blue-400 dark:border-blue-500 dark:bg-gray-900 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
+                  className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base w-full sm:w-auto border-blue-400 dark:border-blue-500 dark:bg-gray-900 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
                 >
                   Ver todos los cursos
                 </Button>
               </Link>
 
-              <ThemeToggle />
+              <div className="hidden lg:block">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>
 
         {/* SLIDER */}
-        <div className="flex-1 flex justify-center items-center relative bottom-5 md:bottom-16 px-4 sm:pl-6 lg:px-0 md:mt-24">
-          <div className="w-[500px] sm:w-[450px] md:w-[500px] lg:w-[600px] h-[300px] sm:h-[450px] md:h-[300px] lg:h-[430px] overflow-hidden rounded-[2.5rem] shadow-2xl shadow-black/30">
+        <div className="flex-1 flex justify-center items-center relative bottom-0 sm:bottom-5 md:bottom-16 px-3 sm:px-4 sm:pl-6 lg:px-0 mt-8 sm:mt-16 md:mt-24 lg:mt-0">
+          <div className="w-full sm:w-[400px] md:w-[450px] lg:w-[600px] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[430px] overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-black/30">
             <HeroSlider />
           </div>
         </div>

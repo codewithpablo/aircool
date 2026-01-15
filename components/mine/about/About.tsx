@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -37,7 +38,48 @@ const teachers = [
     description:
       "Soy diseñadora gráfica con trayectoria ininterrumpida desde 2004...",
   },
+  {
+    title: "Pablo Alonso",
+    badge: "Programador",
+    images: ["/pablo/palo.jpeg", "/pablo/paul.png"],
+    description:
+      "Soy diseñadora gráfica con trayectoria ininterrumpida desde 2004...",
+  },
+  {
+    title: "Gianfranco Miceli",
+    badge: "Tecnico Informatico",
+    images: ["/miceli/miceli1.jpeg", "/miceli/miceli2.jpeg"],
+    description:
+      "Soy diseñadora gráfica con trayectoria ininterrumpida desde 2004...",
+  },
 ];
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const imageVariants: Variants = {
+  enter: { opacity: 0, scale: 1.1 },
+  center: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.96,
+    transition: { duration: 0.5, ease: "easeInOut" },
+  },
+};
 
 /* =========================
    CINEMATIC BACKGROUND
@@ -45,9 +87,21 @@ const teachers = [
 
 const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
-    <div className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]" />
-    <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]" />
-    <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]" />
+    <motion.div
+      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
+      animate={{ x: [0, 60, 0], y: [0, 40, 0], rotate: [0, 20, 0] }}
+      transition={{ repeat: Infinity, duration: 25, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]"
+      animate={{ x: [0, -50, 0], y: [0, -30, 0], rotate: [0, -15, 0] }}
+      transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]"
+      animate={{ x: [0, 30, 0], y: [0, 20, 0], rotate: [0, 10, 0] }}
+      transition={{ repeat: Infinity, duration: 22, ease: "easeInOut" }}
+    />
   </div>
 );
 
@@ -82,50 +136,64 @@ export default function TeachersSection() {
   };
 
   return (
-    <section className="relative w-full px-6 md:px-20 pt-20 overflow-visible">
+    <section className="relative w-full px-3 sm:px-6 md:px-12 lg:px-20 pt-10 sm:pt-16 md:pt-20 overflow-visible">
       {/* Fondo cinematográfico azul */}
       <CinematicBackground />
 
-      <h2 className="text-center text-5xl md:text-6xl font-bold mb-16 dark:text-white relative z-10">
-        Fundadores
+      <h2 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold my-8 sm:my-12 md:my-16 text-gray-900 dark:text-white relative z-10">
+        Fundadores y equipo
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto">
         {teachers.map((t, i) => {
           const active = imgIndex[i] || 0;
 
           return (
-            <div
+            <motion.div
               key={i}
-              className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl group hover:-translate-y-2 hover:scale-105 transition-transform"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative h-[300px] sm:h-[350px] md:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group"
             >
               {/* IMAGEN */}
-              <div className="absolute inset-0">
-                <Image
-                  src={t.images[active]}
-                  alt={t.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={active}
+                  variants={imageVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={t.images[active]}
+                    alt={t.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
 
               {/* OVERLAY */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
               {/* CONTENIDO */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col gap-3">
-                <h3 className="text-2xl font-semibold">{t.title}</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 text-white flex flex-col gap-2 sm:gap-3">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">{t.title}</h3>
 
                 {/* BADGE */}
-                <span className="w-fit text-xs px-4 py-1 rounded-full bg-blue-500/80 backdrop-blur-sm">
+                <span className="w-fit text-xs px-3 py-1 rounded-full bg-blue-500/80 backdrop-blur-sm">
                   {t.badge}
                 </span>
 
                 {/* BOTÓN ABAJO DEL BADGE */}
                 <button
                   onClick={() => openModal(i)}
-                  className="w-fit mt-1 px-4 py-2 text-sm rounded-full bg-white/20 hover:bg-white/30 transition backdrop-blur border border-white/20"
+                  className="w-fit mt-1 px-3 py-2 text-xs sm:text-sm rounded-full bg-white/20 hover:bg-white/30 transition backdrop-blur border border-white/20"
                 >
                   Ver más
                 </button>
@@ -145,7 +213,7 @@ export default function TeachersSection() {
               >
                 <ChevronRight size={18} />
               </button>
-            </div>
+            </motion.div>
           );
         })}
       </div>

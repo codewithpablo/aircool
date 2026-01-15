@@ -71,7 +71,7 @@ const learnUnits = [
 
 export default function UnitsSection() {
   return (
-    <section className="relative w-full min-h-screen overflow-visible bg-white dark:bg-gray-950 pt-24 px-6 md:px-20">
+    <section className="relative w-full min-h-screen overflow-visible bg-white dark:bg-gray-950 pt-12 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-12 lg:px-20">
 
       {/* 🎥 Fondo cinematográfico */}
       <div className="absolute inset-0 pointer-events-none">
@@ -84,12 +84,12 @@ export default function UnitsSection() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <h2 className="uppercase text-4xl md:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-20 transition-opacity duration-1000">
+        <h2 className="uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-12 sm:mb-16 md:mb-20 transition-opacity duration-1000">
           ¿Qué vas a aprender?
         </h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 max-w-7xl w-full">
           {learnUnits.map((unit, index) => (
             <div
               key={index}
@@ -109,16 +109,18 @@ export default function UnitsSection() {
                 <img
                   src={unit.image}
                   alt={unit.title}
-                  className="w-full h-28 object-cover"
+                  className="w-full h-20 sm:h-24 md:h-28 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
               </div>
 
               {/* Texto */}
-              <div className="p-4 space-y-2">
-                <div className="flex items-center gap-2">
-                  {unit.icon}
-                  <h3 className="text-sm md:text-base font-medium text-gray-900 dark:text-white leading-snug">
+              <div className="p-3 sm:p-4 space-y-2">
+                <div className="flex items-start gap-2">
+                  <div className="flex-shrink-0 mt-0.5">
+                    {unit.icon}
+                  </div>
+                  <h3 className="text-xs sm:text-sm md:text-base font-medium text-gray-900 dark:text-white leading-snug">
                     {unit.title}
                   </h3>
                 </div>

@@ -2,7 +2,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Autoplay } from "swiper/modules";
-
 import "swiper/css";
 
 const images = Array.from({ length: 25 }, (_, i) => `/TITULO/${i + 1}.jpeg`);
@@ -14,16 +13,18 @@ export default function VerticalSwiper() {
         direction="vertical"
         slidesPerView={1}
         spaceBetween={24}
-        speed={400}
+        speed={500}
+        loop={true}
+        loopAdditionalSlides={5} // 👈 CLAVE para que no se note el reset
         modules={[Mousewheel, Autoplay]}
         mousewheel={{
           forceToAxis: true,
           sensitivity: 1,
-          thresholdDelta: 50, // 👈 clave: una intención = un slide
+          thresholdDelta: 50,
         }}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: true,
+          disableOnInteraction: false, // 👈 mantiene el loop incluso si scrolleás
         }}
         className="w-full h-full"
       >

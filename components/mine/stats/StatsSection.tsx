@@ -16,23 +16,23 @@ const stats = [
     description: "Aires acondicionados y sistemas de refrigeración",
   },
   {
-    value: 18,
-    suffix: "",
+    value: 25,
+    suffix: "+",
     title: "Años de Experiencia",
-    description: "Formando técnicos profesionales",
+    description: "En el rubro de la refrigeracion intergral",
   },
   {
-    value: 1200,
-    suffix: "+",
-    title: "Alumnos Certificados",
-    description: "Cursos presenciales y online",
+    value: 100,
+    suffix: "%",
+    title: "de efectividad real",
+    description: "En reparaciones",
   },
 ];
 
 export default function StatsSection() {
   return (
     <section
-      className="mb-20 relative h-screen w-full overflow-visible
+      className="mb-20 relative lg:h-screen w-full overflow-visible
                  bg-white text-[#50A2FF] dark:bg-gray-950 dark:text-white
                  flex items-center justify-center"
     >
@@ -93,6 +93,7 @@ export default function StatsSection() {
                       scrollSpyOnce
                     />
                     {stat.suffix}
+
                   </span>
                 </div>
 
