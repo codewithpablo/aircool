@@ -25,7 +25,7 @@ const Hero = () => {
         <div className="flex-1 flex flex-col justify-center h-full px-3 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-0">
           <div className="w-full mx-auto relative md:bottom-10 ">
 
-            <h1 className="text-7xl md:text-6xl  sm:h-48 w-[70%]  h-[300px]  mx-auto lg:text-6xl xl:text-7xl font-semibold mt-10 sm:mt-20 text-gray-900 dark:text-white leading-tight sm:leading-normal">
+            <h1 className="text-6xl  md:text-6xl  sm:h-48 w-[70%]  h-[300px] lg:w-full   mx-auto lg:text-6xl xl:text-7xl font-semibold mt-10 sm:mt-20 text-gray-900 dark:text-white ">
               <span>De cero a </span>
               <TypeAnimation
                 sequence={[" técnico certificado", 5000, "", 800]}
@@ -37,14 +37,14 @@ const Hero = () => {
               />
             </h1>
 
-            <p className="mt-4 w-[90%] mx-auto sm:mt-6 max-w-xl sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="lg:w-full  mt-4 w-[90%] mx-auto sm:mt-6  sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300">
               Adquirí habilidades prácticas de alta demanda y escasa oferta en el mercado.
               Nuestro cuerpo docente de Ingenieros y Licenciados, con décadas de trayectoria,
               reúne más de 25 años de experiencia dedicados a la formación técnica.
             </p>
 
             {/* BOTONES */}
-            <div className="mt-6   w-[90%] mx-auto flex  sm:flex-row lg:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
+            <div className="mt-6   w-[90%] lg:w-full mx-auto flex  sm:flex-row lg:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
               <Link href="/links" className="w-full sm:w-auto">
                 <Button className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base w-full sm:w-auto bg-blue-400 hover:bg-blue-400 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 transition-shadow">
                   Ingresar al campus
@@ -68,7 +68,7 @@ const Hero = () => {
         </div>
 
         {/* SLIDER */}
-        <div className="flex-1 flex justify-center items-center relative bottom-0 sm:bottom-5 md:bottom-16 px-3 sm:px-4 sm:pl-6 lg:px-0 mt-8 sm:mt-16 md:mt-24 lg:mt-0">
+        <div className=" flex-1 flex justify-center items-end relative bottom-0 sm:bottom-5 md:bottom-16 px-3 sm:px-4 sm:pl-6 lg:px-0 mt-8 sm:mt-16 md:mt-24 lg:mt-0">
           <div className="w-full sm:w-[400px] md:w-[450px] lg:w-[600px] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[430px] overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-black/30">
             <HeroSlider />
           </div>

@@ -13,7 +13,7 @@ type Logo = {
 const logos: Logo[] = [
   { name: "Logo 1", light: "/logosa/1.png" },
   { name: "Logo 2", light: "/logosa/2.png" },
-    { name: "Logo 3", light: "/logosa/3png",  dark: "/logosa/black/3.png" },
+    { name: "Logo 3", light: "/logosa/3.png",  dark: "/logosa/black/3.png" },
   { name: "Logo 4", light: "/logosa/4.png" },
   { name: "Logo 5", light: "/logosa/5.png", dark: "/logosa/black/5.png" },
 
