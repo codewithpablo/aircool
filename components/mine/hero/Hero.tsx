@@ -9,7 +9,7 @@ import { ThemeToggle } from "../other/ThemeToggle";
 
 const Hero = () => {
   return (
-    <div className="relative w-full overflow-visible bg-white dark:bg-gray-950">
+    <div className="relative w-full overflow-y-visible bg-white dark:bg-gray-950">
 
       {/* FONDO GRADIENT BLUR */}
       <div className="absolute inset-0 z-0 pointer-events-none">

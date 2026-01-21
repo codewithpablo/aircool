@@ -1,7 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* 🎨 Variables globales */
+/* � Evitar scroll horizontal */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* �🎨 Variables globales */
 :root {
   --first: #ffd5cf;
   --second : #cdebff;

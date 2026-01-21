@@ -39,8 +39,8 @@ export default function HeroBrandsCarrousel() {
   if (!mounted) return null;
 
   return (
-    <div className="w-full mt-6 mb-12 overflow-visible">
-      <div className="flex w-max animate-marquee gap-14">
+    <div className="w-full mt-6 mb-12 overflow-x-hidden overflow-y-hidden">
+      <div className="inline-flex w-max animate-marquee gap-14 will-change-transform">
         {[...logos, ...logos].map((logo, index) => {
           const isDark = resolvedTheme === "dark";
           const src = isDark && logo.dark ? logo.dark : logo.light;
