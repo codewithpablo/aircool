@@ -25,7 +25,7 @@ const Hero = () => {
         <div className="flex-1 flex flex-col justify-center h-full px-4 sm:px-6 lg:px-12 py-12 lg:py-0">
           <div className="w-full mx-auto relative lg:bottom-10">
 
-            <h1 className=" text-6xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-semibold mt-4 sm:mt-10 lg:mt-20 text-gray-900 dark:text-white w-[80%] lg:w-full mx-auto  lg:text-left h-auto min-h-[160px] sm:min-h-[200px] lg:h-auto">
+            <h1 className=" text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-semibold mt-4 sm:mt-10 lg:mt-20 text-gray-900 dark:text-white w-[80%] lg:w-full mx-auto  lg:text-left h-auto min-h-[160px] sm:min-h-[200px] lg:h-auto">
               <span>De cero a técnico</span>
               <TypeAnimation
                 sequence={["certificado", 5000, "", 800]}
