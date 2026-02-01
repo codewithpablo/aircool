@@ -19,34 +19,34 @@ const Hero = () => {
       </div>
 
       {/* CONTENIDO */}
-      <div className="relative z-10 flex flex-col h-auto sm:h-[900px] lg:flex-row lg:h-[90dvh]">
+      <div className="relative z-10 flex flex-col h-auto lg:flex-row lg:h-[90dvh]">
 
         {/* TEXTO */}
-        <div className="flex-1 flex flex-col justify-center h-full px-3 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-0">
-          <div className="w-full mx-auto relative md:bottom-10 ">
+        <div className="flex-1 flex flex-col justify-center h-full px-4 sm:px-6 lg:px-12 py-12 lg:py-0">
+          <div className="w-full mx-auto relative lg:bottom-10">
 
-            <h1 className="text-6xl  md:text-6xl  sm:h-48 w-[70%]  h-[300px] lg:w-full   mx-auto lg:text-6xl xl:text-7xl font-semibold mt-10 sm:mt-20 text-gray-900 dark:text-white ">
-              <span>De cero a </span>
+            <h1 className=" text-6xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-semibold mt-4 sm:mt-10 lg:mt-20 text-gray-900 dark:text-white w-[80%] lg:w-full mx-auto  lg:text-left h-auto min-h-[160px] sm:min-h-[200px] lg:h-auto">
+              <span>De cero a técnico</span>
               <TypeAnimation
-                sequence={[" técnico certificado", 5000, "", 800]}
+                sequence={["certificado", 5000, "", 800]}
                 wrapper="span"
                 speed={50}
                 deletionSpeed={40}
                 repeat={Infinity}
-                className="text-blue-400 italic"
+                className="text-blue-400 italic block lg:inline"
               />
             </h1>
 
-            <p className="lg:w-full  mt-4 w-[90%] mx-auto sm:mt-6  sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 sm:mt-6 w-full sm:w-[90%] lg:w-full mx-auto text-base sm:text-lg text-gray-600 dark:text-gray-300 text-center lg:text-left">
               Adquirí habilidades prácticas de alta demanda y escasa oferta en el mercado.
               Nuestro cuerpo docente de Ingenieros y Licenciados, con décadas de trayectoria,
               reúne más de 25 años de experiencia dedicados a la formación técnica.
             </p>
 
             {/* BOTONES */}
-            <div className="mt-6   w-[90%] lg:w-full mx-auto flex  sm:flex-row lg:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
+            <div className="mt-8 sm:mt-10 w-full lg:w-full mx-auto flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center lg:items-center">
               <Link href="/links" className="w-full sm:w-auto">
-                <Button className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base w-full sm:w-auto bg-blue-400 hover:bg-blue-400 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 transition-shadow">
+                <Button className="rounded-full px-8 py-6 text-base w-full sm:w-auto bg-blue-400 hover:bg-blue-400 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 transition-shadow">
                   Ingresar al campus
                 </Button>
               </Link>
@@ -54,7 +54,7 @@ const Hero = () => {
               <Link href="/courses" className="w-full sm:w-auto">
                 <Button
                   variant="outline"
-                  className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base w-full sm:w-auto border-blue-400 dark:border-blue-500 dark:bg-gray-900 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
+                  className="rounded-full px-8 py-6 text-base w-full sm:w-auto border-blue-400 dark:border-blue-500 dark:bg-gray-900 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
                 >
                   Ver todos los cursos
                 </Button>
@@ -68,8 +68,8 @@ const Hero = () => {
         </div>
 
         {/* SLIDER */}
-        <div className=" flex-1 flex justify-center items-end relative bottom-0 sm:bottom-5 md:bottom-16 px-3 sm:px-4 sm:pl-6 lg:px-0 mt-8 sm:mt-16 md:mt-24 lg:mt-0">
-          <div className="w-full sm:w-[400px] md:w-[450px] lg:w-[600px] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[430px] overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-black/30">
+        <div className="flex-1 flex justify-center items-center lg:items-end pb-12 lg:pb-0 px-4 lg:px-0 mt-8 lg:mt-0">
+          <div className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] aspect-[4/3] lg:h-[430px] overflow-hidden rounded-[2rem] shadow-2xl shadow-black/30 lg:mb-16">
             <HeroSlider />
           </div>
         </div>

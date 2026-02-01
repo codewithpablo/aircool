@@ -46,7 +46,7 @@ const SeccionEventoMonitor = () => {
     video
       .play()
       .then(() => setIsPlaying(true))
-      .catch(() => {});
+      .catch(() => { });
 
     return () => {
       video.removeEventListener("timeupdate", updateTime);
