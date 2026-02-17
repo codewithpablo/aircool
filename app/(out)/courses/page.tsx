@@ -240,61 +240,258 @@ export default function CursosPage() {
   ] : [];
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
-      <main className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 auto-rows-fr">
+    <div className="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300 h-[100vh]">
+      <main className="py-16 px-6 max-w-7xl mx-auto h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-stretch  h-full">
           {courses.map(course=>(
-            <motion.div key={course.id} whileHover={{scale:1.03}} className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col h-full border border-gray-100 dark:border-gray-700">
-              <h2 className="text-2xl font-bold text-blue-400 flex items-center gap-2 mb-4"><BookOpen className="w-6 h-6"/> {course.title}</h2>
-              <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">{course.preview}</p>
-              <div className="grid grid-cols-2 gap-3 mt-4">
+            <motion.div 
+              key={course.id} 
+              whileHover={{scale:1.03}} 
+              className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col h-full border border-gray-100 dark:border-gray-700"
+            >
+              <h2 className="text-2xl font-bold text-blue-400 flex items-center gap-2 mb-4 line-clamp-2">
+                <BookOpen className="w-6 h-6"/> {course.title}
+              </h2>
+
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                {course.preview}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 mt-4 h-full">
                 {course.images.map((img, idx)=>(
-                  <div key={idx} className="relative w-full h-44 lg:h-60 rounded-xl overflow-hidden">
-                    <Image src={img} alt={`Imagen ${course.title}`} fill className="object-cover transition-transform duration-300 hover:scale-105"/>
+                  <div key={idx} className="relative w-full h-full rounded-xl overflow-hidden">
+                    <Image 
+                      src={img} 
+                      alt={`Imagen ${course.title}`} 
+                      fill 
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex gap-3">
-                <button onClick={()=>openInfoModal(course.id)} className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"><BookOpen className="w-5 h-5"/> Ver más</button>
-                <button onClick={()=>openBuyModal(course.id)} className="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"><CheckCircle className="w-5 h-5"/> Comprar</button>
+
+              <div className="mt-auto pt-6 flex gap-3">
+                <button 
+                  onClick={()=>openInfoModal(course.id)} 
+                  className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"
+                >
+                  <BookOpen className="w-5 h-5"/> Ver más
+                </button>
+
+                <button 
+                  onClick={()=>openBuyModal(course.id)} 
+                  className="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"
+                >
+                  <CheckCircle className="w-5 h-5"/> Comprar
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
       </main>
-
       {/* MODAL INFO */}
       {showInfoModal && currentCourse && (
-        <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4" onClick={closeModals}>
-          <motion.div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[95vw] md:w-[60vw] h-[90vh] flex flex-col relative overflow-auto" initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} onClick={e=>e.stopPropagation()}>
-            <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-gray-100 dark:bg-gray-900">
-              <div className="flex items-center gap-2 text-xl font-bold"><BookOpen className="w-6 h-6"/> {currentCourse.summary.title}</div>
-              <button onClick={closeModals} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"><ArrowLeft className="w-5 h-5"/></button>
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+          onClick={closeModals}
+        >
+          <motion.div
+            className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-[95vw] md:w-[60vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200 dark:border-gray-700"
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* HEADER */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+              <div className="flex items-center gap-3 text-xl font-bold">
+                <BookOpen className="w-6 h-6" />
+                {currentCourse.summary.title}
+              </div>
+              <button
+                onClick={closeModals}
+                className="p-2 rounded-full hover:bg-white/20 transition"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-6 py-4">
+
+            {/* CONTENIDO */}
+            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+
               {!showDetails ? (
-                <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                  <div className="border-b pb-3 border-blue-100 dark:border-gray-700 space-y-1">
-                    <p><Clock className="inline w-4 h-4 mr-1 text-blue-400"/> Duración: <strong>{currentCourse.summary.duration}</strong></p>
-                    <p><FileText className="inline w-4 h-4 mr-1 text-blue-400"/> Modalidad: {currentCourse.summary.modality}</p>
-                    <p className="text-sm">Nivel: {currentCourse.summary.level}</p>
+                <div className="space-y-6">
+
+                  {/* INFO GENERAL EN CARDS */}
+                  <div className="grid md:grid-cols-3 gap-4">
+
+                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                      <Clock className="w-6 h-6 text-blue-500" />
+                      <div>
+                        <p className="text-xs text-gray-500">Duración</p>
+                        <p className="font-semibold">{currentCourse.summary.duration}</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                      <FileText className="w-6 h-6 text-blue-500" />
+                      <div>
+                        <p className="text-xs text-gray-500">Modalidad</p>
+                        <p className="font-semibold">{currentCourse.summary.modality}</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                      <Target className="w-6 h-6 text-blue-500" />
+                      <div>
+                        <p className="text-xs text-gray-500">Nivel</p>
+                        <p className="font-semibold">{currentCourse.summary.level}</p>
+                      </div>
+                    </div>
+
                   </div>
+
+                  {/* APRENDERÁS */}
                   <div>
-                    <h4 className="font-semibold mb-2">Aprenderás:</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      {currentCourse.summary.learnings.map((l, i)=><li key={i}>{l}</li>)}
-                    </ul>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-blue-500">
+                      <CheckCircle className="w-5 h-5" />
+                      Aprenderás
+                    </h4>
+
+                    <div className="grid gap-3">
+                      {currentCourse.summary.learnings.map((l, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-sm"
+                        >
+                          <CheckCircle className="w-4 h-4 text-green-500 mt-1" />
+                          <p className="text-sm text-gray-700 dark:text-gray-300">
+                            {l}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <button onClick={()=>setShowDetails(true)} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold w-full">Ver todos los detalles</button>
+
+                  {/* BOTÓN DETALLES */}
+                  <button
+                    onClick={() => setShowDetails(true)}
+                    className="mt-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:opacity-90 text-white py-3 px-6 rounded-xl font-semibold w-full shadow-lg transition"
+                  >
+                    Ver todos los detalles
+                  </button>
+
                 </div>
               ) : (
-                detailSlides.map((slide,i)=>(
-                  <div key={i} className="mb-6">
-                    <h3 className="font-bold text-lg mb-2 text-blue-400">{slide.title}</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-line">{slide.content}</p>
-                  </div>
-                ))
+                <div className="space-y-8">
+
+    {/* OBJETIVO */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
+        <Target className="w-5 h-5"/>
+        Objetivo
+      </h3>
+      <p className="text-sm text-gray-700 dark:text-gray-300">
+        {currentCourse.structuredContent.objective}
+      </p>
+    </div>
+
+    {/* DURACIÓN */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
+        <Clock className="w-5 h-5"/>
+        Duración y Modalidad
+      </h3>
+      <p className="text-sm">{currentCourse.structuredContent.duration}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        {currentCourse.structuredContent.modality}
+      </p>
+    </div>
+
+    {/* CONTENIDOS */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-4 text-blue-500 flex items-center gap-2">
+        <BookOpen className="w-5 h-5"/>
+        Contenidos
+      </h3>
+
+      <div className="space-y-4">
+        {currentCourse.structuredContent.contents.map((c, i) => (
+          <div key={i}>
+            <h4 className="font-semibold mb-2">{c.title}</h4>
+            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              {c.points.map((p, j) => (
+                <li key={j}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* ACTIVIDADES */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500">
+        Actividades
+      </h3>
+      <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+        {currentCourse.structuredContent.activities.map((a, i) => (
+          <li key={i}>{a}</li>
+        ))}
+      </ul>
+    </div>
+
+    {/* REQUISITOS */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500">
+        Requisitos
+      </h3>
+      <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+        {currentCourse.structuredContent.requirements.map((r, i) => (
+          <li key={i}>{r}</li>
+        ))}
+      </ul>
+    </div>
+
+    {/* INVERSIÓN */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
+        <CreditCard className="w-5 h-5"/>
+        Inversión
+      </h3>
+      <ul className="space-y-1 text-sm">
+        {currentCourse.structuredContent.fees.map((f, i) => (
+          <li key={i}>
+            <strong>{f.type}:</strong> {f.amount}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* CONTACTO */}
+    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="font-bold text-lg mb-3 text-blue-500">
+        Contacto
+      </h3>
+      <div className="space-y-2 text-sm">
+        <p className="flex items-center gap-2">
+          <Phone className="w-4 h-4 text-green-500"/>
+          {currentCourse.structuredContent.contact.whatsapp}
+        </p>
+        <p className="flex items-center gap-2">
+          <Mail className="w-4 h-4 text-blue-500"/>
+          {currentCourse.structuredContent.contact.email}
+        </p>
+        <p className="flex items-center gap-2">
+          <Instagram className="w-4 h-4 text-pink-500"/>
+          {currentCourse.structuredContent.contact.instagram}
+        </p>
+      </div>
+    </div>
+
+  </div>
               )}
+
             </div>
           </motion.div>
         </div>
@@ -303,13 +500,32 @@ export default function CursosPage() {
       {/* MODAL COMPRA */}
       {showBuyModal && currentCourse && (
         <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4" onClick={closeModals}>
-          <motion.div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[90vw] md:w-[40vw] p-6 relative" initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} onClick={e=>e.stopPropagation()}>
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><CreditCard className="w-5 h-5"/> Comprar {currentCourse.title}</h3>
-            <input type="text" value={buyerName} onChange={e=>setBuyerName(e.target.value)} placeholder="Tu nombre" className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"/>
-            <button onClick={sendWhatsapp} className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2"><CheckCircle className="w-5 h-5"/> Enviar a WhatsApp</button>
+          <motion.div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[90vw] md:w-[40vw] p-6 relative"
+            initial={{scale:0.8, opacity:0}} 
+            animate={{scale:1, opacity:1}} 
+            onClick={e=>e.stopPropagation()}
+          >
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <CreditCard className="w-5 h-5"/> Comprar {currentCourse.title}
+            </h3>
+
+            <input 
+              type="text"
+              value={buyerName}
+              onChange={e=>setBuyerName(e.target.value)}
+              placeholder="Tu nombre"
+              className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+            />
+
+            <button 
+              onClick={sendWhatsapp}
+              className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2"
+            >
+              <CheckCircle className="w-5 h-5"/> Enviar a WhatsApp
+            </button>
           </motion.div>
         </div>
       )}
     </div>
-  )
+  );
 }
