@@ -240,55 +240,133 @@ export default function CursosPage() {
   ] : [];
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300 h-[100vh]">
-      <main className="py-16 px-6 max-w-7xl mx-auto h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-stretch  h-full">
-          {courses.map(course=>(
-            <motion.div 
-              key={course.id} 
-              whileHover={{scale:1.03}} 
-              className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col h-full border border-gray-100 dark:border-gray-700"
+    <div className="bg-gray-50 flex items-center dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300 lg:h-[100vh]">
+     <main className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+
+  <div className="
+    grid 
+    grid-cols-1 
+    sm:grid-cols-2 
+    xl:grid-cols-3 
+    gap-8 
+    lg:gap-10
+    items-stretch
+  ">
+
+    {courses.map((course) => (
+      
+      <motion.div
+        key={course.id}
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.2 }}
+        className="
+          bg-white dark:bg-gray-800
+          shadow-lg hover:shadow-2xl
+          rounded-2xl
+          p-5 sm:p-6
+          flex flex-col
+          border border-gray-100 dark:border-gray-700
+          h-full
+        "
+      >
+        {/* TÍTULO */}
+        <h2 className="
+          text-xl sm:text-2xl
+          font-bold 
+          text-blue-500 
+          flex items-start gap-2 
+          mb-3 sm:mb-4 
+          line-clamp-2
+        ">
+          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 mt-1" />
+          {course.title}
+        </h2>
+
+        {/* PREVIEW */}
+        <p className="
+          text-gray-700 dark:text-gray-300 
+          text-sm sm:text-base
+          mb-4 
+          line-clamp-3
+        ">
+          {course.preview}
+        </p>
+
+        {/* IMÁGENES */}
+        <div className="
+          grid grid-cols-2 
+          gap-2 sm:gap-3 
+          mt-3 
+          h-[180px] sm:h-[220px] lg:h-[240px]
+        ">
+          {course.images.map((img, idx) => (
+            <div
+              key={idx}
+              className="relative w-full h-full rounded-xl overflow-hidden"
             >
-              <h2 className="text-2xl font-bold text-blue-400 flex items-center gap-2 mb-4 line-clamp-2">
-                <BookOpen className="w-6 h-6"/> {course.title}
-              </h2>
-
-              <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
-                {course.preview}
-              </p>
-
-              <div className="grid grid-cols-2 gap-3 mt-4 h-full">
-                {course.images.map((img, idx)=>(
-                  <div key={idx} className="relative w-full h-full rounded-xl overflow-hidden">
-                    <Image 
-                      src={img} 
-                      alt={`Imagen ${course.title}`} 
-                      fill 
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-auto pt-6 flex gap-3">
-                <button 
-                  onClick={()=>openInfoModal(course.id)} 
-                  className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"
-                >
-                  <BookOpen className="w-5 h-5"/> Ver más
-                </button>
-
-                <button 
-                  onClick={()=>openBuyModal(course.id)} 
-                  className="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-1 shadow-md"
-                >
-                  <CheckCircle className="w-5 h-5"/> Comprar
-                </button>
-              </div>
-            </motion.div>
+              <Image
+                src={img}
+                alt={`Imagen ${course.title}`}
+                fill
+                className="object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
           ))}
         </div>
-      </main>
+
+        {/* BOTONES */}
+        <div className="
+          mt-auto 
+          pt-5 
+          flex 
+          flex-col sm:flex-row 
+          gap-3
+        ">
+          <button
+            onClick={() => openInfoModal(course.id)}
+            className="
+              w-full sm:w-1/2
+              bg-blue-500 hover:bg-blue-600
+              text-white 
+              py-2.5
+              rounded-lg 
+              font-semibold 
+              flex items-center justify-center gap-2
+              shadow-md
+              transition
+            "
+          >
+            <BookOpen className="w-5 h-5" />
+            Ver más
+          </button>
+
+          <button
+            onClick={() => openBuyModal(course.id)}
+            className="
+              w-full sm:w-1/2
+              bg-green-500 hover:bg-green-600
+              text-white 
+              py-2.5
+              rounded-lg 
+              font-semibold 
+              flex items-center justify-center gap-2
+              shadow-md
+              transition
+            "
+          >
+            <CheckCircle className="w-5 h-5" />
+            Comprar
+          </button>
+        </div>
+
+      </motion.div>
+
+    ))}
+
+  </div>
+
+</main>
+
       {/* MODAL INFO */}
       {showInfoModal && currentCourse && (
         <div
