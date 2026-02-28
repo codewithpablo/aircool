@@ -16,7 +16,6 @@ function Calendar({
       className={cn("bg-transparent text-black", className)}
       classNames={{
         caption: "flex justify-between items-center px-2",
-        navbar: "flex justify-between items-center",
       }}
       components={{
         DayButton: CalendarDayButton,
