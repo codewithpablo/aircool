@@ -12,18 +12,18 @@ function Calendar({
 }: React.ComponentProps<typeof DayPicker>) {
   return (
     <DayPicker
-  locale={es} // Español
-  className={cn("bg-transparent text-black", className)}
-  components={{
-    DayButton: CalendarDayButton,
-    CaptionLabel: () => <></>,       // Sin texto de mes
-    // @ts-ignore - permitir IconNext aunque no esté en los tipos
-    IconNext: () => <></>,   // Sin chevron derecho
-    IconPrev: () => <></>,    // Sin chevron izquierdo
-    ...components,
-  }}
-  {...props}
-/>
+      locale={es} // Español
+      className={cn("bg-transparent text-black", className)}
+      classNames={{
+        caption: "flex justify-between items-center px-2",
+        navbar: "flex justify-between items-center",
+      }}
+      components={{
+        DayButton: CalendarDayButton,
+        ...components,
+      }}
+      {...props}
+    />
   )
 }
 

@@ -14,7 +14,8 @@ import {
   Target,
   MapPin,
   CreditCard,
-  FileText
+  FileText,
+  Underline
 } from "lucide-react";
 
 // --- ARRAY COMPLETO DE CURSOS ---
@@ -382,6 +383,7 @@ export default function CursosPage() {
           >
             {/* HEADER */}
             <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+              
               <div className="flex items-center gap-3 text-xl font-bold">
                 <BookOpen className="w-6 h-6" />
                 {currentCourse.summary.title}
@@ -577,32 +579,44 @@ export default function CursosPage() {
 
       {/* MODAL COMPRA */}
       {showBuyModal && currentCourse && (
-        <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4" onClick={closeModals}>
-          <motion.div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[90vw] md:w-[40vw] p-6 relative"
-            initial={{scale:0.8, opacity:0}} 
-            animate={{scale:1, opacity:1}} 
-            onClick={e=>e.stopPropagation()}
-          >
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <CreditCard className="w-5 h-5"/> Comprar {currentCourse.title}
-            </h3>
+        <div
+  className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4"
+  onClick={closeModals}
+>
+  <motion.div
+    className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[90vw] md:w-[40vw] p-6 relative"
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    onClick={(e) => e.stopPropagation()}
+  >
+    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+      <CreditCard className="w-5 h-5" /> Comprar {currentCourse.title}
+    </h3>
 
-            <input 
-              type="text"
-              value={buyerName}
-              onChange={e=>setBuyerName(e.target.value)}
-              placeholder="Tu nombre"
-              className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
-            />
+    {/* Alias destacado */}
+    <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+      Transfiere el dinero al siguiente alias:{" "}
+      <u className="font-semibold text-blue-500">aircool.miceli</u>
+      <br />
+       <span> Asi podremos darte acceso al curso.</span>
+    </p>
 
-            <button 
-              onClick={sendWhatsapp}
-              className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2"
-            >
-              <CheckCircle className="w-5 h-5"/> Enviar a WhatsApp
-            </button>
-          </motion.div>
-        </div>
+    <input
+      type="text"
+      value={buyerName}
+      onChange={(e) => setBuyerName(e.target.value)}
+      placeholder="Nombre completo de la persona que tomara el curso"
+      className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+    />
+
+    <button
+      onClick={sendWhatsapp}
+      className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2"
+    >
+      <CheckCircle className="w-5 h-5" /> Enviar comprobante a WhatsApp
+    </button>
+  </motion.div>
+</div>
       )}
     </div>
   );

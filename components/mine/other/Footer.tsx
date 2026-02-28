@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Mail, Instagram, MessageCircle} from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -25,31 +25,49 @@ export default function Footer() {
           {/* ESPACIADOR VISUAL */}
           <div className="hidden md:block" />
 
-          {/* CONTACTO + REDES */}
+          {/* ICONOS DE CONTACTO */}
           <div className="flex flex-col gap-6 md:items-end">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Contacto
             </h3>
 
-            <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
-              <Mail className="w-5 h-5 text-blue-500" />
-              <span>info@refrigeracionpro.com</span>
-            </div>
-
             <div className="flex gap-5">
-              {[Instagram, Facebook, Linkedin].map((Icon, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-gray-200 dark:border-gray-800
-                             hover:bg-blue-500 hover:text-white hover:border-blue-500
-                             transition-all duration-300"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+              {/* Gmail */}
+              <a
+                href="mailto:aircool.integral@gmail.com"
+                className="p-3 rounded-full border border-gray-200 dark:border-gray-800
+                           hover:bg-red-500 hover:text-white hover:border-red-500
+                           transition-all duration-300"
+                title="Enviar correo"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/aircoolrefrigeracion/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-gray-200 dark:border-gray-800
+                           hover:bg-pink-500 hover:text-white hover:border-pink-500
+                           transition-all duration-300"
+                title="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/5493625490089"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-gray-200 dark:border-gray-800
+                           hover:bg-green-500 hover:text-white hover:border-green-500
+                           transition-all duration-300"
+                title="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>

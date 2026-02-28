@@ -8,7 +8,8 @@ const images = Array.from({ length: 25 }, (_, i) => `/TITULO/${i + 1}.jpeg`);
 
 export default function VerticalSwiper() {
   return (
-    <div className="relative w-full h-[500px] mx-auto rounded-[2.5rem] overflow-hidden shadow-lg">
+    // parent container inherits its height from the wrapper in Hero.tsx
+    <div className="relative w-full h-full mx-auto rounded-[2.5rem] overflow-hidden shadow-lg">
       <Swiper
         direction="vertical"
         slidesPerView={1}
@@ -30,11 +31,11 @@ export default function VerticalSwiper() {
       >
         {images.map((src, idx) => (
           <SwiperSlide key={idx}>
-            <div className="w-full h-[500px] rounded-[2.5rem] overflow-hidden">
+            <div className="w-full h-full rounded-[2.5rem] overflow-hidden">
               <img
                 src={src}
                 alt={`Imagen ${idx + 1}`}
-                className="w-full h-full object-cover select-none pointer-events-none"
+                className="w-full h-full object-cover object-center select-none pointer-events-none"
                 draggable={false}
               />
             </div>
