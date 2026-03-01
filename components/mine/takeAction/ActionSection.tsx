@@ -70,7 +70,7 @@ const benefitsData = [
 
 export default function ActionSection() {
   return (
-    <section className="relative w-full overflow-visible bg-white dark:bg-gray-950 px-6 md:px-20 h-screen">
+    <section className="relative w-full overflow-visible bg-white dark:bg-gray-950 px-6 md:px-20 ">
 
       {/* CONTENIDO */}
       <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-20">

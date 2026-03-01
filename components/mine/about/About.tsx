@@ -96,7 +96,7 @@ const imageVariants: Variants = {
    CINEMATIC BACKGROUND
 ========================= */
 
-const CinematicBackground = () => (
+export const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
     <motion.div
       className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
@@ -147,15 +147,15 @@ export default function TeachersSection() {
   };
 
   return (
-    <section className=" relative w-full px-3 sm:px-6 md:px-12 lg:px-20 overflow-visible pt-8 sm:pt-10 pb-12 h-screen">
+    <section className="w-full px-3 sm:px-6 md:px-12 lg:px-20 overflow-visible  ">
       {/* Fondo cinematográfico azul */}
       <CinematicBackground />
 
-      <h2 className="relative top-10 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold my-8 sm:my-12 md:my-16 text-gray-900 dark:text-white relative z-10">
+      <h2 className="pt-32 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold sm:my-12 md:my-16 text-gray-900 dark:text-white relative z-10">
         Fundadores y equipo
       </h2>
 
-      <div className="pt-32 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto">
         {teachers.map((t, i) => {
           const active = imgIndex[i] || 0;
 

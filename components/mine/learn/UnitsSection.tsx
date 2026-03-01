@@ -71,7 +71,7 @@ const learnUnits = [
 
 export default function UnitsSection() {
   return (
-    <section className="h-screen relative w-full  overflow-visible bg-white dark:bg-gray-950 pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-12 lg:px-20">
+    <section className=" relative w-full  overflow-visible bg-white dark:bg-gray-950 pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-12 lg:px-20">
 
       {/* 🎥 Fondo cinematográfico */}
       <div className="absolute inset-0 pointer-events-none">
@@ -84,7 +84,7 @@ export default function UnitsSection() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <h2 className="uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-8 sm:mb-10 md:mb-12 transition-opacity duration-1000">
+        <h2 className="pt-32 uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-8 sm:mb-10 md:mb-12 transition-opacity duration-1000">
           ¿Qué vas a aprender?
         </h2>
 

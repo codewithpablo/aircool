@@ -6,20 +6,12 @@ import HeroBrandsCarrousel from "./HeroBrandsCarrousel";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../other/ThemeToggle";
-
+import { CinematicBackground } from "../about/About";
 const Hero = () => {
   return (
     <section className="relative w-full overflow-hidden bg-white dark:bg-gray-950">
 
-      {/* Background gradients */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full blur-[120px]
-          bg-gradient-to-br from-blue-400/25 via-cyan-300/20 to-indigo-400/20
-          dark:from-blue-500/20 dark:via-cyan-400/15 dark:to-indigo-500/15" />
-        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full blur-[120px]
-          bg-gradient-to-tr from-sky-300/25 via-blue-300/20 to-cyan-300/20
-          dark:from-sky-400/20 dark:via-blue-400/15 dark:to-cyan-400/15" />
-      </div>
+      <CinematicBackground />
 
       {/* CONTENIDO CENTRADO */}
       <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
