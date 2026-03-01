@@ -7,7 +7,7 @@ import { Clock2Icon, MapPin, Users } from "lucide-react";
 
 export default function EventSection() {
   return (
-    <section className="relative px-6 lg:px-16 overflow-visible bg-transparent -mt-12 lg:-mt-20 py-12">
+    <section className="relative px-6 lg:px-16 overflow-visible  h-screen">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

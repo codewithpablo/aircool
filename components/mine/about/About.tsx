@@ -151,7 +151,7 @@ export default function TeachersSection() {
       {/* Fondo cinematográfico azul */}
       <CinematicBackground />
 
-      <h2 className="pt-32 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold sm:my-12 md:my-16 text-gray-900 dark:text-white relative z-10">
+      <h2 className="pt-32 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold sm:my-12  text-gray-900 dark:text-white relative z-10">
         Fundadores y equipo
       </h2>
 
