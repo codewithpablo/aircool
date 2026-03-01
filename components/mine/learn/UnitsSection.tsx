@@ -75,9 +75,18 @@ export default function UnitsSection() {
 
       {/* 🎥 Fondo cinematográfico */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-400/20 dark:bg-blue-500/15 blur-[140px]" />
-        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-cyan-300/20 dark:bg-cyan-400/15 blur-[140px]" />
-        <div className="absolute bottom-[-300px] left-1/3 w-[700px] h-[700px] rounded-full bg-indigo-400/15 dark:bg-indigo-500/10 blur-[160px]" />
+        <div
+          className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, transparent 60%)' }}
+        />
+        <div
+          className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(103, 232, 249, 0.4) 0%, transparent 60%)' }}
+        />
+        <div
+          className="absolute bottom-[-300px] left-1/3 w-[700px] h-[700px] rounded-full opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(129, 140, 248, 0.3) 0%, transparent 60%)' }}
+        />
       </div>
 
       {/* Contenido */}

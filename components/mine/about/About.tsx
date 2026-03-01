@@ -99,17 +99,20 @@ const imageVariants: Variants = {
 export const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
     <motion.div
-      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
+      className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full opacity-30"
+      style={{ background: 'radial-gradient(circle, rgba(103,232,249,0.3) 0%, transparent 60%)' }}
       animate={{ x: [0, 60, 0], y: [0, 40, 0], rotate: [0, 20, 0] }}
       transition={{ duration: 25, ease: "easeInOut" }}
     />
     <motion.div
-      className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]"
+      className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full opacity-30"
+      style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.2) 0%, transparent 60%)' }}
       animate={{ x: [0, -50, 0], y: [0, -30, 0], rotate: [0, -15, 0] }}
       transition={{ duration: 30, ease: "easeInOut" }}
     />
     <motion.div
-      className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]"
+      className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full opacity-30"
+      style={{ background: 'radial-gradient(circle, rgba(125,211,252,0.3) 0%, transparent 60%)' }}
       animate={{ x: [0, 30, 0], y: [0, 20, 0], rotate: [0, 10, 0] }}
       transition={{ duration: 22, ease: "easeInOut" }}
     />

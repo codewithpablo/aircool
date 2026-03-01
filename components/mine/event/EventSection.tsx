@@ -11,6 +11,7 @@ export default function EventSection() {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
         transition={{ duration: 0.7 }}
         className="flex flex-col lg:flex-row-reverse justify-center gap-16"
       >
@@ -52,7 +53,7 @@ export default function EventSection() {
                 Horario de actividades: 10:00 a 18:00, con break de almuerzo.
               </span>
             </div>
-            
+
           </div>
         </div>
 
