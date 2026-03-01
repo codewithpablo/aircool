@@ -151,11 +151,11 @@ export default function TeachersSection() {
       {/* Fondo cinematográfico azul */}
       <CinematicBackground />
 
-      <h2 className="pt-32 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold sm:my-12  text-gray-900 dark:text-white relative z-10">
+      <h2 className="pt-24 pb-10 sm:pt-32 sm:pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 dark:text-white relative z-10">
         Fundadores y equipo
       </h2>
 
-      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto pb-20">
         {teachers.map((t, i) => {
           const active = imgIndex[i] || 0;
 
@@ -167,7 +167,7 @@ export default function TeachersSection() {
               whileInView="visible"
               viewport={{ once: true }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative h-[300px] sm:h-[350px] md:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group"
+              className="relative h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group"
             >
               {/* IMAGEN */}
               <AnimatePresence initial={false}>

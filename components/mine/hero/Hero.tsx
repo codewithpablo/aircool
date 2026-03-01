@@ -9,7 +9,7 @@ import { ThemeToggle } from "../other/ThemeToggle";
 import { CinematicBackground } from "../about/About";
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white dark:bg-gray-950">
+    <section className="relative w-full overflow-x-clip bg-white dark:bg-gray-950">
 
       <CinematicBackground />
 
@@ -88,7 +88,7 @@ const Hero = () => {
       </div>
 
       {/* 🔥 FULL WIDTH BRANDS */}
-      <div className="w-screen relative left-1/2 -translate-x-1/2 py-12 ">
+      <div className="w-full py-12">
         <HeroBrandsCarrousel />
       </div>
 

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 
 
-export default function RootLayout({children,}: Readonly<{
+export default function RootLayout({ children, }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
@@ -27,7 +27,7 @@ export default function RootLayout({children,}: Readonly<{
     // El tema es aplicado por el ThemeProvider, no en el <html> directamente
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} max-w-screen overflow-x-hidden`}
+        className={`${poppins.variable} max-w-full w-full overflow-x-hidden`}
       >
         {/* 🔑 Envolvemos el contenido con el proveedor de temas */}
         <ThemeProvider>
