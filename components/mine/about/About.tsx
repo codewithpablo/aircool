@@ -101,17 +101,17 @@ export const CinematicBackground = () => (
     <motion.div
       className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full bg-cyan-300/20 dark:bg-cyan-500/10 blur-[180px]"
       animate={{ x: [0, 60, 0], y: [0, 40, 0], rotate: [0, 20, 0] }}
-      transition={{ repeat: Infinity, duration: 25, ease: "easeInOut" }}
+      transition={{ duration: 25, ease: "easeInOut" }}
     />
     <motion.div
       className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-200/10 dark:bg-cyan-400/15 blur-[200px]"
       animate={{ x: [0, -50, 0], y: [0, -30, 0], rotate: [0, -15, 0] }}
-      transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
+      transition={{ duration: 30, ease: "easeInOut" }}
     />
     <motion.div
       className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-cyan-100/20 dark:bg-cyan-300/10 blur-[150px]"
       animate={{ x: [0, 30, 0], y: [0, 20, 0], rotate: [0, 10, 0] }}
-      transition={{ repeat: Infinity, duration: 22, ease: "easeInOut" }}
+      transition={{ duration: 22, ease: "easeInOut" }}
     />
   </div>
 );

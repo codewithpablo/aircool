@@ -18,7 +18,7 @@ export default function ScarcityBanner() {
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
-            duration: 10,
+            duration: 60,
             ease: "linear",
           }}
         >
