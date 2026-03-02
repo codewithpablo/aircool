@@ -241,7 +241,7 @@ export default function CursosPage() {
   ] : [];
 
   return (
-    <div className="bg-gray-50 flex items-center dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300 lg:h-[100vh]">
+  <div className="flex items-center min-h-screen text-gray-900 dark:text-white transition-colors duration-300 lg:h-[100vh]">
      <main className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
 
   <div className="

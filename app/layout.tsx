@@ -1,38 +1,41 @@
 // app/layout.tsx
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-// 👇 Importar el ThemeProvider
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
+import { Providers } from "@/components/providers/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // los pesos que quieras
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
   title: "Aircool: Campus Virtual",
-  description: "Refrigeracion integral",
+  description: "Refrigeración integral",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
-
-export default function RootLayout({ children, }: Readonly<{
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    // 💡 suppressHydrationWarning es necesario cuando se manipula el <html>
-    // El tema es aplicado por el ThemeProvider, no en el <html> directamente
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${poppins.variable} max-w-full w-full overflow-x-hidden`}
-      >
-        {/* 🔑 Envolvemos el contenido con el proveedor de temas */}
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+    <html lang="es" suppressHydrationWarning className={poppins.variable}>
+      <body className="min-h-screen w-full overflow-x-hidden transition-colors duration-300 antialiased">
+        <Providers>
+          <main className="w-full">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

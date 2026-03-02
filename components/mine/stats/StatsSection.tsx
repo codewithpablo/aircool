@@ -33,7 +33,7 @@ export default function StatsSection() {
   return (
     <section
       className="mb-20 relative lg:h-screen w-full overflow-visible
-                 bg-white text-[#50A2FF] dark:bg-gray-950 dark:text-white
+                 text-[#50A2FF] dark:text-white
                  flex items-center justify-center"
     >
       {/* 📽 GRAIN */}

@@ -1,11 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* � Evitar scroll horizontal */
-html,
-body {
+
+
+
+
+html, body {
   overflow-x: hidden;
 }
+
+
+
 
 /* �🎨 Variables globales */
 :root {
@@ -155,9 +160,6 @@ body {
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
 

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { LogIn } from "lucide-react";
-import { motion } from "framer-motion";
 
 /* ===============================
    ABOVE THE FOLD (Carga inmediata)
@@ -58,7 +57,6 @@ export default function Home() {
     setShowIntro(!hasSeenIntro);
   }, []);
 
-  // Evita render hasta saber si mostrar intro o no
   if (showIntro === null) return null;
 
   return showIntro ? (
@@ -120,9 +118,10 @@ function Intro({
 
 function MainContent() {
   return (
-    <div className="bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div className="w-full overflow-x-hidden transition-colors duration-300">
+
       {/* HERO */}
-      <div className="relative z-20">
+      <div className="relative z-20 w-full">
         <ScarcityBanner />
         <Hero />
       </div>
@@ -136,27 +135,24 @@ function MainContent() {
       <FAQChat />
       <Footer />
 
-      {/* FIXED CTA BUTTON */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="fixed right-4 bottom-6 z-50"
-      >
-        <Link
-          href="/courses"
-          className="
-            bg-[#00aee8] hover:bg-[#0095c6]
-            text-white font-semibold
-            flex items-center gap-2
-            px-6 py-3 rounded-full shadow-xl
-            hover:scale-105 transition-all
-          "
-        >
-          <LogIn className="w-5 h-5" />
-          Asegurá tu lugar
-        </Link>
-      </motion.div>
+     {/* CTA BUTTON */}
+<div className="hidden md:block fixed bottom-4 right-4 sm:right-6 z-50">
+  <Link
+    href="/courses"
+    className="
+      bg-[#00aee8] hover:bg-[#0095c6]
+      text-white font-semibold
+      flex items-center justify-center gap-2
+      px-5 py-3
+      text-sm sm:text-base
+      rounded-full shadow-xl
+      hover:scale-105 transition-all
+    "
+  >
+    <LogIn className="w-5 h-5" />
+    Asegurá tu lugar
+  </Link>
+</div>
     </div>
   );
 }

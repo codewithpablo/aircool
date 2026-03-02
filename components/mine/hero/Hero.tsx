@@ -7,23 +7,24 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../other/ThemeToggle";
 import { CinematicBackground } from "../about/About";
+
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-x-clip bg-white dark:bg-gray-950">
+    <section className="relative w-full overflowx-x-hidden overflow-y-visible  transition-colors duration-300">
 
       <CinematicBackground />
 
       {/* CONTENIDO CENTRADO */}
-      <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
+      <div className="w-full mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
 
         <div className="flex flex-col lg:flex-row items-center justify-between
                         py-14 sm:py-16 lg:py-20 gap-10 lg:gap-16">
 
           {/* Text */}
-          <div className="flex-1 text-center lg:text-left space-y-6">
+          <div className="flex-1 w-full text-center lg:text-left space-y-6">
 
             <h1 className="font-semibold text-gray-900 dark:text-white
-              text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-tight">
+              text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-tight break-words">
 
               <span className="block">De cero a técnico</span>
 
@@ -33,7 +34,7 @@ const Hero = () => {
                 speed={50}
                 deletionSpeed={40}
                 repeat={Infinity}
-                className="text-blue-400 italic block lg:inline"
+                className="text-blue-500 dark:text-blue-400 italic block lg:inline"
               />
             </h1>
 
@@ -50,10 +51,11 @@ const Hero = () => {
                             justify-center lg:justify-start pt-2">
 
               <Link href="/links">
-                <Button className="rounded-full px-8 py-6 text-base
-                  bg-blue-400 hover:bg-blue-500 text-white
-                  shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60
-                  transition-all">
+                <Button
+                  className="w-full sm:w-auto rounded-full px-8 py-6 text-base
+                  bg-blue-500 hover:bg-blue-600 text-white
+                  transition-all"
+                >
                   Ingresar al campus
                 </Button>
               </Link>
@@ -61,34 +63,36 @@ const Hero = () => {
               <Link href="/courses">
                 <Button
                   variant="outline"
-                  className="rounded-full px-8 py-6 text-base
-                    border-blue-400 dark:border-blue-500
-                    hover:bg-blue-50 dark:hover:bg-gray-800
-                    transition-all"
+                  className="w-full sm:w-auto rounded-full px-8 py-6 text-base
+                  border-blue-500 text-gray-900 dark:text-white
+                  hover:bg-blue-50 dark:hover:bg-gray-800
+                  transition-all"
                 >
                   Ver todos los cursos
                 </Button>
               </Link>
 
-              <div className="hidden lg:block">
+              <div className="flex justify-center sm:justify-start">
                 <ThemeToggle />
               </div>
             </div>
           </div>
 
           {/* Slider */}
-          <div className="flex-1 w-full max-w-lg lg:max-w-xl">
-            <div className="relative w-full aspect-[4/3]
+          <div className="flex-1 w-full max-w-md sm:max-w-lg lg:max-w-xl">
+            <div
+              className="relative w-full aspect-[4/3]
               rounded-3xl overflow-hidden
-              shadow-xl shadow-black/25">
+              shadow-xl shadow-black/20 dark:shadow-black/40"
+            >
               <HeroSlider />
             </div>
           </div>
         </div>
       </div>
 
-      {/* 🔥 FULL WIDTH BRANDS */}
-      <div className="w-full py-12">
+      {/* BRANDS */}
+      <div className="w-full py-12 overflow-hidden">
         <HeroBrandsCarrousel />
       </div>
 

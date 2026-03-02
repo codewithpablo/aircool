@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -13,8 +13,9 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* =========================
-   DATA
+DATA
 ========================= */
+
 
 const teachers = [
   {
@@ -65,8 +66,11 @@ A lo largo de mi recorrido, he colaborado con diversas empresas en la creación 
   },
 ];
 
+
+
+
 /* =========================
-   ANIMACIONES
+ANIMACIONES
 ========================= */
 
 const cardVariants: Variants = {
@@ -93,26 +97,37 @@ const imageVariants: Variants = {
 };
 
 /* =========================
-   CINEMATIC BACKGROUND
+CINEMATIC BACKGROUND
 ========================= */
 
 export const CinematicBackground = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
     <motion.div
       className="absolute top-[-30%] left-[-20%] w-[800px] h-[800px] rounded-full opacity-30"
-      style={{ background: 'radial-gradient(circle, rgba(103,232,249,0.3) 0%, transparent 60%)' }}
+      style={{
+        background:
+          "radial-gradient(circle, rgba(103,232,249,0.3) 0%, transparent 60%)",
+      }}
       animate={{ x: [0, 60, 0], y: [0, 40, 0], rotate: [0, 20, 0] }}
       transition={{ duration: 25, ease: "easeInOut" }}
     />
+
     <motion.div
       className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full opacity-30"
-      style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.2) 0%, transparent 60%)' }}
+      style={{
+        background:
+          "radial-gradient(circle, rgba(34,211,238,0.2) 0%, transparent 60%)",
+      }}
       animate={{ x: [0, -50, 0], y: [0, -30, 0], rotate: [0, -15, 0] }}
       transition={{ duration: 30, ease: "easeInOut" }}
     />
+
     <motion.div
       className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full opacity-30"
-      style={{ background: 'radial-gradient(circle, rgba(125,211,252,0.3) 0%, transparent 60%)' }}
+      style={{
+        background:
+          "radial-gradient(circle, rgba(125,211,252,0.3) 0%, transparent 60%)",
+      }}
       animate={{ x: [0, 30, 0], y: [0, 20, 0], rotate: [0, 10, 0] }}
       transition={{ duration: 22, ease: "easeInOut" }}
     />
@@ -120,7 +135,7 @@ export const CinematicBackground = () => (
 );
 
 /* =========================
-   COMPONENTE
+COMPONENTE
 ========================= */
 
 export default function TeachersSection() {
@@ -143,6 +158,7 @@ export default function TeachersSection() {
   const prevImg = (i: number) => {
     const total = teachers[i].images.length;
     const current = imgIndex[i] || 0;
+
     setImgIndex((p) => ({
       ...p,
       [i]: current === 0 ? total - 1 : current - 1,
@@ -150,15 +166,15 @@ export default function TeachersSection() {
   };
 
   return (
-    <section className="w-full px-3 sm:px-6 md:px-12 lg:px-20 overflow-visible  ">
-      {/* Fondo cinematográfico azul */}
+    <section className="relative w-full px-4 sm:px-6 md:px-10 lg:px-16 overflow-visible">
+
       <CinematicBackground />
 
-      <h2 className="pt-24 pb-10 sm:pt-32 sm:pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 dark:text-white relative z-10">
+      <h2 className="pt-24 pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 dark:text-white relative z-10">
         Fundadores y equipo
       </h2>
 
-      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-8 md:gap-10 justify-center relative z-10 max-w-7xl mx-auto pb-20">
+      <div className="flex flex-col md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto pb-24 relative z-10 ">
         {teachers.map((t, i) => {
           const active = imgIndex[i] || 0;
 
@@ -170,7 +186,15 @@ export default function TeachersSection() {
               whileInView="visible"
               viewport={{ once: true }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group"
+              className="
+              relative
+              aspect-[3/4]
+              max-h-[480px]
+              rounded-3xl
+              overflow-hidden
+              shadow-xl
+              group
+              "
             >
               {/* IMAGEN */}
               <AnimatePresence initial={false}>
@@ -196,21 +220,23 @@ export default function TeachersSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
               {/* CONTENIDO */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 text-white flex flex-col gap-2 sm:gap-3">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">{t.title}</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white flex flex-col gap-3">
 
-                {/* BADGE */}
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
+                  {t.title}
+                </h3>
+
                 <span className="w-fit text-xs px-3 py-1 rounded-full bg-blue-500/80 backdrop-blur-sm">
                   {t.badge}
                 </span>
 
-                {/* BOTÓN ABAJO DEL BADGE */}
                 <button
                   onClick={() => openModal(i)}
                   className="w-fit mt-1 px-3 py-2 text-xs sm:text-sm rounded-full bg-white/20 hover:bg-white/30 transition backdrop-blur border border-white/20"
                 >
                   Ver más
                 </button>
+
               </div>
 
               {/* CONTROLES */}
@@ -227,6 +253,7 @@ export default function TeachersSection() {
               >
                 <ChevronRight size={18} />
               </button>
+
             </motion.div>
           );
         })}
@@ -239,6 +266,7 @@ export default function TeachersSection() {
             <DialogTitle>
               {selected !== null ? teachers[selected].title : ""}
             </DialogTitle>
+
             <DialogDescription className="pt-4 whitespace-pre-line">
               {selected !== null ? teachers[selected].description : ""}
             </DialogDescription>
