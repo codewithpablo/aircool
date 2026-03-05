@@ -128,7 +128,7 @@ export default function FaqSection() {
         />
         {/* blob animado 2 */}
         <motion.div
-          className="absolute -bottom-48 -right-48 w-[600px] h-[600px] dark:bg-green-400 rounded-full blur-[600px]"
+          className="absolute -bottom-48 -right-48 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[150px]"
           animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />

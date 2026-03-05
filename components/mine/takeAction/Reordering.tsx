@@ -20,7 +20,7 @@ export default function Reordering() {
           key={src}
           layout
           transition={spring}
-          className="relative w-full aspect-5/3 md:aspect-3/3 rounded-2xl overflow-hidden"
+          className="relative w-full aspect-[5/3] md:aspect-square rounded-2xl overflow-hidden"
         >
           <Image
             src={src}

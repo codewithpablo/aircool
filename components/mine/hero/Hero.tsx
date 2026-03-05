@@ -10,7 +10,7 @@ import { CinematicBackground } from "../about/About";
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflowx-x-hidden overflow-y-visible  transition-colors duration-300">
+    <section className="relative w-full overflow-visible transition-colors duration-300">
 
       <CinematicBackground />
 

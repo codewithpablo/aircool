@@ -13,7 +13,7 @@ type Logo = {
 const logos: Logo[] = [
   { name: "Logo 1", light: "/logosa/1.png" },
   { name: "Logo 2", light: "/logosa/2.png" },
-    { name: "Logo 3", light: "/logosa/tres.png",  dark: "/logosa/black/3.png" },
+  { name: "Logo 3", light: "/logosa/tres.png", dark: "/logosa/black/3.png" },
   { name: "Logo 4", light: "/logosa/4.png" },
   { name: "Logo 5", light: "/logosa/5.png", dark: "/logosa/black/5.png" },
 
@@ -23,7 +23,7 @@ const logos: Logo[] = [
   { name: "Logo 8", light: "/logosa/8.png", dark: "/logosa/black/8.png" },
   { name: "Logo 9", light: "/logosa/9.png", dark: "/logosa/black/9.png" },
   { name: "Logo 11", light: "/logosa/11.png", dark: "/logosa/black/11.png" },
-  { name: "Logo 12", light: "/logosa/doce.png",  dark: "/logosa/black/12.png" },
+  { name: "Logo 12", light: "/logosa/doce.png", dark: "/logosa/black/12.png" },
   { name: "Logo 13", light: "/logosa/13.png" },
 ];
 
@@ -47,7 +47,7 @@ export default function HeroBrandsCarrousel() {
           return (
             <div
               key={`${logo.name}-${index}`}
-              className="flex h-20 w-24 sm:h-24 sm:w-32 md:h-28 md:w-40 items-center justify-center"
+              className="flex shrink-0 h-20 w-24 sm:h-24 sm:w-32 md:h-28 md:w-40 items-center justify-center"
             >
               <Image
                 key={src}
