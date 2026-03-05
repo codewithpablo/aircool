@@ -33,7 +33,7 @@ export default function StatsSection() {
   return (
     <section
       className="mb-20 relative lg:h-screen w-full overflow-visible
-                 text-[#50A2FF] dark:text-white
+                 text-[#50A2FF] 
                  flex items-center justify-center"
     >
       {/* 📽 GRAIN */}
@@ -52,11 +52,11 @@ export default function StatsSection() {
       <div className="relative max-w-7xl w-full px-6">
         {/* 🎬 TITLE */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-slate-800 dark:text-white">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-950 dark:text-white">
             Resultados que hablan por sí solos
           </h2>
           <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed
-                        text-[#50A2FF]/80 dark:text-white/80">
+                        text-[#50A2FF]/80 /80">
             Formación técnica real, experiencia comprobada y excelencia
             profesional en refrigeración integral.
           </p>
@@ -67,7 +67,7 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="relative group"
+              className="relative group shadow-2xl rounded-4xl"
             >
               {/* 💡 HOVER AURA */}
               <div
@@ -85,7 +85,7 @@ export default function StatsSection() {
               >
                 {/* 🔢 NUMBER */}
                 <div className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">
-                  <span className="text-[#50A2FF] dark:text-white">
+                  <span className="text-[#50A2FF] ">
                     <CountUp
                       end={stat.value}
                       duration={3.2}
@@ -98,12 +98,12 @@ export default function StatsSection() {
                 </div>
 
                 {/* 🏷 TITLE */}
-                <h3 className="text-xl font-semibold mb-3 dark:text-white">
+                <h3 className="text-xl font-semibold mb-3 ">
                   {stat.title}
                 </h3>
 
                 {/* 📝 DESCRIPTION */}
-                <p className="text-sm leading-relaxed text-[#50A2FF]/80 dark:text-white/70">
+                <p className="text-sm leading-relaxed text-[#50A2FF]/80 /70">
                   {stat.description}
                 </p>
 

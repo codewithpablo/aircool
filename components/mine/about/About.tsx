@@ -170,7 +170,7 @@ export default function TeachersSection() {
 
       <CinematicBackground />
 
-      <h2 className="pt-24 pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 dark:text-white relative z-10">
+      <h2 className="pt-24 pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-950 dark:text-white relative z-10">
         Fundadores y equipo
       </h2>
 

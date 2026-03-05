@@ -23,10 +23,10 @@ const Hero = () => {
           {/* Text */}
           <div className="flex-1 w-full text-center lg:text-left space-y-6">
 
-            <h1 className="font-semibold text-gray-900 dark:text-white
+            <h1 className="font-semibold text-gray-950 dark:text-white
               text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-tight break-words">
 
-              <span className="block">De cero a técnico</span>
+              <span className="block text-gray-800 dark:text-gray-200">De cero a técnico</span>
 
               <TypeAnimation
                 sequence={["certificado", 5000, "", 800]}
@@ -34,12 +34,12 @@ const Hero = () => {
                 speed={50}
                 deletionSpeed={40}
                 repeat={Infinity}
-                className="text-blue-500 dark:text-blue-400 italic block lg:inline"
+                className="text-blue-400 italic block lg:inline"
               />
             </h1>
 
             <p className="max-w-lg mx-auto lg:mx-0
-              text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              text-base sm:text-lg text-gray-900 dark:text-gray-200 leading-relaxed">
 
               Adquirí habilidades prácticas de alta demanda y escasa oferta en el mercado.
               Nuestro cuerpo docente de Ingenieros y Licenciados, con décadas de trayectoria,
@@ -53,7 +53,7 @@ const Hero = () => {
               <Link href="/links">
                 <Button
                   className="w-full sm:w-auto rounded-full px-8 py-6 text-base
-                  bg-blue-500 hover:bg-blue-600 text-white
+                  bg-blue-400  text-white
                   transition-all"
                 >
                   Ingresar al campus
@@ -64,8 +64,6 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto rounded-full px-8 py-6 text-base
-                  border-blue-500 text-gray-900 dark:text-white
-                  hover:bg-blue-50 dark:hover:bg-gray-800
                   transition-all"
                 >
                   Ver todos los cursos

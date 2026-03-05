@@ -1,11 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@variant dark (&:where(.dark, .dark *));
 
 
 
 
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -15,7 +17,7 @@ html, body {
 /* �🎨 Variables globales */
 :root {
   --first: #ffd5cf;
-  --second : #cdebff;
+  --second: #cdebff;
   --third: rgb(165, 199, 248);
 }
 
@@ -28,12 +30,12 @@ html, body {
   background-color: var(--first);
 }
 
-.bgSecond{
+.bgSecond {
   background-color: var(--second)
 }
 
 
-.textSecond{
+.textSecond {
   color: var(--second)
 }
 
@@ -164,7 +166,8 @@ html, body {
 }
 
 .hideScrollbar::-webkit-scrollbar {
-  width: 0px;  /* Chrome, Safari y Opera */
+  width: 0px;
+  /* Chrome, Safari y Opera */
 }
 
 
@@ -172,27 +175,41 @@ html, body {
 
 
 /* Seleccionamos el elemento al que queremos ponerle el fondo */
-.giantBackground{
+.giantBackground {
   /* URL de la imagen */
   background-image: url('../public/aircool.png');
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-repeat: no-repeat;
+  /* Evita que la imagen se repita */
   /* Ajustes de la imagen */
-  background-size: contain;       /* Hace que la imagen cubra todo el elemento */
-  background-position: center;  /* Centra la imagen en el elemento */
+  background-size: contain;
+  /* Hace que la imagen cubra todo el elemento */
+  background-position: center;
+  /* Centra la imagen en el elemento */
 }
 
 @import "leaflet/dist/leaflet.css";
 
 @layer base {
-    /* Base para Light Mode */
-    body {
-        @apply bg-white text-gray-900 transition-colors duration-500;
-    }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply transition-colors duration-500;
+  }
 
-    /* Estilos de Tailwind para Dark Mode */
-    .dark body {
-        @apply bg-gray-950 text-gray-50;
-    }
+  /* Global text color inheritance to ensure high contrast in both themes */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  li,
+  a {
+    color: inherit;
+    @apply transition-colors duration-500;
+  }
 }
 
 
@@ -200,6 +217,7 @@ html, body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -208,5 +226,3 @@ html, body {
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
-
-

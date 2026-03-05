@@ -77,11 +77,11 @@ export default function ActionSection() {
 
         {/* TÍTULO PRINCIPAL + SUBTÍTULO */}
         <div className="text-center space-y-4 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-white leading-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-blue-400  leading-tight">
             El valor de ser imprescindible
           </h2>
 
-          <p className="text-gray-500 dark:text-gray-400 text-base md:text-lg">
+          <p className="text-gray-950 dark:text-gray-300 text-base md:text-lg">
             La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, y en invierno asegura la conservación vital de los alimentos, industrias y comercios funcionales, lo cual constituye una prioridad ineludible.
           </p>
         </div>
@@ -101,12 +101,12 @@ export default function ActionSection() {
                     <Icon className="relative w-7 h-7 text-blue-600 dark:text-blue-400" />
                   </div>
 
-                  <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+                  <h3 className="font-semibold text-lg text-gray-950 dark:text-white">
                     {benefit.title}
                   </h3>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-[15px] leading-relaxed">
+                <p className="text-gray-900 dark:text-gray-400 text-sm md:text-[15px] leading-relaxed">
                   {benefit.text}
                 </p>
               </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Search, Bell, MessageSquare, Moon, Sun } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -7,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 
 export default function NavbarDashboard() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const isDark =
-    theme === "dark" ||
-    (theme === "system" &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = resolvedTheme === "dark";
 
   return (
     <nav className="w-full sticky top-0 z-50 h-16 py-3 px-6 flex items-center justify-between bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">

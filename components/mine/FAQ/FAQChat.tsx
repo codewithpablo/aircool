@@ -162,10 +162,9 @@ export default function FaqSection() {
                   setQuery(e.target.value);
                   setOpenFaq(null);
                 }}
-                className="mb-6 rounded-xl border border-blue-200 dark:border-white/10
-                           bg-blue-50 dark:bg-white/5
-                           px-4 py-3 text-gray-900 dark:text-white
-                           placeholder:text-blue-500/60 dark:placeholder:text-white/40
+                className="mb-6 rounded-xl border border-gray-400 dark:border-gray-600
+                           px-4 py-3 text-gray-950 dark:text-white
+                           placeholder:text-gray-500 dark:bg-white/5
                            outline-none w-full"
               />
 
@@ -194,7 +193,7 @@ export default function FaqSection() {
                           className={`shrink-0 ${isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
                             }`}
                         />
-                        <span className="font-medium text-gray-900 dark:text-white">
+                        <span className="font-medium text-gray-950 dark:text-white">
                           {faq.question}
                         </span>
                       </div>
@@ -211,9 +210,9 @@ export default function FaqSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
-                              bg-blue-100 dark:bg-black/60
-                              border border-blue-300 dark:border-white/10
-                              text-blue-700 dark:text-white/80 text-sm"
+                              bg-blue-100 
+                              border border-blue-300 
+                               text-sm"
                   >
                     Ver más{" "}
                     <ChevronDown size={14} className="inline animate-bounce" />
@@ -243,7 +242,7 @@ export default function FaqSection() {
                              border border-blue-200 dark:border-white/10
                              shadow-2xl  z-20"
                 >
-                  <span className="text-gray-700 dark:text-white text-lg sm:text-lg font-semibold">
+                  <span className="text-gray-800 dark:text-white text-lg sm:text-lg font-semibold">
                     {currentChunk}
                   </span>
                 </motion.div>

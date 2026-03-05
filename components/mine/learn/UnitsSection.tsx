@@ -18,49 +18,49 @@ const learnUnits = [
   {
     title: 'Fundamentos y práctica de instalación',
     description: 'Montaje, sellado y correcta puesta en marcha de los equipos.',
-    icon: <ToolCase size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <ToolCase size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/1.jpg',
   },
   {
     title: 'Diagnóstico y reparación rápida',
     description: 'Uso de manómetros y detectores de fugas para resolver fallas con eficiencia.',
-    icon: <Zap size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Zap size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/2.jpg',
   },
   {
     title: 'Manejo seguro de refrigerantes',
     description: 'Recuperación, reciclado y manejo responsable.',
-    icon: <Shield size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Shield size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/4.jpg',
   },
   {
     title: 'Limpieza y mantenimiento profesional',
     description: 'Servicios que generan recurrencia cada 6 a 12 meses.',
-    icon: <Wrench size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Wrench size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/5.jpg',
   },
   {
     title: 'Seguridad laboral y normativas',
     description: 'Altura, electricidad y documentación legal.',
-    icon: <Shield size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Shield size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/6.jpg',
   },
   {
     title: 'Ventas orientadas al rubro',
     description: 'Detectar el riesgo y cerrar la solución en el momento.',
-    icon: <DollarSign size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <DollarSign size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/7.jpg',
   },
   {
     title: 'Modelos de ingreso recurrente',
     description: 'Contratos, suscripciones y ventas complementarias.',
-    icon: <BarChart2 size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <BarChart2 size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/8.jpg',
   },
   {
     title: 'Taller práctico y salidas a campo',
     description: 'Trabajo con equipos reales, no solo teoría.',
-    icon: <Clock size={28} className="text-blue-400 dark:text-teal-400" />,
+    icon: <Clock size={28} className="text-blue-400 dark:text-blue-400" />,
     image: '/9.jpg',
   },
 ];
@@ -93,7 +93,7 @@ export default function UnitsSection() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <h2 className="pt-32 uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-900 dark:text-white mb-8 sm:mb-10 md:mb-12 transition-opacity duration-1000">
+        <h2 className="pt-32 uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-950 dark:text-white mb-8 sm:mb-10 md:mb-12 transition-opacity duration-1000">
           ¿Qué vas a aprender?
         </h2>
 
@@ -129,12 +129,12 @@ export default function UnitsSection() {
                   <div className="flex-shrink-0 mt-0.5">
                     {unit.icon}
                   </div>
-                  <h3 className="text-xs sm:text-sm md:text-base font-medium text-gray-900 dark:text-white leading-snug">
+                  <h3 className="text-xs sm:text-sm md:text-base font-medium text-gray-950 dark:text-gray-50 leading-snug">
                     {unit.title}
                   </h3>
                 </div>
 
-                <p className="text-gray-700 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
+                <p className="text-gray-950 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
                   {unit.description}
                 </p>
               </div>

@@ -28,7 +28,7 @@ export default function EventSection() {
             ¡No te pierdas el evento en el
             <span className="block text-blue-500">Domo del Centenario</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-lg text-gray-950 dark:text-gray-300">
             Una experiencia profesional de tres días que reunirá a los
             principales actores del sector técnico y de climatización.
             Charlas magistrales, talleres prácticos y networking de alto nivel
@@ -37,19 +37,19 @@ export default function EventSection() {
           <div className="text-left space-y-4">
             <div className="flex items-start gap-3">
               <Users className="text-blue-500 mt-1" size={20} />
-              <span className="text-base text-gray-700 dark:text-gray-300">
+              <span className="text-base text-gray-950 dark:text-gray-200">
                 Más de 50 ponentes expertos presentarán sus casos de éxito.
               </span>
             </div>
             <div className="flex items-start gap-3">
               <MapPin className="text-blue-500 mt-1" size={20} />
-              <span className="text-base text-gray-700 dark:text-gray-300">
+              <span className="text-base text-gray-950 dark:text-gray-200">
                 Ubicado estratégicamente en el corazón de Resistencia.
               </span>
             </div>
             <div className="flex items-start gap-3">
               <Clock2Icon className="text-blue-500 mt-1" size={20} />
-              <span className="text-base text-gray-700 dark:text-gray-300">
+              <span className="text-base text-gray-950 dark:text-gray-200">
                 Horario de actividades: 10:00 a 18:00, con break de almuerzo.
               </span>
             </div>
