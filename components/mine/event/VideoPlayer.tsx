@@ -15,7 +15,7 @@ export default function VideoPlayer() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(1);
 
@@ -35,7 +35,7 @@ export default function VideoPlayer() {
 
     video.muted = true;
 
-    video.play().then(() => setIsPlaying(true)).catch(() => {});
+    video.play().then(() => setIsPlaying(true)).catch(() => { });
 
     return () => {
       video.removeEventListener("loadedmetadata", metadata);
@@ -201,6 +201,9 @@ export default function VideoPlayer() {
         className="w-full h-full object-cover"
         playsInline
         preload="metadata"
+        autoPlay
+        muted
+        loop
       />
 
       {!isPlaying && (
@@ -215,9 +218,8 @@ export default function VideoPlayer() {
       )}
 
       <div
-        className={`absolute bottom-0 left-0 right-0 transition-opacity duration-300 ${
-          showControls ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute bottom-0 left-0 right-0 transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"
+          }`}
       >
         <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 pb-3 pt-10">
 

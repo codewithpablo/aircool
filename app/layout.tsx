@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "@/components/providers/ThemeProvider";
+import { GlobalCinematicBackground } from "@/components/mine/other/GlobalCinematicBackground";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,9 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning className={poppins.variable}>
-      <body className="min-h-screen w-full overflow-x-hidden transition-colors duration-300 antialiased">
+      <body className="min-h-screen w-full transition-colors duration-300 antialiased">
         <Providers>
-          <main className="w-full">
+          <main className="w-full relative z-10">
+            <GlobalCinematicBackground />
             {children}
           </main>
         </Providers>

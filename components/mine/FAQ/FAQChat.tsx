@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   Plus,
   Minus,
@@ -117,43 +116,19 @@ export default function FaqSection() {
   }, [filteredFaqs]);
 
   return (
-    <section className="relative h-[900px] lg:h-screen overflow-visible px-4 pb-20 dark:bg-transparent">
-      {/* ================= FONDO CINEMATOGRÁFICO ================= */}
-      <div className="absolute inset-0 pointer-events-none overflow-visible z-0">
-        {/* blob animado 1 */}
-        <motion.div
-          className="absolute -top-48 -left-48 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-[180px]"
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* blob animado 2 */}
-        <motion.div
-          className="absolute -bottom-48 -right-48 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[150px]"
-          animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* luz sutil central */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-white/10 rounded-full blur-[300px]"
-          animate={{ opacity: [0.6, 0.8, 0.6] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+    <section className="relative h-screen flex items-center justify-center overflow-visible px-4 sm:px-6 md:px-10 lg:px-16 pb-20 pt-20 lg:pt-0 dark:bg-transparent">
 
-      <div className="relative h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-60 lg:gap-0 z-10">
+
+      <div className="relative h-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-32 md:gap-40 lg:gap-0 z-10 pt-10 lg:pt-0">
 
         {/* IZQUIERDA */}
-        <AnimatePresence>
-          {(!isMobile || !isTalking) && (
-            <motion.div
-              className="flex-1 flex flex-col relative min-h-[550px]"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4 }}
-            >
-              <h1 className="text-center text-2xl mb-5">Preguntas frecuentes</h1>
+        {(!isMobile || !isTalking) && (
+          <div className="flex-1 flex flex-col relative overflow-hidden">
+            <h2 className="text-center font-heading tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 mt-4 text-gray-950 dark:text-white">
+              Preguntas frecuentes
+            </h2>
 
+            <div className="w-full mb-8">
               <input
                 type="text"
                 placeholder="Buscar una pregunta..."
@@ -162,115 +137,100 @@ export default function FaqSection() {
                   setQuery(e.target.value);
                   setOpenFaq(null);
                 }}
-                className="mb-6 rounded-xl border border-gray-400 dark:border-gray-600
-                           px-4 py-3 text-gray-950 dark:text-white
-                           placeholder:text-gray-500 dark:bg-white/5
-                           outline-none w-full"
+                className="w-full rounded-2xl border border-gray-300 dark:border-gray-700
+                             px-5 py-4 text-gray-950 dark:text-white
+                             placeholder:text-gray-500 dark:bg-gray-800/50 backdrop-blur-sm
+                             shadow-sm focus:ring-2 focus:ring-blue-500/50 outline-none transition-all"
               />
+            </div>
 
-              <div
-                ref={listRef}
-                onScroll={checkScroll}
-                className="flex-1 relative z-10 overflow-y-auto hideScrollbar space-y-4 pr-2"
-              >
-                {filteredFaqs.map((faq) => {
-                  const isOpen = openFaq?.question === faq.question;
-                  const Icon = faq.icon;
+            <div
+              ref={listRef}
+              onScroll={checkScroll}
+              className="flex-1 relative z-10 overflow-y-auto space-y-4 pr-2"
+            >
+              {filteredFaqs.map((faq) => {
+                const isOpen = openFaq?.question === faq.question;
+                const Icon = faq.icon;
 
-                  return (
-                    <button
-                      key={faq.question}
-                      onClick={() => setOpenFaq(isOpen ? null : faq)}
-                      className={`w-full flex items-center justify-between gap-4 px-6 py-5 rounded-xl border transition
+                return (
+                  <button
+                    key={faq.question}
+                    onClick={() => setOpenFaq(isOpen ? null : faq)}
+                    className={`w-full flex items-center justify-between gap-4 px-6 py-5 rounded-xl border transition
                         ${isOpen
-                          ? "bg-blue-200 border-blue-300 dark:bg-white/15 dark:border-white/10"
-                          : "bg-blue-50 border-blue-200 dark:bg-white/5 dark:border-white/10"
-                        }`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <Icon
-                          size={24}
-                          className={`shrink-0 ${isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
-                            }`}
-                        />
-                        <span className="font-medium text-gray-950 dark:text-white">
-                          {faq.question}
-                        </span>
-                      </div>
-                      {isOpen ? <Minus /> : <Plus />}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <AnimatePresence>
-                {showMoreBadge && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
-                              bg-blue-100 
-                              border border-blue-300 
-                               text-sm"
+                        ? "bg-blue-200 border-blue-300 dark:bg-white/15 dark:border-white/10"
+                        : "bg-blue-50 border-blue-200 dark:bg-white/5 dark:border-white/10 hover:bg-white hover:dark:bg-white/10"
+                      }`}
                   >
-                    Ver más{" "}
-                    <ChevronDown size={14} className="inline animate-bounce" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    <div className="flex items-center gap-4 text-left">
+                      <Icon
+                        size={24}
+                        className={`shrink-0 ${isOpen ? "text-blue-700 dark:text-sky-400" : "text-blue-500 dark:text-gray-400"
+                          }`}
+                      />
+                      <span className="font-medium text-gray-950 dark:text-white">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <div className="shrink-0 text-blue-500 dark:text-gray-400">
+                      {isOpen ? <Minus /> : <Plus />}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {showMoreBadge && (
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full
+                             bg-blue-100 dark:bg-blue-500/20 
+                             border border-blue-300 dark:border-blue-500/50 
+                             text-blue-700 dark:text-blue-400 text-sm font-medium shadow-lg shadow-blue-500/20 backdrop-blur-md transition-opacity z-20">
+                Ver más{" "}
+                <ChevronDown size={14} className="inline animate-bounce ml-1" />
+              </div>
+            )}
+          </div>
+        )}
 
         {/* DERECHA */}
         <div className="flex-1 flex justify-center items-center">
           <div className="relative w-[400px] h-[400px] max-sm:w-64 max-sm:h-64 flex justify-center items-end">
 
+
+
+            {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
+            <div
+              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/20 rounded-full blur-[140px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+            />
+
             {/* NUBE */}
-            <AnimatePresence>
-              {isTalking && chunks.length > 0 && (
-                <motion.div
-                  key="speechBubble"
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center -top-[325px] lg:-top-[325px] 
+            {isTalking && chunks.length > 0 && (
+              <div
+                className="text-center -top-[325px] lg:-top-[325px] 
                              py-4 px-6 rounded-[26px] relative overflow-hidden
                              bg-white/40  backdrop-blur-3xl dark:from-zinc-900 dark:to-zinc-800
                              border border-blue-200 dark:border-white/10
-                             shadow-2xl  z-20"
-                >
-                  <span className="text-gray-800 dark:text-white text-lg sm:text-lg font-semibold">
-                    {currentChunk}
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                             shadow-2xl  z-20 transition-all"
+              >
+                <span className="text-gray-800 dark:text-white text-lg sm:text-lg font-semibold">
+                  {currentChunk}
+                </span>
+              </div>
+            )}
 
             {/* GIF idle */}
-            <motion.img
+            <img
               src="/game.gif"
               alt="Robot Idle"
-              animate={{
-                opacity: isTalking ? 0 : 1,
-                scale: 1.2,
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute -top-[150px] lg:top-20 left-0 w-full h-full object-contain z-10"
+              className={`absolute -top-[150px] lg:top-20 left-0 w-full h-full object-contain z-10 transition-opacity duration-400 ${isTalking ? 'opacity-0' : 'opacity-100'} scale-[1.2]`}
             />
 
             {/* GIF talking */}
-            <motion.img
+            <img
               src="/talking.gif"
               alt="Robot Talking"
-              animate={{
-                opacity: isTalking ? 1 : 0,
-                scale: 1.2,
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute  -top-[50px] lg:top-20 left-0 w-full h-full object-contain z-10"
+              className={`absolute -top-[50px] lg:top-20 left-0 w-full h-full object-contain z-10 transition-opacity duration-400 ${isTalking ? 'opacity-100' : 'opacity-0'} scale-[1.2]`}
             />
           </div>
         </div>

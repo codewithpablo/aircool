@@ -32,10 +32,14 @@ const stats = [
 export default function StatsSection() {
   return (
     <section
-      className="mb-20 relative lg:h-screen w-full overflow-visible
+      className="mb-20 lg:mb-32 relative py-20 lg:py-32 w-full overflow-visible
                  text-[#50A2FF] 
                  flex items-center justify-center"
     >
+      {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
+      <div
+        className="absolute top-1/2 right-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform translate-x-1/2 -translate-y-1/2"
+      />
       {/* 📽 GRAIN */}
       <div
         className="pointer-events-none absolute inset-0
@@ -49,13 +53,13 @@ export default function StatsSection() {
                    bg-size-[100%_4px] opacity-[0.06]"
       />
 
-      <div className="relative max-w-7xl w-full px-6">
+      <div className="relative max-w-7xl w-full px-4 sm:px-6 md:px-10">
         {/* 🎬 TITLE */}
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-950 dark:text-white">
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="font-heading tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-gray-950 dark:text-white">
             Resultados que hablan por sí solos
           </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed
                         text-[#50A2FF]/80 /80">
             Formación técnica real, experiencia comprobada y excelencia
             profesional en refrigeración integral.
@@ -63,7 +67,7 @@ export default function StatsSection() {
         </div>
 
         {/* 🧊 STATS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 perspective-[1600px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 perspective-[1600px]">
           {stats.map((stat, index) => (
             <div
               key={index}

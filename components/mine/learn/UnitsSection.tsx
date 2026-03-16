@@ -12,7 +12,7 @@ import {
 
 /* =======================
    Data
-======================= */
+ ======================= */
 
 const learnUnits = [
   {
@@ -67,38 +67,29 @@ const learnUnits = [
 
 /* =======================
    Component
-======================= */
+ ======================= */
 
 export default function UnitsSection() {
   return (
-    <section className=" relative w-full  overflow-visible bg-tranparent pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-12 lg:px-20">
-
-      {/* 🎥 Fondo cinematográfico */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-40"
-          style={{ background: 'radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, transparent 60%)' }}
-        />
-        <div
-          className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full opacity-40"
-          style={{ background: 'radial-gradient(circle, rgba(103, 232, 249, 0.4) 0%, transparent 60%)' }}
-        />
-        <div
-          className="absolute bottom-[-300px] left-1/3 w-[700px] h-[700px] rounded-full opacity-40"
-          style={{ background: 'radial-gradient(circle, rgba(129, 140, 248, 0.3) 0%, transparent 60%)' }}
-        />
-      </div>
-
+    <section className=" relative w-full  overflow-visible bg-tranparent pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-12 lg:px-20 py-20 md:py-32">
+      {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
+      <div
+        className="absolute top-1/2 right-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform translate-x-1/2 -translate-y-1/2"
+      />
       {/* Contenido */}
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <h2 className="pt-32 uppercase text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-center text-gray-950 dark:text-white mb-8 sm:mb-10 md:mb-12 transition-opacity duration-1000">
+        <h2
+          className="pt-32 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight text-center text-gray-950 dark:text-white mb-8 sm:mb-10 md:mb-12"
+        >
           ¿Qué vas a aprender?
         </h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 max-w-7xl w-full">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 max-w-7xl w-full px-2 sm:px-0"
+        >
           {learnUnits.map((unit, index) => (
             <div
               key={index}

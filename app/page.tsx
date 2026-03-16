@@ -84,7 +84,7 @@ function Intro({
   setShowIntro: (value: boolean) => void;
 }) {
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-black">
+    <div className="relative w-full min-h-screen bg-black">
       <video
         src="/3d.mp4"
         autoPlay
@@ -118,7 +118,7 @@ function Intro({
 
 function MainContent() {
   return (
-    <div className="w-full overflow-x-hidden transition-colors duration-300">
+    <div className="w-full transition-colors duration-300">
 
       {/* HERO */}
       <div className="relative z-20 w-full">
@@ -135,11 +135,11 @@ function MainContent() {
       <FAQChat />
       <Footer />
 
-     {/* CTA BUTTON */}
-<div className="hidden md:block fixed bottom-4 right-4 sm:right-6 z-50">
-  <Link
-    href="/courses"
-    className="
+      {/* CTA BUTTON */}
+      <div className="hidden md:block fixed bottom-4 right-4 sm:right-6 z-50">
+        <Link
+          href="/courses"
+          className="
       bg-[#00aee8] hover:bg-[#0095c6]
       text-white font-semibold
       flex items-center justify-center gap-2
@@ -148,11 +148,11 @@ function MainContent() {
       rounded-full shadow-xl
       hover:scale-105 transition-all
     "
-  >
-    <LogIn className="w-5 h-5" />
-    Asegurá tu lugar
-  </Link>
-</div>
+        >
+          <LogIn className="w-5 h-5" />
+          Asegurá tu lugar
+        </Link>
+      </div>
     </div>
   );
 }

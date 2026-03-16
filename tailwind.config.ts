@@ -3,7 +3,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // CLAVE: Activa el modo oscuro basado en la clase 'dark' en el <html>
-  darkMode: 'class', 
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',

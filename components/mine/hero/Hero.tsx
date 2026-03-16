@@ -6,22 +6,19 @@ import HeroBrandsCarrousel from "./HeroBrandsCarrousel";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../other/ThemeToggle";
-import { CinematicBackground } from "../about/About";
 
 const Hero = () => {
   return (
     <section className="relative w-full overflow-visible transition-colors duration-300">
 
-      <CinematicBackground />
-
       {/* CONTENIDO CENTRADO */}
-      <div className="w-full mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div className="w-full mx-auto max-w-[1400px] px-4 sm:px-8 md:px-12 lg:px-16">
 
         <div className="flex flex-col lg:flex-row items-center justify-between
-                        py-14 sm:py-16 lg:py-20 gap-10 lg:gap-16">
+                        py-12 sm:py-16 md:py-20 gap-10 md:gap-14 lg:gap-16">
 
           {/* Text */}
-          <div className="flex-1 w-full text-center lg:text-left space-y-6">
+          <div className="flex-1 w-full text-center lg:text-left space-y-6 lg:space-y-8">
 
             <h1 className="font-semibold text-gray-950 dark:text-white
               text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-tight break-words">
@@ -77,11 +74,18 @@ const Hero = () => {
           </div>
 
           {/* Slider */}
-          <div className="flex-1 w-full max-w-md sm:max-w-lg lg:max-w-xl">
+          <div className="flex-1 w-full max-w-md sm:max-w-lg lg:max-w-xl relative">
+
+            {/* CÍRCULO DIFUMINADO PARA EL HERO (Celeste en Light, Verde en Dark) */}
+            <div
+              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/20 rounded-full blur-[140px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+            />
+
+
             <div
               className="relative w-full aspect-[4/3]
               rounded-3xl overflow-hidden
-              shadow-xl shadow-black/20 dark:shadow-black/40"
+              shadow-xl shadow-black/20 dark:shadow-black/40 z-10"
             >
               <HeroSlider />
             </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import {
   CheckCircle,
@@ -15,13 +14,17 @@ import {
   MapPin,
   CreditCard,
   FileText,
-  Underline
+  Underline,
+  Snowflake,
+  Wind,
+  Zap
 } from "lucide-react";
 
 // --- ARRAY COMPLETO DE CURSOS ---
 const courses = [
   {
     id: 1,
+    Icon: Snowflake,
     title: "Refrigeracion I: Heladeras y Freezers",
     preview: "Aprende desde cero a reparar y mantener equipos, practicando directamente sobre heladeras y freezers reales.",
     summary: {
@@ -85,6 +88,7 @@ const courses = [
   },
   {
     id: 2,
+    Icon: Wind,
     title: "Refrigeracion II: Aire Acondicionado Split",
     preview: "Fórmate como técnico especializado en instalación y mantenimiento de equipos Split y Mini Split.",
     summary: {
@@ -145,6 +149,7 @@ const courses = [
   },
   {
     id: 3,
+    Icon: Zap,
     title: "Electricidad I: Instalaciones Eléctricas",
     preview: "Conviértete en técnico en instalaciones eléctricas domiciliarias y obtén certificado profesional.",
     summary: {
@@ -224,7 +229,7 @@ export default function CursosPage() {
 
   const sendWhatsapp = () => {
     if (!buyerName || !currentCourse) return;
-    const phone = currentCourse.structuredContent.contact.whatsapp.replace(/\D/g,'');
+    const phone = currentCourse.structuredContent.contact.whatsapp.replace(/\D/g, '');
     const message = `Hola, soy ${buyerName} y voy a enviar el comprobante de pago para el curso ${currentCourse.title}`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
@@ -233,18 +238,38 @@ export default function CursosPage() {
     { title: "Objetivo", content: currentCourse.structuredContent.objective },
     { title: "Duración y Horarios", content: `${currentCourse.structuredContent.duration} - ${currentCourse.structuredContent.modality}` },
     { title: "Ubicación", content: currentCourse.structuredContent.location },
-    { title: "Inversión", content: currentCourse.structuredContent.fees.map(f=>`${f.type}: ${f.amount}`).join(" | ") },
-    { title: "Contenidos", content: currentCourse.structuredContent.contents.map(c=>`${c.title}: ${c.points.join(", ")}`).join(" | ") },
+    { title: "Inversión", content: currentCourse.structuredContent.fees.map(f => `${f.type}: ${f.amount}`).join(" | ") },
+    { title: "Contenidos", content: currentCourse.structuredContent.contents.map(c => `${c.title}: ${c.points.join(", ")}`).join(" | ") },
     { title: "Actividades", content: currentCourse.structuredContent.activities.join(" | ") },
     { title: "Requisitos", content: currentCourse.structuredContent.requirements.join(" | ") },
     { title: "Contacto", content: `${currentCourse.structuredContent.contact.whatsapp} | ${currentCourse.structuredContent.contact.email} | ${currentCourse.structuredContent.contact.instagram}` }
   ] : [];
 
   return (
-  <div className="flex items-center min-h-screen text-gray-900 dark:text-white transition-colors duration-300 lg:h-[100vh]">
-     <main className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-16 overflow-hidden">
 
-  <div className="
+      {/* CÍRCULO VERDE DIFUMINADO (Celeste en Light, Verde en Dark) */}
+      <div
+        className="absolute top-[5%] left-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-green-500/30 dark:bg-green-400/20 rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+      />
+
+      <main className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+
+        {/* HEADER DE CURSOS */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-950 dark:text-white tracking-tight"
+          >
+            Nuestros Cursos
+          </h1>
+          <p
+            className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+          >
+            Fórmate con profesionales técnicos y adquiere las habilidades prácticas y teóricas necesarias para destacarse como especialista en el rubro, asegurándote un perfil de altísima exigencia laboral.
+          </p>
+        </div>
+
+        <div className="
     grid 
     grid-cols-1 
     sm:grid-cols-2 
@@ -254,80 +279,76 @@ export default function CursosPage() {
     items-stretch
   ">
 
-    {courses.map((course) => (
-      
-      <motion.div
-        key={course.id}
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.2 }}
-        className="
-          bg-white dark:bg-gray-800
-          shadow-lg hover:shadow-2xl
+          {courses.map((course) => (
+
+            <div
+              key={course.id}
+              className="
+          bg-white dark:bg-gray-900/40 dark:backdrop-blur-xl
+          shadow-lg hover:shadow-2xl dark:shadow-black/50
           rounded-2xl
           p-5 sm:p-6
           flex flex-col
-          border border-gray-100 dark:border-gray-700
+          border border-gray-100 dark:border-white/10
           h-full
+          transition-all duration-300 hover:scale-[1.03]
         "
-      >
-        {/* TÍTULO */}
-        <h2 className="
-          text-xl sm:text-2xl
-          font-bold 
-          text-blue-500 
-          flex items-start gap-2 
-          mb-3 sm:mb-4 
-          line-clamp-2
-        ">
-          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 mt-1" />
-          {course.title}
-        </h2>
+            >
+              {/* TÍTULO */}
+              <div className="flex items-start gap-4 mb-4 sm:mb-5">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-xl border border-blue-100 dark:border-blue-800/30 flex-shrink-0 shadow-sm">
+                  <course.Icon className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white leading-tight line-clamp-3 my-auto">
+                  {course.title}
+                </h2>
+              </div>
 
-        {/* PREVIEW */}
-        <p className="
+              {/* PREVIEW */}
+              <p className="
           text-gray-700 dark:text-gray-300 
           text-sm sm:text-base
           mb-4 
           line-clamp-3
         ">
-          {course.preview}
-        </p>
+                {course.preview}
+              </p>
 
-        {/* IMÁGENES */}
-        <div className="
+              {/* IMÁGENES */}
+              <div className="
           grid grid-cols-2 
           gap-2 sm:gap-3 
           mt-3 
           h-[180px] sm:h-[220px] lg:h-[240px]
         ">
-          {course.images.map((img, idx) => (
-            <div
-              key={idx}
-              className="relative w-full h-full rounded-xl overflow-hidden"
-            >
-              <Image
-                src={img}
-                alt={`Imagen ${course.title}`}
-                fill
-                className="object-cover transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-          ))}
-        </div>
+                {course.images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="relative w-full h-full rounded-xl overflow-hidden"
+                  >
+                    <Image
+                      src={img}
+                      alt={`Imagen ${course.title}`}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
 
-        {/* BOTONES */}
-        <div className="
+              {/* BOTONES */}
+              <div className="
           mt-auto 
           pt-5 
           flex 
           flex-col sm:flex-row 
           gap-3
         ">
-          <button
-            onClick={() => openInfoModal(course.id)}
-            className="
+                <button
+                  onClick={() => openInfoModal(course.id)}
+                  className="
               w-full sm:w-1/2
-              bg-blue-500 hover:bg-blue-600
+              bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600
               text-white 
               py-2.5
               rounded-lg 
@@ -336,14 +357,14 @@ export default function CursosPage() {
               shadow-md
               transition
             "
-          >
-            <BookOpen className="w-5 h-5" />
-            Ver más
-          </button>
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Ver más
+                </button>
 
-          <button
-            onClick={() => openBuyModal(course.id)}
-            className="
+                <button
+                  onClick={() => openBuyModal(course.id)}
+                  className="
               w-full sm:w-1/2
               bg-green-500 hover:bg-green-600
               text-white 
@@ -354,19 +375,19 @@ export default function CursosPage() {
               shadow-md
               transition
             "
-          >
-            <CheckCircle className="w-5 h-5" />
-            Comprar
-          </button>
+                >
+                  <CheckCircle className="w-5 h-5" />
+                  Comprar
+                </button>
+              </div>
+
+            </div>
+
+          ))}
+
         </div>
 
-      </motion.div>
-
-    ))}
-
-  </div>
-
-</main>
+      </main>
 
       {/* MODAL INFO */}
       {showInfoModal && currentCourse && (
@@ -374,16 +395,13 @@ export default function CursosPage() {
           className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4"
           onClick={closeModals}
         >
-          <motion.div
-            className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-[95vw] md:w-[60vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200 dark:border-gray-700"
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+          <div
+            className="bg-white dark:bg-gray-900/90 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(16,185,129,0.15)] w-[95vw] md:w-[60vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200 dark:border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-              
+            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-emerald-400 to-cyan-500 text-white">
+
               <div className="flex items-center gap-3 text-xl font-bold">
                 <BookOpen className="w-6 h-6" />
                 {currentCourse.summary.title}
@@ -405,7 +423,7 @@ export default function CursosPage() {
                   {/* INFO GENERAL EN CARDS */}
                   <div className="grid md:grid-cols-3 gap-4">
 
-                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
                       <Clock className="w-6 h-6 text-blue-500" />
                       <div>
                         <p className="text-xs text-gray-500">Duración</p>
@@ -413,7 +431,7 @@ export default function CursosPage() {
                       </div>
                     </div>
 
-                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
                       <FileText className="w-6 h-6 text-blue-500" />
                       <div>
                         <p className="text-xs text-gray-500">Modalidad</p>
@@ -421,7 +439,7 @@ export default function CursosPage() {
                       </div>
                     </div>
 
-                    <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-sm">
+                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
                       <Target className="w-6 h-6 text-blue-500" />
                       <div>
                         <p className="text-xs text-gray-500">Nivel</p>
@@ -442,9 +460,9 @@ export default function CursosPage() {
                       {currentCourse.summary.learnings.map((l, i) => (
                         <div
                           key={i}
-                          className="flex items-start gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-sm"
+                          className="flex items-start gap-3 bg-gray-50/80 dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-white/5 transition hover:bg-white dark:hover:bg-gray-800/50"
                         >
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-1" />
+                          <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" />
                           <p className="text-sm text-gray-700 dark:text-gray-300">
                             {l}
                           </p>
@@ -456,7 +474,7 @@ export default function CursosPage() {
                   {/* BOTÓN DETALLES */}
                   <button
                     onClick={() => setShowDetails(true)}
-                    className="mt-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:opacity-90 text-white py-3 px-6 rounded-xl font-semibold w-full shadow-lg transition"
+                    className="mt-6 bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600 text-white py-3 px-6 rounded-xl font-semibold w-full shadow-lg transition"
                   >
                     Ver todos los detalles
                   </button>
@@ -465,158 +483,174 @@ export default function CursosPage() {
               ) : (
                 <div className="space-y-8">
 
-    {/* OBJETIVO */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
-        <Target className="w-5 h-5"/>
-        Objetivo
-      </h3>
-      <p className="text-sm text-gray-700 dark:text-gray-300">
-        {currentCourse.structuredContent.objective}
-      </p>
-    </div>
+                  {/* OBJETIVO */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-3 text-cyan-500 flex items-center gap-2">
+                      <Target className="w-5 h-5" />
+                      Objetivo
+                    </h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {currentCourse.structuredContent.objective}
+                    </p>
+                  </div>
 
-    {/* DURACIÓN */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
-        <Clock className="w-5 h-5"/>
-        Duración y Modalidad
-      </h3>
-      <p className="text-sm">{currentCourse.structuredContent.duration}</p>
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        {currentCourse.structuredContent.modality}
-      </p>
-    </div>
+                  {/* DURACIÓN */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-3 text-cyan-500 flex items-center gap-2">
+                      <Clock className="w-5 h-5" />
+                      Duración y Modalidad
+                    </h3>
+                    <p className="text-sm">{currentCourse.structuredContent.duration}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {currentCourse.structuredContent.modality}
+                    </p>
+                  </div>
 
-    {/* CONTENIDOS */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-4 text-blue-500 flex items-center gap-2">
-        <BookOpen className="w-5 h-5"/>
-        Contenidos
-      </h3>
+                  {/* CONTENIDOS */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-5 text-cyan-500 flex items-center gap-2">
+                      <BookOpen className="w-5 h-5" />
+                      Contenidos
+                    </h3>
 
-      <div className="space-y-4">
-        {currentCourse.structuredContent.contents.map((c, i) => (
-          <div key={i}>
-            <h4 className="font-semibold mb-2">{c.title}</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-              {c.points.map((p, j) => (
-                <li key={j}>{p}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
+                    <div className="space-y-4">
+                      {currentCourse.structuredContent.contents.map((c, i) => (
+                        <div key={i}>
+                          <h4 className="font-semibold mb-2">{c.title}</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            {c.points.map((p, j) => (
+                              <li key={j}>{p}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-    {/* ACTIVIDADES */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500">
-        Actividades
-      </h3>
-      <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-        {currentCourse.structuredContent.activities.map((a, i) => (
-          <li key={i}>{a}</li>
-        ))}
-      </ul>
-    </div>
+                  {/* ACTIVIDADES */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
+                      Actividades
+                    </h3>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                      {currentCourse.structuredContent.activities.map((a, i) => (
+                        <li key={i}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-    {/* REQUISITOS */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500">
-        Requisitos
-      </h3>
-      <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-        {currentCourse.structuredContent.requirements.map((r, i) => (
-          <li key={i}>{r}</li>
-        ))}
-      </ul>
-    </div>
+                  {/* REQUISITOS */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
+                      Requisitos
+                    </h3>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                      {currentCourse.structuredContent.requirements.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-    {/* INVERSIÓN */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500 flex items-center gap-2">
-        <CreditCard className="w-5 h-5"/>
-        Inversión
-      </h3>
-      <ul className="space-y-1 text-sm">
-        {currentCourse.structuredContent.fees.map((f, i) => (
-          <li key={i}>
-            <strong>{f.type}:</strong> {f.amount}
-          </li>
-        ))}
-      </ul>
-    </div>
+                  {/* INVERSIÓN */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-4 text-cyan-500 flex items-center gap-2">
+                      <CreditCard className="w-5 h-5" />
+                      Inversión
+                    </h3>
+                    <ul className="space-y-1 text-sm">
+                      {currentCourse.structuredContent.fees.map((f, i) => (
+                        <li key={i}>
+                          <strong>{f.type}:</strong> {f.amount}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-    {/* CONTACTO */}
-    <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="font-bold text-lg mb-3 text-blue-500">
-        Contacto
-      </h3>
-      <div className="space-y-2 text-sm">
-        <p className="flex items-center gap-2">
-          <Phone className="w-4 h-4 text-green-500"/>
-          {currentCourse.structuredContent.contact.whatsapp}
-        </p>
-        <p className="flex items-center gap-2">
-          <Mail className="w-4 h-4 text-blue-500"/>
-          {currentCourse.structuredContent.contact.email}
-        </p>
-        <p className="flex items-center gap-2">
-          <Instagram className="w-4 h-4 text-pink-500"/>
-          {currentCourse.structuredContent.contact.instagram}
-        </p>
-      </div>
-    </div>
+                  {/* CONTACTO */}
+                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
+                      Contacto
+                    </h3>
+                    <div className="space-y-2 text-sm">
+                      <p className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-green-500" />
+                        {currentCourse.structuredContent.contact.whatsapp}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <Mail className="w-4 h-4 text-blue-500" />
+                        {currentCourse.structuredContent.contact.email}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <Instagram className="w-4 h-4 text-pink-500" />
+                        {currentCourse.structuredContent.contact.instagram}
+                      </p>
+                    </div>
+                  </div>
 
-  </div>
+                </div>
               )}
 
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
 
       {/* MODAL COMPRA */}
       {showBuyModal && currentCourse && (
         <div
-  className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4"
-  onClick={closeModals}
->
-  <motion.div
-    className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[90vw] md:w-[40vw] p-6 relative"
-    initial={{ scale: 0.8, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    onClick={(e) => e.stopPropagation()}
-  >
-    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-      <CreditCard className="w-5 h-5" /> Comprar {currentCourse.title}
-    </h3>
+          className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4"
+          onClick={closeModals}
+        >
+          <div
+            className="bg-white dark:bg-gray-900/95 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(16,185,129,0.15)] w-[90vw] md:w-[40vw] p-8 relative border border-gray-200 dark:border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={closeModals}
+              className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition text-gray-500 dark:text-gray-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+            </button>
 
-    {/* Alias destacado */}
-    <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-      Transfiere el dinero al siguiente alias:{" "}
-      <u className="font-semibold text-blue-500">aircool.miceli</u>
-      <br />
-       <span> Asi podremos darte acceso al curso.</span>
-    </p>
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
+              <span className="p-2.5 rounded-xl bg-blue-50 dark:bg-white/5 text-blue-500 dark:text-cyan-400">
+                <CreditCard className="w-5 h-5 sm:w-6 sm:h-6" />
+              </span>
+              Inscripción
+            </h3>
 
-    <input
-      type="text"
-      value={buyerName}
-      onChange={(e) => setBuyerName(e.target.value)}
-      placeholder="Nombre completo de la persona que tomara el curso"
-      className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
-    />
+            {/* Alias destacado */}
+            <div className="mb-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+              <p className="text-sm text-gray-700 dark:text-emerald-100 leading-relaxed mb-2">
+                Transfiere el importe al siguiente alias para asegurar tu lugar:
+              </p>
+              <p className="text-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wide text-center py-2 bg-white dark:bg-black/20 rounded-lg">
+                aircool.miceli
+              </p>
+            </div>
 
-    <button
-      onClick={sendWhatsapp}
-      className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2"
-    >
-      <CheckCircle className="w-5 h-5" /> Enviar comprobante a WhatsApp
-    </button>
-  </motion.div>
-</div>
+            <div className="space-y-4 mb-8">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 ml-1">
+                ¿A nombre de quién estará anotado el curso?
+              </label>
+              <input
+                type="text"
+                value={buyerName}
+                onChange={(e) => setBuyerName(e.target.value)}
+                placeholder="Nombre completo"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all"
+              />
+            </div>
+
+            <button
+              onClick={sendWhatsapp}
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+            >
+              <CheckCircle className="w-6 h-6" /> Enviar comprobante a WhatsApp
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

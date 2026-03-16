@@ -14,7 +14,7 @@ import {
 
 /* =========================
    Items
-========================= */
+ ========================= */
 
 const benefitsData = [
   {
@@ -66,28 +66,31 @@ const benefitsData = [
 
 /* =========================
    Component
-========================= */
+ ========================= */
 
 export default function ActionSection() {
   return (
-    <section className="relative w-full overflow-visible px-6 md:px-20">
-
+    <section className="relative w-full overflow-visible px-4 sm:px-8 md:px-12 lg:px-20 py-20 md:py-32">
+      {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
+      <div
+        className="absolute top-1/2 left-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+      />
       {/* CONTENIDO */}
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-20">
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-20">
 
         {/* TÍTULO PRINCIPAL + SUBTÍTULO */}
         <div className="text-center space-y-4 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-semibold text-blue-400  leading-tight">
+          <h2 className="font-heading tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-950 dark:text-white leading-tight">
             El valor de ser imprescindible
           </h2>
 
-          <p className="text-gray-950 dark:text-gray-300 text-base md:text-lg">
+          <p className="text-gray-950 dark:text-gray-300 text-sm sm:text-base md:text-lg">
             La refrigeración ha transitado de ser un lujo a una necesidad prioritaria. Durante las olas de calor, su función es salvaguardar vidas, y en invierno asegura la conservación vital de los alimentos, industrias y comercios funcionales, lo cual constituye una prioridad ineludible.
           </p>
         </div>
 
         {/* GRID DE ITEMS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-14 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-x-12 md:gap-y-14 w-full">
           {benefitsData.map((benefit, index) => {
             const Icon = benefit.icon;
             return (

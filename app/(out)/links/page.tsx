@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from "framer-motion";
 import { BookOpen, MonitorPlay, Calendar, Library, Bell, ChevronDown } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -24,83 +23,79 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
-      // CAMBIO CLAVE: Volvemos a mt-0 (pegado) para que se vea junto al botón.
-      className="absolute top-full mt-0 w-full min-w-[200px] bg-gray-800 rounded-lg shadow-xl overflow-hidden z-20 border border-gray-700" 
+    <div
+      className="absolute top-full mt-2 w-full min-w-[220px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-20 border border-gray-200 dark:border-white/10"
     >
-      <ul className="py-1">
+      <ul className="py-2">
         {items.map((item, index) => (
           <li key={index}>
             <a
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover:text-white transition duration-150"
+              className="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-white/5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
             >
               {item.name}
             </a>
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 };
 
 // --------------------------------------------------
-// 2. COMPONENTE ButtonEnlace
+// 2. COMPONENTE CardEnlace
 // --------------------------------------------------
 
-interface ButtonEnlaceProps {
-  children: React.ReactNode;
-  colorClass: string;
+interface CardEnlaceProps {
+  title: string;
+  description: string;
   link: string;
   Icon: LucideIcon;
   dropdownItems?: DropdownItem[];
 }
 
-const ButtonEnlace = ({ children, colorClass, link, Icon, dropdownItems }: ButtonEnlaceProps) => {
+const CardEnlace = ({ title, description, link, Icon, dropdownItems }: CardEnlaceProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasDropdown = dropdownItems && dropdownItems.length > 0;
 
-  if (!hasDropdown) {
-    return (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap`}
-      >
-        <Icon size={20} />
-        <span>{children}</span>
-      </a>
-    );
-  }
+  const buttonStyle = "mt-6 flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600 text-white rounded-xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-95 w-full font-medium whitespace-nowrap";
 
   return (
-    // SOLUCIÓN DE HOVER: Se usa m-[-0.5rem] p-2 para expandir el área de detección 
-    // del contenedor padre. Esto crea un "radar" invisible alrededor del botón
-    // y del menú pegado, asegurando que no se cierre accidentalmente.
     <div
-      className="relative inline-block m-[-0.5rem] p-2" 
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      className={`flex flex-col h-full bg-white dark:bg-gray-900/40 dark:backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-2xl p-6 sm:p-8 shadow-lg transition-all hover:shadow-2xl relative hover:-translate-y-1 ${isOpen ? "z-50" : "z-10"
+        }`}
     >
-      <div
-        className={`flex items-center space-x-2 px-6 py-3 ${colorClass} rounded-lg shadow-lg transition hover:scale-[1.02] whitespace-nowrap cursor-pointer`} 
-      >
-        <Icon size={20} />
-        <span>{children}</span>
-        <ChevronDown
-          size={20}
-          className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-        />
+      <div className="flex items-center gap-4 mb-4">
+        <div className="bg-emerald-50 dark:bg-white/5 p-3 rounded-xl border border-emerald-100 dark:border-white/10 text-emerald-500">
+          <Icon size={28} />
+        </div>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading text-gray-900 dark:text-white leading-tight">
+          {title}
+        </h2>
       </div>
+      <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base mb-auto">
+        {description}
+      </p>
 
-      <DropdownMenu items={dropdownItems} isOpen={isOpen} />
+      {hasDropdown ? (
+        <div
+          className="relative inline-block w-full"
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+        >
+          <div className={`${buttonStyle} cursor-pointer`}>
+            <span>Acceder</span>
+            <ChevronDown size={20} className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
+          </div>
+          <DropdownMenu items={dropdownItems} isOpen={isOpen} />
+        </div>
+      ) : (
+        <a href={link} target="_blank" rel="noopener noreferrer" className={buttonStyle}>
+          <span>Acceder</span>
+        </a>
+      )}
     </div>
   );
 };
@@ -131,83 +126,46 @@ const DashboardCompuesto = () => {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      <video
-        src="/aircool.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover filter blur-[5px] scale-[1.1]"
-      />
+    <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-32 overflow-visible">
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 lg:px-8">
-        <motion.h1
-          className="text-5xl lg:text-7xl font-extrabold mb-4 text-center font-poppins drop-shadow-lg"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Portal del estudiante
-        </motion.h1>
 
-        <motion.p
-          className="text-lg lg:text-3xl text-center font-light font-poppins opacity-90 drop-shadow-md mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-        >
-          Navegación rápida y recursos destacados
-        </motion.p>
 
-        <motion.div
-          className="flex flex-row flex-wrap justify-center gap-4 max-w-4xl" 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, staggerChildren: 0.1, duration: 0.5 }}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pt-10">
+
+        {/* HEADER DE LINKS */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <h1
+            className="font-heading tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-950 dark:text-white"
+          >
+            Portal del estudiante
+          </h1>
+
+          <p
+            className="text-lg md:text-xl text-center text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto"
+          >
+            Navegación rápida y recursos destacados. Seleccioná el portal al que deseas ingresar con tu cuenta institucional.
+          </p>
+        </div>
+
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-4xl px-2"
         >
-          <ButtonEnlace
-            colorClass="bg-blue-600 hover:bg-blue-700"
+          <CardEnlace
+            title="Cursos"
+            description="Accede a todo el material teórico, videoclases y evaluaciones de los cursos a los que estás inscripto."
             link={fakeLinks.cursos}
             Icon={BookOpen}
             dropdownItems={cursosItems}
-          >
-            Cursos
-          </ButtonEnlace>
+          />
 
-          <ButtonEnlace
-            colorClass="bg-cyan-500 hover:bg-cyan-600"
+          <CardEnlace
+            title="Clases en vivo"
+            description="Conectate a las clases sincrónicas con los profesores e interactuá con tus compañeros del curso."
             link={fakeLinks.clases}
             Icon={MonitorPlay}
             dropdownItems={clasesItems}
-          >
-            Clases en Vivo
-          </ButtonEnlace>
-
-          <ButtonEnlace
-            colorClass="bg-indigo-500 hover:bg-indigo-600"
-            link={fakeLinks.calendario}
-            Icon={Calendar}
-          >
-            Calendario
-          </ButtonEnlace>
-
-          <ButtonEnlace
-            colorClass="bg-purple-600 hover:bg-purple-700"
-            link={fakeLinks.biblioteca}
-            Icon={Library}
-          >
-            Biblioteca
-          </ButtonEnlace>
-
-          <ButtonEnlace
-            colorClass="bg-rose-500 hover:bg-rose-600"
-            link={fakeLinks.avisos}
-            Icon={Bell}
-          >
-            Avisos
-          </ButtonEnlace>
-        </motion.div>
+          />
+        </div>
       </div>
     </div>
   );
