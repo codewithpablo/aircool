@@ -645,9 +645,14 @@ export default function CursosPage() {
 
             <button
               onClick={sendWhatsapp}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 
+                         text-white py-4 rounded-xl font-bold 
+                         text-sm sm:text-base md:text-lg 
+                         flex items-center justify-center gap-2 sm:gap-3 
+                         shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
             >
-              <CheckCircle className="w-6 h-6" /> Enviar comprobante a WhatsApp
+              <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> 
+              <span>Enviar comprobante a WhatsApp</span>
             </button>
           </div>
         </div>

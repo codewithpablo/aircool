@@ -71,7 +71,7 @@ const learnUnits = [
 
 export default function UnitsSection() {
   return (
-    <section className=" relative w-full  overflow-visible bg-tranparent pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-12 lg:px-20 py-20 md:py-32">
+    <section className=" relative w-full overflow-visible bg-transparent px-4 sm:px-6 md:px-12 lg:px-20 pt-2 pb-6 sm:py-10 md:py-16">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
         className="absolute top-1/2 right-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform translate-x-1/2 -translate-y-1/2"
@@ -80,11 +80,14 @@ export default function UnitsSection() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Título */}
-        <h2
-          className="pt-32 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight text-center text-gray-950 dark:text-white mb-8 sm:mb-10 md:mb-12"
-        >
-          ¿Qué vas a aprender?
-        </h2>
+        <div className="flex flex-col items-center text-center space-y-6 mb-8 sm:mb-10 md:mb-12">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full" />
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 dark:from-white dark:via-white dark:to-gray-400"
+          >
+            ¿Qué vas a aprender?
+          </h2>
+        </div>
 
         {/* Grid */}
         <div
@@ -115,17 +118,16 @@ export default function UnitsSection() {
               </div>
 
               {/* Texto */}
-              <div className="p-3 sm:p-4 space-y-2">
-                <div className="flex items-start gap-2">
-                  <div className="flex-shrink-0 mt-0.5">
-                    {unit.icon}
-                  </div>
-                  <h3 className="text-xs sm:text-sm md:text-base font-medium text-gray-950 dark:text-gray-50 leading-snug">
-                    {unit.title}
-                  </h3>
+              <div className="p-5 sm:p-6 flex flex-col items-center text-center space-y-3 flex-1">
+                <div className="p-3 bg-blue-500/10 dark:bg-blue-400/10 rounded-xl mb-1">
+                  {unit.icon}
                 </div>
+                
+                <h3 className="text-sm sm:text-base font-bold text-gray-950 dark:text-gray-50 leading-tight uppercase tracking-tight">
+                  {unit.title}
+                </h3>
 
-                <p className="text-gray-950 dark:text-gray-400 text-xs md:text-sm leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
                   {unit.description}
                 </p>
               </div>

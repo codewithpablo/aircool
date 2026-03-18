@@ -6,7 +6,7 @@ import { Clock2Icon, MapPin, Users } from "lucide-react";
 
 export default function EventSection() {
   return (
-    <section className="relative px-4 sm:px-6 md:px-10 lg:px-16 overflow-visible py-20 md:py-32 min-h-screen flex items-center justify-center">
+    <section className="relative px-4 sm:px-6 md:px-10 lg:px-16 overflow-visible pt-2 pb-6 sm:py-16 md:py-24 flex items-center justify-center">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
         className="absolute top-1/2 left-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
@@ -17,10 +17,11 @@ export default function EventSection() {
         >
 
           {/* middle: presentation text */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left space-y-6">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-heading tracking-tight leading-tight text-gray-950 dark:text-white">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-6">
+            <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-semibold tracking-tighter leading-tight text-transparent bg-clip-text bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 dark:from-white dark:via-white dark:to-gray-400 uppercase">
               ¡No te pierdas el evento en el
-              <span className="block text-blue-500">Domo del Centenario</span>
+              Domo del Centenario!
             </h2>
             <p className="mt-4 text-base sm:text-lg lg:text-xl text-gray-950 dark:text-gray-300">
               Una experiencia profesional de tres días que reunirá a los

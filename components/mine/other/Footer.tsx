@@ -9,7 +9,7 @@ export default function Footer() {
       <div
         className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[140px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
       />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-20 py-16 md:py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-20 py-8 md:py-16">
 
         {/* CONTENIDO */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 items-start text-gray-950 dark:text-gray-200">

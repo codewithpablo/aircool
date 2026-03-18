@@ -104,11 +104,14 @@ export default function TeachersSection() {
       <div
         className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
       />
-      <h2 className="pt-16 md:pt-24 pb-10 md:pb-12 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight text-gray-950 dark:text-white relative z-10">
-        Fundadores y equipo
-      </h2>
+      <div className="flex-col items-center text-center space-y-4 pt-2 md:pt-16 pb-4 md:pb-10 relative z-10 hidden sm:flex">
+        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full" />
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 dark:from-white dark:via-white dark:to-gray-400">
+          Fundadores
+        </h2>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-[1400px] mx-auto pb-16 md:pb-24 relative z-10 px-4 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-[1400px] mx-auto pb-8 md:pb-16 relative z-10 px-4 lg:px-8">
         {teachers.map((t, i) => {
           const active = imgIndex[i] || 0;
 

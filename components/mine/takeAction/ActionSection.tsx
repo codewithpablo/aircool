@@ -70,7 +70,7 @@ const benefitsData = [
 
 export default function ActionSection() {
   return (
-    <section className="relative w-full overflow-visible px-4 sm:px-8 md:px-12 lg:px-20 py-20 md:py-32">
+    <section className="relative w-full overflow-visible px-4 sm:px-8 md:px-12 lg:px-20 pt-2 pb-6 sm:py-10 md:py-16">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
         className="absolute top-1/2 left-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
@@ -79,8 +79,9 @@ export default function ActionSection() {
       <div className="relative z-10 flex flex-col items-center justify-center max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-20">
 
         {/* TÍTULO PRINCIPAL + SUBTÍTULO */}
-        <div className="text-center space-y-4 max-w-4xl">
-          <h2 className="font-heading tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-950 dark:text-white leading-tight">
+        <div className="text-center space-y-6 max-w-4xl flex flex-col items-center mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full mb-2" />
+          <h2 className="font-semibold tracking-tighter text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 dark:from-white dark:via-white dark:to-gray-400 leading-tight uppercase">
             El valor de ser imprescindible
           </h2>
 

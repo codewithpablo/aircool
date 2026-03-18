@@ -32,7 +32,7 @@ const stats = [
 export default function StatsSection() {
   return (
     <section
-      className="mb-20 lg:mb-32 relative py-20 lg:py-32 w-full overflow-visible
+      className="mb-4 sm:mb-16 relative pt-2 pb-6 sm:py-16 w-full overflow-visible
                  text-[#50A2FF] 
                  flex items-center justify-center"
     >
@@ -55,8 +55,9 @@ export default function StatsSection() {
 
       <div className="relative max-w-7xl w-full px-4 sm:px-6 md:px-10">
         {/* 🎬 TITLE */}
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="font-heading tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-gray-950 dark:text-white">
+        <div className="text-center mb-16 md:mb-24 flex flex-col items-center space-y-6">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full" />
+          <h2 className="font-semibold tracking-tighter text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 dark:from-white dark:via-white dark:to-gray-400 uppercase">
             Resultados que hablan por sí solos
           </h2>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed

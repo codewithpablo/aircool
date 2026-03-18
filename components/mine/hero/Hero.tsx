@@ -94,7 +94,7 @@ const Hero = () => {
       </div>
 
       {/* BRANDS */}
-      <div className="w-full py-12 overflow-hidden">
+      <div className="w-full pt-6 pb-2 sm:pt-10 sm:pb-8 lg:pt-12 lg:pb-12 overflow-hidden">
         <HeroBrandsCarrousel />
       </div>
 
