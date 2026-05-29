@@ -60,7 +60,7 @@ const CardEnlace = ({ title, description, link, Icon, dropdownItems }: CardEnlac
   const [isOpen, setIsOpen] = useState(false);
   const hasDropdown = dropdownItems && dropdownItems.length > 0;
 
-  const buttonStyle = "mt-6 flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600 text-white rounded-xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-95 w-full font-medium whitespace-nowrap";
+  const buttonStyle = "mt-6 flex items-center justify-center space-x-2 px-6 py-3 bg-white/90 dark:bg-slate-800/95 text-slate-950 dark:text-white rounded-full shadow-lg shadow-black/10 dark:shadow-black/30 transition-all hover:bg-white dark:hover:bg-slate-700 active:scale-95 w-full font-medium whitespace-nowrap";
 
   return (
     <div
@@ -127,8 +127,17 @@ const DashboardCompuesto = () => {
 
   return (
     <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-32 overflow-visible">
-
-
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          src="/aircool.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+      </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pt-10">
 

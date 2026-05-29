@@ -74,7 +74,7 @@ export default function UnitsSection() {
     <section className=" relative w-full overflow-visible bg-transparent px-4 sm:px-6 md:px-12 lg:px-20 pt-2 pb-6 sm:py-10 md:py-16">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
-        className="absolute top-1/2 right-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform translate-x-1/2 -translate-y-1/2"
+        className="absolute top-1/2 right-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-gray-950/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform translate-x-1/2 -translate-y-1/2"
       />
       {/* Contenido */}
       <div className="relative z-10 flex flex-col items-center">

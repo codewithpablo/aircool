@@ -102,7 +102,7 @@ export default function TeachersSection() {
     <section className="relative w-full px-4 sm:px-6 md:px-10 lg:px-16 overflow-visible">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
-        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-gray-950/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
       />
       <div className="flex-col items-center text-center space-y-4 pt-2 md:pt-16 pb-4 md:pb-10 relative z-10 hidden sm:flex">
         <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-sky-400 dark:from-blue-500 dark:to-emerald-500 rounded-full" />

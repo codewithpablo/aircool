@@ -7,7 +7,7 @@ export default function ScarcityBanner() {
     "Cupos limitados para nuestros cursos. ¡Ingresa al campus como alumno e inscribite!";
 
   return (
-    <div className="w-full overflow-hidden bg-gray-800 dark:bg-gradient-to-r dark:from-gray-950 dark:via-green-900 dark:to-gray-950 text-white py-1.5 font-semibold text-sm flex items-center">
+    <div className="w-full overflow-hidden bg-gray-800 dark:bg-gradient-to-r dark:from-gray-950 dark:via-gray-950 dark:to-gray-950 text-white py-1.5 font-semibold text-sm flex items-center">
       <AlertTriangle size={16} className="text-yellow-400 mx-3 shrink-0" />
 
       {/* Carrusel infinito */}

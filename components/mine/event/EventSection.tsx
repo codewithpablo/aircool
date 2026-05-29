@@ -9,7 +9,7 @@ export default function EventSection() {
     <section className="relative px-4 sm:px-6 md:px-10 lg:px-16 overflow-visible pt-2 pb-6 sm:py-16 md:py-24 flex items-center justify-center">
       {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
       <div
-        className="absolute top-1/2 left-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute top-1/2 left-0 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-gray-950/10 rounded-full blur-[120px] lg:blur-[160px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
       />
       <div className="max-w-6xl mx-auto w-full">
         <div

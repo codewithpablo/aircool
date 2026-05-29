@@ -31,9 +31,9 @@ export const GlobalCinematicBackground = () => (
             }}
         />
 
-        {/* CÍRCULO DIFUMINADO GLOBAL (Celeste en Light, Verde en Dark) */}
+        {/* CÍRCULO DIFUMINADO GLOBAL (Celeste en Light, Gris oscuro en Dark) */}
         <div
-            className="absolute top-0 left-[30%] w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/40 dark:bg-green-400/20 rounded-full blur-[140px] lg:blur-[180px] pointer-events-none z-0"
+            className="absolute top-0 left-[30%] w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/40 dark:bg-gray-950/20 rounded-full blur-[140px] lg:blur-[180px] pointer-events-none z-0"
             style={{ transform: "translate(-10vw, -10vh) scale(1)" }}
         />
     </div>

@@ -207,8 +207,16 @@ export default function FaqSection() {
 
             {/* CÍRCULO DIFUMINADO (Celeste en Light, Verde en Dark) */}
             <div
-              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-green-500/20 rounded-full blur-[140px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-blue-400/50 dark:bg-gray-950/20 rounded-full blur-[140px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
             />
+
+            {/* BLURRED GREEN CIRCLE BEHIND GIF (dark mode only) */}
+            <div className="absolute inset-0 hidden dark:flex items-center justify-center pointer-events-none z-0">
+              <div
+                className="w-[520px] h-[520px] bg-green-500/35 rounded-full blur-[120px] transform translate-y-8"
+                style={{ zIndex: 5 }}
+              />
+            </div>
 
             {/* NUBE / DIÁLOGO PROFESIONAL */}
             {isTalking && chunks.length > 0 && (

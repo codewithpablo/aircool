@@ -248,9 +248,9 @@ export default function CursosPage() {
   return (
     <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-16 overflow-hidden">
 
-      {/* CÍRCULO VERDE DIFUMINADO (Celeste en Light, Verde en Dark) */}
+      {/* CÍRCULO DIFUMINADO NEUTRO */}
       <div
-        className="absolute top-[5%] left-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-green-500/30 dark:bg-green-400/20 rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute top-[5%] left-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-slate-500/20 dark:bg-gray-950/20 rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2"
       />
 
       <main className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -348,7 +348,7 @@ export default function CursosPage() {
                   onClick={() => openInfoModal(course.id)}
                   className="
               w-full sm:w-1/2
-              bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600
+              bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600
               text-white 
               py-2.5
               rounded-lg 
@@ -366,7 +366,7 @@ export default function CursosPage() {
                   onClick={() => openBuyModal(course.id)}
                   className="
               w-full sm:w-1/2
-              bg-green-500 hover:bg-green-600
+              bg-sky-500 hover:bg-cyan-600
               text-white 
               py-2.5
               rounded-lg 
@@ -396,22 +396,28 @@ export default function CursosPage() {
           onClick={closeModals}
         >
           <div
-            className="bg-white dark:bg-gray-900/90 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(16,185,129,0.15)] w-[95vw] md:w-[60vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200 dark:border-white/10"
+            className="bg-white/95 dark:bg-gray-950/95 rounded-[2.5rem] shadow-2xl shadow-slate-900/10 dark:shadow-black/40 w-[95vw] md:w-[65vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200/60 dark:border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-emerald-400 to-cyan-500 text-white">
-
-              <div className="flex items-center gap-3 text-xl font-bold">
-                <BookOpen className="w-6 h-6" />
-                {currentCourse.summary.title}
+            <div className="flex flex-col gap-4 px-8 py-6 border-b border-gray-200 dark:border-gray-800 bg-slate-950 text-white">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 text-xl sm:text-2xl font-semibold">
+                  <BookOpen className="w-6 h-6 text-cyan-300" />
+                  {currentCourse.summary.title}
+                </div>
+                <button
+                  onClick={closeModals}
+                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
               </div>
-              <button
-                onClick={closeModals}
-                className="p-2 rounded-full hover:bg-white/20 transition"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
+              <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-300">
+                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">{currentCourse.summary.duration}</span>
+                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">{currentCourse.summary.modality}</span>
+                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">Nivel {currentCourse.summary.level}</span>
+              </div>
             </div>
 
             {/* CONTENIDO */}
@@ -423,47 +429,52 @@ export default function CursosPage() {
                   {/* INFO GENERAL EN CARDS */}
                   <div className="grid md:grid-cols-3 gap-4">
 
-                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
-                      <Clock className="w-6 h-6 text-blue-500" />
+                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
+                      <Clock className="w-6 h-6 text-cyan-500" />
                       <div>
-                        <p className="text-xs text-gray-500">Duración</p>
-                        <p className="font-semibold">{currentCourse.summary.duration}</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Duración</p>
+                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.duration}</p>
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
-                      <FileText className="w-6 h-6 text-blue-500" />
+                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
+                      <FileText className="w-6 h-6 text-cyan-500" />
                       <div>
-                        <p className="text-xs text-gray-500">Modalidad</p>
-                        <p className="font-semibold">{currentCourse.summary.modality}</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Modalidad</p>
+                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.modality}</p>
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex items-center gap-4 shadow-sm transition-all hover:shadow-md">
-                      <Target className="w-6 h-6 text-blue-500" />
+                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
+                      <Target className="w-6 h-6 text-cyan-500" />
                       <div>
-                        <p className="text-xs text-gray-500">Nivel</p>
-                        <p className="font-semibold">{currentCourse.summary.level}</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Nivel</p>
+                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.level}</p>
                       </div>
                     </div>
 
                   </div>
 
                   {/* APRENDERÁS */}
-                  <div>
-                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-blue-500">
-                      <CheckCircle className="w-5 h-5" />
-                      Aprenderás
-                    </h4>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-2 text-lg font-semibold text-sky-600">
+                        <CheckCircle className="w-5 h-5" />
+                        <span>Aprenderás</span>
+                      </div>
+                      <span className="inline-flex items-center rounded-full bg-sky-100/75 px-3 py-1 text-sm text-sky-700">{currentCourse.summary.learnings.length} puntos clave</span>
+                    </div>
 
                     <div className="grid gap-3">
                       {currentCourse.summary.learnings.map((l, i) => (
                         <div
                           key={i}
-                          className="flex items-start gap-3 bg-gray-50/80 dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-white/5 transition hover:bg-white dark:hover:bg-gray-800/50"
+                          className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/70 p-5 rounded-3xl border border-gray-200/70 dark:border-white/10 shadow-sm"
                         >
-                          <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" />
-                          <p className="text-sm text-gray-700 dark:text-gray-300">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-600">
+                            <CheckCircle className="w-4 h-4" />
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-6">
                             {l}
                           </p>
                         </div>
@@ -474,7 +485,7 @@ export default function CursosPage() {
                   {/* BOTÓN DETALLES */}
                   <button
                     onClick={() => setShowDetails(true)}
-                    className="mt-6 bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-500 hover:to-cyan-600 text-white py-3 px-6 rounded-xl font-semibold w-full shadow-lg transition"
+                    className="mt-6 border border-slate-200 dark:border-slate-700 bg-slate-950 dark:bg-slate-800 text-white py-4 px-6 rounded-3xl font-semibold w-full shadow-xl shadow-slate-900/10 transition-all hover:bg-slate-900 dark:hover:bg-slate-700"
                   >
                     Ver todos los detalles
                   </button>
@@ -496,7 +507,7 @@ export default function CursosPage() {
 
                   {/* DURACIÓN */}
                   <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-3 text-cyan-500 flex items-center gap-2">
+                    <h3 className="font-bold text-lg mb-3 text-sky-500 flex items-center gap-2">
                       <Clock className="w-5 h-5" />
                       Duración y Modalidad
                     </h3>
@@ -508,7 +519,7 @@ export default function CursosPage() {
 
                   {/* CONTENIDOS */}
                   <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-5 text-cyan-500 flex items-center gap-2">
+                    <h3 className="font-bold text-lg mb-5 text-sky-500 flex items-center gap-2">
                       <BookOpen className="w-5 h-5" />
                       Contenidos
                     </h3>
@@ -541,7 +552,7 @@ export default function CursosPage() {
 
                   {/* REQUISITOS */}
                   <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
+                    <h3 className="font-bold text-lg mb-4 text-sky-500">
                       Requisitos
                     </h3>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -573,11 +584,11 @@ export default function CursosPage() {
                     </h3>
                     <div className="space-y-2 text-sm">
                       <p className="flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-green-500" />
+                        <Phone className="w-4 h-4 text-sky-500" />
                         {currentCourse.structuredContent.contact.whatsapp}
                       </p>
                       <p className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-blue-500" />
+                        <Mail className="w-4 h-4 text-sky-500" />
                         {currentCourse.structuredContent.contact.email}
                       </p>
                       <p className="flex items-center gap-2">
@@ -602,7 +613,7 @@ export default function CursosPage() {
           onClick={closeModals}
         >
           <div
-            className="bg-white dark:bg-gray-900/95 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(16,185,129,0.15)] w-[90vw] md:w-[40vw] p-8 relative border border-gray-200 dark:border-white/10"
+            className="bg-white dark:bg-gray-900/95 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(59,130,246,0.15)] w-[90vw] md:w-[40vw] p-8 relative border border-gray-200 dark:border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* CLOSE BUTTON */}
@@ -614,18 +625,18 @@ export default function CursosPage() {
             </button>
 
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
-              <span className="p-2.5 rounded-xl bg-blue-50 dark:bg-white/5 text-blue-500 dark:text-cyan-400">
+              <span className="p-2.5 rounded-xl bg-sky-50 dark:bg-white/5 text-sky-500 dark:text-cyan-300">
                 <CreditCard className="w-5 h-5 sm:w-6 sm:h-6" />
               </span>
               Inscripción
             </h3>
 
             {/* Alias destacado */}
-            <div className="mb-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
-              <p className="text-sm text-gray-700 dark:text-emerald-100 leading-relaxed mb-2">
+            <div className="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/10 border border-slate-100 dark:border-slate-700/20">
+              <p className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed mb-2">
                 Transfiere el importe al siguiente alias para asegurar tu lugar:
               </p>
-              <p className="text-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wide text-center py-2 bg-white dark:bg-black/20 rounded-lg">
+              <p className="text-xl font-mono font-bold text-slate-900 dark:text-white tracking-wide text-center py-2 bg-white dark:bg-black/20 rounded-lg">
                 aircool.miceli
               </p>
             </div>
@@ -639,17 +650,17 @@ export default function CursosPage() {
                 value={buyerName}
                 onChange={(e) => setBuyerName(e.target.value)}
                 placeholder="Nombre completo"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-sky-500/50 outline-none transition-all"
               />
             </div>
 
             <button
               onClick={sendWhatsapp}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 
+              className="w-full bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 
                          text-white py-4 rounded-xl font-bold 
                          text-sm sm:text-base md:text-lg 
                          flex items-center justify-center gap-2 sm:gap-3 
-                         shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+                         shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.02]"
             >
               <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> 
               <span>Enviar comprobante a WhatsApp</span>
