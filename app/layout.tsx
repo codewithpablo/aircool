@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning className={poppins.variable}>
-      <body className="min-h-screen w-full transition-colors duration-300 antialiased">
+      <body className="min-h-screen max-h-screen transition-colors duration-300 antialiased">
         <Providers>
           <main className="w-full relative z-10">
             <GlobalCinematicBackground />
