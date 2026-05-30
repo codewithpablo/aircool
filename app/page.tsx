@@ -118,7 +118,7 @@ function Intro({
 
 function MainContent() {
   return (
-    <div className="w-full transition-colors duration-300">
+    <div className="w-full overflow-x-hidden transition-colors duration-300">
 
       {/* HERO */}
       <div className="relative z-20 w-full">

@@ -113,11 +113,11 @@ const BotonEnlace = ({ title, link, Icon, dropdownItems, colorScheme = "cyan" }:
 
   const scheme = colorSchemes[colorScheme] || colorSchemes.cyan;
 
-  const baseButtonClass = `relative flex items-center justify-center gap-3 px-6 py-3 ${scheme.bg} ${scheme.hover} ${scheme.text} rounded-xl shadow-lg ${scheme.shadow} backdrop-blur-md transition-all duration-200 active:scale-95 font-semibold text-base whitespace-nowrap`;
+  const baseButtonClass = `relative flex items-center justify-center gap-3 px-6 py-3 w-full sm:w-auto ${scheme.bg} ${scheme.hover} ${scheme.text} rounded-xl shadow-lg ${scheme.shadow} backdrop-blur-md transition-all duration-200 active:scale-95 font-semibold text-base whitespace-nowrap`;
 
   if (hasDropdown) {
     return (
-      <div ref={dropdownRef} className="relative inline-block">
+      <div ref={dropdownRef} className="relative block w-full sm:w-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={baseButtonClass}
@@ -166,17 +166,16 @@ const DashboardCompuesto = () => {
 
   return (
     <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-32 overflow-visible">
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          src="/aircool.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm"
-        />
-        <div className="absolute inset-0 bg-black/5 dark:bg-black/10" />
-      </div>
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            src="/aircool.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover  dark:opacity-35 blur-md"
+          />
+        </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pt-10">
 
@@ -196,7 +195,7 @@ const DashboardCompuesto = () => {
         </div>
 
         {/* BOTONES ENLACE - Sin cards, solo botones con iconos */}
-        <div className="flex flex-row items-center justify-center gap-3 w-full">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full">
           <BotonEnlace
             title="Cursos"
             link={fakeLinks.cursos}
