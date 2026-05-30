@@ -1,5 +1,6 @@
 'use client';
 
+import { courses } from './courses';
 import { useState } from "react";
 import Image from "next/image";
 import {
@@ -14,218 +15,25 @@ import {
   MapPin,
   CreditCard,
   FileText,
-  Underline,
-  Snowflake,
-  Wind,
-  Zap
+  ChevronDown,
+ 
 } from "lucide-react";
-
-// --- ARRAY COMPLETO DE CURSOS ---
-const courses = [
-  {
-    id: 1,
-    Icon: Snowflake,
-    title: "Refrigeracion I: Heladeras y Freezers",
-    preview: "Aprende desde cero a reparar y mantener equipos, practicando directamente sobre heladeras y freezers reales.",
-    summary: {
-      title: "Refrigeración Familiar: Heladeras y Freezers",
-      duration: "90 días",
-      modality: "Presencial con material virtual",
-      level: "Inicial – Intermedio – Avanzado",
-      learnings: [
-        "Diagnóstico y detección de fallas en sistemas No Frost y convencionales.",
-        "Soldaduras, vacío profesional y carga precisa de refrigerantes (R600a/R134a).",
-        "Uso de instrumentos: manifold, vacuómetro y pinza amperométrica."
-      ]
-    },
-    structuredContent: {
-      objective: "Formar técnicos capaces de analizar, diagnosticar y ejecutar intervenciones profesionales en sistemas de refrigeración doméstica.",
-      modality: "Presencial y a distancia (b-learning)",
-      schedule: [
-        { days: "Martes y Jueves", hours: "18:00 a 19:30hs" },
-        { days: "Lunes y Miércoles", hours: "18:00 a 19:30hs" }
-      ],
-      location: "Av. Marconi 365, Resistencia – Chaco",
-      duration: "3 meses",
-      fees: [
-        { type: "Inscripción", amount: "$10.000 (cupos limitados)" },
-        { type: "Pago único", amount: "$145.000 (efectivo, transferencia)" },
-        { type: "2 cuotas", amount: "$80.000 (efectivo, transferencia)" },
-        { type: "3 cuotas", amount: "$65.000 (efectivo, transferencia)" },
-        { type: "Pago con tarjeta", amount: "Consultar valores" }
-      ],
-      contents: [
-        { title: "Tema 1: Normas de seguridad", points: ["Seguridad personal", "Riesgos y procedimientos permitidos", "Gestión de residuos"] },
-        { title: "Tema 2: Fundamentos de la refrigeración", points: ["Conceptos de calor y temperatura", "Estados del refrigerante", "Interpretación de diagramas presión-temperatura"] },
-        { title: "Tema 3: Ciclo frigorífico aplicado", points: ["Componentes principales", "Flujo del refrigerante", "Errores comunes"] },
-        { title: "Tema 4: Gases refrigerantes", points: ["Tipos de refrigerantes", "Presiones de trabajo", "Manipulación responsable"] },
-        { title: "Tema 5: Electricidad aplicada", points: ["Uso del multímetro", "Motores monofásicos", "Esquemas eléctricos"] },
-        { title: "Tema 6: Sistemas de refrigeración doméstica", points: ["Heladeras de un frío", "Heladeras de dos fríos", "Sistemas No Frost", "Freezers"] },
-        { title: "Tema 7: Instrumentos y herramientas", points: ["Manifold", "Vacuómetro", "Detector de fugas", "Limpieza de circuito"] },
-        { title: "Tema 8: Técnicas de reparación y soldaduras", points: ["Detección y reparación de fugas", "Soldaduras", "Reemplazo de componentes"] },
-        { title: "Tema 9: Carga de refrigerante y puesta en funcionamiento", points: ["Procedimiento de vacío", "Carga por peso y presión", "Control de consumo eléctrico"] },
-        { title: "Tema 10: Ejercicios de diagnóstico", points: ["Heladera de un frío → termostato", "Dos fríos → obstrucción capilar", "No Frost → evaporador congelado", "Freezer → fuga en evaporador"] }
-      ],
-      activities: [
-        "Clases prácticas en equipos reales",
-        "Material PDF descargable",
-        "Soporte personalizado",
-        "Certificado avalado por docentes"
-      ],
-      requirements: ["No se requiere experiencia previa"],
-      contact: {
-        whatsapp: "+54 362 5490089",
-        email: "aircool.integral@gmail.com",
-        instagram: "@aircoolrefrigeracion"
-      }
-    },
-    images: [
-      "/curso-freezers/1.jpeg",
-      "/curso-freezers/2.jpeg",
-      "/curso-freezers/3.jpeg",
-      "/curso-freezers/4.jpeg"
-    ]
-  },
-  {
-    id: 2,
-    Icon: Wind,
-    title: "Refrigeracion II: Aire Acondicionado Split",
-    preview: "Fórmate como técnico especializado en instalación y mantenimiento de equipos Split y Mini Split.",
-    summary: {
-      title: "Aire Acondicionado Split",
-      duration: "30 días",
-      modality: "Presencial y a distancia (b-learning)",
-      level: "Inicial – Intermedio – Avanzado",
-      learnings: [
-        "Fijación de unidad interior y exterior",
-        "Uso correcto de gases refrigerantes",
-        "Acoples flare, soldaduras y vacío profesional"
-      ]
-    },
-    structuredContent: {
-      objective: "Lograr las capacidades de un técnico para el montaje e instalación de equipos Split y Mini Split.",
-      modality: "Presencial y a distancia (b-learning)",
-      schedule: [
-        { days: "Martes y Jueves", hours: "15:30 a 17 / 20 a 21:30" },
-        { days: "Lunes y Miércoles", hours: "15:30 a 17 / 20 a 21:30" }
-      ],
-      location: "Av. Marconi 365, Resistencia – Chaco",
-      duration: "1 mes",
-      fees: [
-        { type: "Inscripción", amount: "$10.000" },
-        { type: "Pago único", amount: "$65.000" },
-        { type: "2 cuotas", amount: "$35.000" }
-      ],
-      contents: [
-        { title: "Tema 1: Normas de seguridad", points: ["Seguridad personal", "Seguridad del entorno"] },
-        { title: "Tema 2: Conceptos básicos", points: ["Calor y temperatura", "Leyes de la termodinámica", "Gases refrigerantes"] },
-        { title: "Tema 3: Electricidad básica", points: ["Corriente, voltaje, resistencia", "Ley de Ohm", "Conexión de alimentación"] },
-        { title: "Tema 4: Partes de un equipo Split", points: ["Tipos de cañerías", "Unidad interior y exterior", "Errores comunes"] },
-        { title: "Tema 5: Ciclo de refrigeración", points: ["Ciclo básico", "Refrigerantes", "Presiones de trabajo"] },
-        { title: "Tema 6: Presión y vacío", points: ["Definición", "Prueba de vacío", "Unidades de presión"] },
-        { title: "Tema 7: Anclaje seguro", points: ["Normas de seguridad", "Elementos de fijación", "Simulador de anclaje"] },
-        { title: "Tema 8: Montaje de unidades", points: ["Herramientas necesarias", "Insumos de sellado", "Montaje a nivel y altura"] },
-        { title: "Tema 9: Conexión y puesta en marcha", points: ["Preparación del lugar", "Prueba hidráulica y de vacío", "Puesta en marcha"] }
-      ],
-      activities: [
-        "27 clases grabadas",
-        "Material PDF descargable",
-        "Soporte personalizado",
-        "Certificado con reconocimiento"
-      ],
-      requirements: ["Diploma con aval institucional"],
-      contact: {
-        whatsapp: "+54 362 5490089",
-        email: "aircool.integral@gmail.com",
-        instagram: "@aircoolrefrigeracion"
-      }
-    },
-    images: [
-      "/curso-split/1.jpeg",
-      "/curso-split/2.jpeg",
-      "/curso-split/3.jpeg",
-      "/curso-split/4.jpeg"
-    ]
-  },
-  {
-    id: 3,
-    Icon: Zap,
-    title: "Electricidad I: Instalaciones Eléctricas",
-    preview: "Conviértete en técnico en instalaciones eléctricas domiciliarias y obtén certificado profesional.",
-    summary: {
-      title: "Electricidad Domiciliaria",
-      duration: "3 meses",
-      modality: "Presencial y/o virtual",
-      level: "Sin experiencia",
-      learnings: [
-        "Circuitos y conexionado profesional",
-        "Montaje y configuración de tableros eléctricos",
-        "Técnicas de medición con multímetro y pinza amperométrica",
-        "Aplicación de normas IRAM, AEA y seguridad"
-      ]
-    },
-    structuredContent: {
-      objective: "Capacitar a personas sin experiencia previa para desempeñarse como técnicos en instalaciones eléctricas domiciliarias.",
-      modality: "Presencial y/o virtual",
-      schedule: [
-        { days: "3 días por semana", hours: "1,5hs por día (54hs totales)" }
-      ],
-      location: "Av. Marconi 365, Resistencia – Chaco",
-      duration: "3 meses",
-      fees: [
-        { type: "Inscripción", amount: "$10.000" },
-        { type: "Pago único", amount: "$120.000" },
-        { type: "2 cuotas", amount: "$65.000" },
-        { type: "3 cuotas", amount: "$45.000" },
-        { type: "Pago con tarjeta", amount: "Consultar valores" }
-      ],
-      contents: [
-        { title: "Módulo 1: Fundamentos", points: ["Magnitudes eléctricas", "Corriente continua y alterna", "Leyes fundamentales", "Identificación de conductores", "Normas de seguridad"] },
-        { title: "Módulo 2: Elementos de la instalación", points: ["Conductores y aislantes", "Cables y canalizaciones", "Dispositivos de protección", "Cálculo de secciones", "Tablero principal"] },
-        { title: "Módulo 3: Instalaciones en viviendas", points: ["Distribución de circuitos", "Iluminación y tomacorrientes", "Conexión de artefactos", "Normas IRAM y AEA", "Práctica de montaje"] },
-        { title: "Módulo 4: Verificación y seguridad", points: ["Uso de multímetro", "Medición de continuidad", "Detección de fallas", "Conexión a tierra", "Mantenimiento preventivo"] }
-      ],
-      activities: [
-        "Armado de tablero domiciliario",
-        "Cableado de circuito de iluminación",
-        "Simulación de fallas y diagnóstico",
-        "Aplicación de normas de seguridad"
-      ],
-      requirements: [
-        "Edad mínima: 18 años",
-        "Modalidad presencial: 80% asistencia",
-        "Modalidad virtual: 100% descargas y trabajos online",
-        "Evaluaciones presenciales y virtuales",
-        "Certificación: Instalador Nivel Inicial"
-      ],
-      contact: {
-        whatsapp: "+54 362 5490089",
-        email: "electricidad@example.com",
-        instagram: "@electricidadtecnica"
-      }
-    },
-    images: [
-      "/curso-electricidad/1.jpeg",
-      "/curso-electricidad/2.jpeg",
-      "/curso-electricidad/3.jpeg",
-      "/curso-electricidad/4.jpeg"
-    ]
-  }
-];
 
 // --- COMPONENTE PRINCIPAL ---
 export default function CursosPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
+  const [showFullDetails, setShowFullDetails] = useState(false);
   const [buyerName, setBuyerName] = useState("");
+  const [activeTab, setActiveTab] = useState("resumen");
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const currentCourse = courses.find(c => c.id === selectedCourse);
 
-  const openInfoModal = (id: number) => { setSelectedCourse(id); setShowInfoModal(true); setShowDetails(false); };
+  const openInfoModal = (id: number) => { setSelectedCourse(id); setShowInfoModal(true); setShowFullDetails(false); setActiveTab("resumen"); setExpandedSections({}); };
   const openBuyModal = (id: number) => { setSelectedCourse(id); setShowBuyModal(true); };
-  const closeModals = () => { setShowInfoModal(false); setShowBuyModal(false); setSelectedCourse(null); setBuyerName(""); setShowDetails(false); };
+  const closeModals = () => { setShowInfoModal(false); setShowBuyModal(false); setShowFullDetails(false); setSelectedCourse(null); setBuyerName(""); setActiveTab("resumen"); setExpandedSections({}); };
 
   const sendWhatsapp = () => {
     if (!buyerName || !currentCourse) return;
@@ -233,17 +41,6 @@ export default function CursosPage() {
     const message = `Hola, soy ${buyerName} y voy a enviar el comprobante de pago para el curso ${currentCourse.title}`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
-
-  const detailSlides = currentCourse ? [
-    { title: "Objetivo", content: currentCourse.structuredContent.objective },
-    { title: "Duración y Horarios", content: `${currentCourse.structuredContent.duration} - ${currentCourse.structuredContent.modality}` },
-    { title: "Ubicación", content: currentCourse.structuredContent.location },
-    { title: "Inversión", content: currentCourse.structuredContent.fees.map(f => `${f.type}: ${f.amount}`).join(" | ") },
-    { title: "Contenidos", content: currentCourse.structuredContent.contents.map(c => `${c.title}: ${c.points.join(", ")}`).join(" | ") },
-    { title: "Actividades", content: currentCourse.structuredContent.activities.join(" | ") },
-    { title: "Requisitos", content: currentCourse.structuredContent.requirements.join(" | ") },
-    { title: "Contacto", content: `${currentCourse.structuredContent.contact.whatsapp} | ${currentCourse.structuredContent.contact.email} | ${currentCourse.structuredContent.contact.instagram}` }
-  ] : [];
 
   return (
     <div className="relative min-h-screen w-full text-gray-900 dark:text-white transition-colors duration-300 pt-28 pb-16 overflow-hidden">
@@ -256,14 +53,14 @@ export default function CursosPage() {
       <main className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
 
         {/* HEADER DE CURSOS */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-950 dark:text-white tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-950 dark:text-white tracking-tight"
           >
             Nuestros Cursos
           </h1>
           <p
-            className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed px-2"
           >
             Fórmate con profesionales técnicos y adquiere las habilidades prácticas y teóricas necesarias para destacarse como especialista en el rubro, asegurándote un perfil de altísima exigencia laboral.
           </p>
@@ -392,215 +189,242 @@ export default function CursosPage() {
       {/* MODAL INFO */}
       {showInfoModal && currentCourse && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 p-4 overflow-hidden"
           onClick={closeModals}
         >
           <div
-            className="bg-white/95 dark:bg-gray-950/95 rounded-[2.5rem] shadow-2xl shadow-slate-900/10 dark:shadow-black/40 w-[95vw] md:w-[65vw] h-[90vh] flex flex-col relative overflow-hidden border border-gray-200/60 dark:border-white/10"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl h-[70vh] flex flex-col relative overflow-hidden border border-gray-200 dark:border-gray-700 max-h-[85vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
-            <div className="flex flex-col gap-4 px-8 py-6 border-b border-gray-200 dark:border-gray-800 bg-slate-950 text-white">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3 text-xl sm:text-2xl font-semibold">
-                  <BookOpen className="w-6 h-6 text-cyan-300" />
-                  {currentCourse.summary.title}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-white/20">
+                  <BookOpen className="w-5 h-5" />
                 </div>
-                <button
-                  onClick={closeModals}
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                </button>
+                <h2 className="text-lg font-semibold">{currentCourse.summary.title}</h2>
               </div>
-              <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-300">
-                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">{currentCourse.summary.duration}</span>
-                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">{currentCourse.summary.modality}</span>
-                <span className="rounded-full bg-slate-800 px-3 py-1.5 text-gray-200">Nivel {currentCourse.summary.level}</span>
-              </div>
+              <button
+                onClick={closeModals}
+                className="p-2 rounded-full hover:bg-white/20 transition"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* BADGES */}
+            <div className="flex flex-wrap gap-2 px-6 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs font-medium">
+                <Clock className="w-3.5 h-3.5" />
+                {currentCourse.summary.duration}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium">
+                {currentCourse.summary.modality}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-medium">
+                Nivel {currentCourse.summary.level}
+              </span>
             </div>
 
             {/* CONTENIDO */}
-            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
-
-              {!showDetails ? (
+            <div className="flex-1 overflow-y-auto px-6 py-5">
+              {!showFullDetails ? (
+                /* VISTA PREVIA */
                 <div className="space-y-6">
-
-                  {/* INFO GENERAL EN CARDS */}
-                  <div className="grid md:grid-cols-3 gap-4">
-
-                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
-                      <Clock className="w-6 h-6 text-cyan-500" />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Duración</p>
-                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.duration}</p>
-                      </div>
-                    </div>
-
-                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
-                      <FileText className="w-6 h-6 text-cyan-500" />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Modalidad</p>
-                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.modality}</p>
-                      </div>
-                    </div>
-
-                    <div className="bg-slate-50 dark:bg-slate-900/70 p-5 rounded-[1.75rem] border border-gray-200/80 dark:border-white/10 flex items-center gap-4 shadow-lg shadow-slate-900/5 transition-all hover:shadow-xl">
-                      <Target className="w-6 h-6 text-cyan-500" />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Nivel</p>
-                        <p className="font-semibold text-gray-900 dark:text-white">{currentCourse.summary.level}</p>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* APRENDERÁS */}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-2 text-lg font-semibold text-sky-600">
-                        <CheckCircle className="w-5 h-5" />
-                        <span>Aprenderás</span>
-                      </div>
-                      <span className="inline-flex items-center rounded-full bg-sky-100/75 px-3 py-1 text-sm text-sky-700">{currentCourse.summary.learnings.length} puntos clave</span>
-                    </div>
-
-                    <div className="grid gap-3">
-                      {currentCourse.summary.learnings.map((l, i) => (
-                        <div
-                          key={i}
-                          className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/70 p-5 rounded-3xl border border-gray-200/70 dark:border-white/10 shadow-sm"
-                        >
-                          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-600">
-                            <CheckCircle className="w-4 h-4" />
-                          </div>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-6">
-                            {l}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* BOTÓN DETALLES */}
-                  <button
-                    onClick={() => setShowDetails(true)}
-                    className="mt-6 border border-slate-200 dark:border-slate-700 bg-slate-950 dark:bg-slate-800 text-white py-4 px-6 rounded-3xl font-semibold w-full shadow-xl shadow-slate-900/10 transition-all hover:bg-slate-900 dark:hover:bg-slate-700"
-                  >
-                    Ver todos los detalles
-                  </button>
-
-                </div>
-              ) : (
-                <div className="space-y-8">
-
-                  {/* OBJETIVO */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-3 text-cyan-500 flex items-center gap-2">
-                      <Target className="w-5 h-5" />
-                      Objetivo
+                  {/* Objetivo */}
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 border border-cyan-200/50 dark:border-cyan-700/30">
+                    <h3 className="font-semibold text-sm text-cyan-700 dark:text-cyan-300 mb-2 flex items-center gap-2">
+                      <Target className="w-4 h-4" />
+                      Objetivo del curso
                     </h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                       {currentCourse.structuredContent.objective}
                     </p>
                   </div>
 
-                  {/* DURACIÓN */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-3 text-sky-500 flex items-center gap-2">
-                      <Clock className="w-5 h-5" />
-                      Duración y Modalidad
+                  {/* Aprenderás */}
+                  <div>
+                    <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-cyan-500" />
+                      ¿Qué vas a aprender?
                     </h3>
-                    <p className="text-sm">{currentCourse.structuredContent.duration}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {currentCourse.structuredContent.modality}
-                    </p>
+                    <div className="grid gap-2">
+                      {currentCourse.summary.learnings.slice(0, 3).map((l, i) => (
+                        <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                          <CheckCircle className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
+                          <p className="text-sm text-gray-700 dark:text-gray-300">{l}</p>
+                        </div>
+                      ))}
+                      {currentCourse.summary.learnings.length > 3 && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 text-center py-2">
+                          +{currentCourse.summary.learnings.length - 3} puntos más en detalles completos
+                        </p>
+                      )}
+                    </div>
                   </div>
 
-                  {/* CONTENIDOS */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-5 text-sky-500 flex items-center gap-2">
-                      <BookOpen className="w-5 h-5" />
-                      Contenidos
+                  {/* Inversión */}
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border border-emerald-200/50 dark:border-emerald-700/30">
+                    <h3 className="font-semibold text-sm text-emerald-700 dark:text-emerald-300 mb-3 flex items-center gap-2">
+                      <CreditCard className="w-4 h-4" />
+                      Inversión
                     </h3>
-
-                    <div className="space-y-4">
-                      {currentCourse.structuredContent.contents.map((c, i) => (
-                        <div key={i}>
-                          <h4 className="font-semibold mb-2">{c.title}</h4>
-                          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                            {c.points.map((p, j) => (
-                              <li key={j}>{p}</li>
-                            ))}
-                          </ul>
+                    <div className="space-y-2">
+                      {currentCourse.structuredContent.fees.map((f, i) => (
+                        <div key={i} className="flex justify-between items-center text-sm">
+                          <span className="text-gray-600 dark:text-gray-400">{f.type}</span>
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400">{f.amount}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* ACTIVIDADES */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
-                      Actividades
-                    </h3>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                      {currentCourse.structuredContent.activities.map((a, i) => (
-                        <li key={i}>{a}</li>
-                      ))}
-                    </ul>
+                  {/* Botón Ver detalles completos */}
+                  <button
+                    onClick={() => setShowFullDetails(true)}
+                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold flex items-center justify-center gap-2 transition-all hover:scale-[1.02] shadow-lg shadow-cyan-500/25"
+                  >
+                    <FileText className="w-5 h-5" />
+                    Ver detalles completos
+                  </button>
+                </div>
+              ) : (
+                /* DETALLES COMPLETOS */
+                <div className="space-y-6">
+                  {/* Botón volver */}
+                  <button
+                    onClick={() => setShowFullDetails(false)}
+                    className="flex items-center gap-2 text-sm text-cyan-600 dark:text-cyan-400 hover:underline mb-4"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Volver a la vista previa
+                  </button>
+
+                  {/* Accordions con detalles */}
+                  <div className="space-y-3">
+                    {/* Contenidos */}
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                      <details className="group">
+                        <summary className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 cursor-pointer list-none hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                          <span className="font-semibold text-sm text-gray-900 dark:text-white flex items-center gap-2">
+                            <FileText className="w-4 h-4 text-blue-500" />
+                            Contenidos del programa
+                          </span>
+                          <span className="w-4 h-4 text-gray-500 transition-transform duration-400 group-open:rotate-180">
+                            <ChevronDown className="w-full h-full" />
+                          </span>
+                        </summary>
+                        <div className="border-t border-gray-200 dark:border-gray-700">
+                          <div className="p-4 space-y-4">
+                            {currentCourse.structuredContent.contents.map((c, i) => (
+                              <div key={i}>
+                                <h4 className="font-semibold text-sm text-gray-900 dark:text-white mb-2">{c.title}</h4>
+                                <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-1">
+                                  {c.points.map((p, j) => (
+                                    <li key={j}>{p}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+
+                    {/* Actividades */}
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                      <details className="group">
+                        <summary className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 cursor-pointer list-none hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                          <span className="font-semibold text-sm text-gray-900 dark:text-white flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-cyan-500" />
+                            Actividades
+                          </span>
+                          <span className="w-4 h-4 text-gray-500 transition-transform duration-400 group-open:rotate-180">
+                            <ChevronDown className="w-full h-full" />
+                          </span>
+                        </summary>
+                        <div className="border-t border-gray-200 dark:border-gray-700">
+                          <div className="p-4">
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                              {currentCourse.structuredContent.activities.map((a, i) => (
+                                <li key={i}>{a}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+
+                    {/* Requisitos */}
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                      <details className="group">
+                        <summary className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 cursor-pointer list-none hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                          <span className="font-semibold text-sm text-gray-900 dark:text-white flex items-center gap-2">
+                            <Target className="w-4 h-4 text-purple-500" />
+                            Requisitos
+                          </span>
+                          <span className="w-4 h-4 text-gray-500 transition-transform duration-400 group-open:rotate-180">
+                            <ChevronDown className="w-full h-full" />
+                          </span>
+                        </summary>
+                        <div className="border-t border-gray-200 dark:border-gray-700">
+                          <div className="p-4">
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                              {currentCourse.structuredContent.requirements.map((r, i) => (
+                                <li key={i}>{r}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+
+                    {/* Ubicación */}
+                    {currentCourse.structuredContent.location && (
+                      <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+                        <details className="group">
+                          <summary className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 cursor-pointer list-none hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                            <span className="font-semibold text-sm text-gray-900 dark:text-white flex items-center gap-2">
+                              <MapPin className="w-4 h-4 text-red-500" />
+                              Ubicación
+                            </span>
+                            <span className="w-4 h-4 text-gray-500 transition-transform duration-400 group-open:rotate-180">
+                              <ChevronDown className="w-full h-full" />
+                            </span>
+                          </summary>
+                          <div className="border-t border-gray-200 dark:border-gray-700">
+                            <div className="p-4">
+                              <p className="text-sm text-gray-600 dark:text-gray-400">{currentCourse.structuredContent.location}</p>
+                            </div>
+                          </div>
+                        </details>
+                      </div>
+                    )}
                   </div>
 
-                  {/* REQUISITOS */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-4 text-sky-500">
-                      Requisitos
-                    </h3>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                      {currentCourse.structuredContent.requirements.map((r, i) => (
-                        <li key={i}>{r}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* INVERSIÓN */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-4 text-cyan-500 flex items-center gap-2">
-                      <CreditCard className="w-5 h-5" />
-                      Inversión
-                    </h3>
-                    <ul className="space-y-1 text-sm">
-                      {currentCourse.structuredContent.fees.map((f, i) => (
-                        <li key={i}>
-                          <strong>{f.type}:</strong> {f.amount}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* CONTACTO */}
-                  <div className="bg-slate-50 dark:bg-gray-800/40 dark:backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-white/5">
-                    <h3 className="font-bold text-lg mb-4 text-cyan-500">
+                  {/* Contacto */}
+                  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                    <h3 className="font-semibold text-sm text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-sky-500" />
                       Contacto
                     </h3>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                       <p className="flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-sky-500" />
+                        <Phone className="w-4 h-4" />
                         {currentCourse.structuredContent.contact.whatsapp}
                       </p>
                       <p className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-sky-500" />
+                        <Mail className="w-4 h-4" />
                         {currentCourse.structuredContent.contact.email}
                       </p>
                       <p className="flex items-center gap-2">
-                        <Instagram className="w-4 h-4 text-pink-500" />
+                        <Instagram className="w-4 h-4" />
                         {currentCourse.structuredContent.contact.instagram}
                       </p>
                     </div>
                   </div>
-
                 </div>
               )}
-
             </div>
           </div>
         </div>
@@ -609,61 +433,61 @@ export default function CursosPage() {
       {/* MODAL COMPRA */}
       {showBuyModal && currentCourse && (
         <div
-          className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4"
+          className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4 overflow-hidden"
           onClick={closeModals}
         >
           <div
-            className="bg-white dark:bg-gray-900/95 dark:backdrop-blur-3xl rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(59,130,246,0.15)] w-[90vw] md:w-[40vw] p-8 relative border border-gray-200 dark:border-white/10"
+            className="bg-white dark:bg-gray-900/95 dark:backdrop-blur-3xl rounded-2xl shadow-2xl dark:shadow-[0_0_50px_rgba(59,130,246,0.15)] w-full max-w-md p-6 relative border border-gray-200 dark:border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* CLOSE BUTTON */}
             <button
               onClick={closeModals}
-              className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition text-gray-500 dark:text-gray-300"
+              className="absolute top-3 right-3 p-1.5 rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition text-gray-500 dark:text-gray-300"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
             </button>
 
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
-              <span className="p-2.5 rounded-xl bg-sky-50 dark:bg-white/5 text-sky-500 dark:text-cyan-300">
-                <CreditCard className="w-5 h-5 sm:w-6 sm:h-6" />
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+              <span className="p-2 rounded-lg bg-sky-50 dark:bg-white/5 text-sky-500 dark:text-cyan-300">
+                <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
               </span>
               Inscripción
             </h3>
 
-            {/* Alias destacado */}
-            <div className="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/10 border border-slate-100 dark:border-slate-700/20">
-              <p className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed mb-2">
-                Transfiere el importe al siguiente alias para asegurar tu lugar:
+            {/* Alias destacado - compacto */}
+            <div className="mb-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-700/10 border border-slate-100 dark:border-slate-700/20">
+              <p className="text-xs text-gray-700 dark:text-slate-200 leading-relaxed mb-1.5">
+                Transfiere el importe al siguiente alias:
               </p>
-              <p className="text-xl font-mono font-bold text-slate-900 dark:text-white tracking-wide text-center py-2 bg-white dark:bg-black/20 rounded-lg">
+              <p className="text-lg font-mono font-bold text-slate-900 dark:text-white tracking-wide text-center py-1.5 bg-white dark:bg-black/20 rounded">
                 aircool.miceli
               </p>
             </div>
 
-            <div className="space-y-4 mb-8">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 ml-1">
-                ¿A nombre de quién estará anotado el curso?
+            <div className="space-y-3 mb-5">
+              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 ml-0.5">
+                ¿A nombre de quién?
               </label>
               <input
                 type="text"
                 value={buyerName}
                 onChange={(e) => setBuyerName(e.target.value)}
                 placeholder="Nombre completo"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-sky-500/50 outline-none transition-all"
+                className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-sky-500/50 outline-none transition-all"
               />
             </div>
 
             <button
               onClick={sendWhatsapp}
               className="w-full bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 
-                         text-white py-4 rounded-xl font-bold 
-                         text-sm sm:text-base md:text-lg 
-                         flex items-center justify-center gap-2 sm:gap-3 
+                         text-white py-2.5 rounded-lg font-bold 
+                         text-xs sm:text-sm 
+                         flex items-center justify-center gap-2 
                          shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.02]"
             >
-              <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> 
-              <span>Enviar comprobante a WhatsApp</span>
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> 
+              <span>Enviar a WhatsApp</span>
             </button>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 type Logo = {
   name: string;
@@ -39,7 +40,15 @@ export default function HeroBrandsCarrousel() {
 
   return (
     <div className="w-full mt-6 mb-12 overflow-x-hidden overflow-y-hidden">
-      <div className="inline-flex w-max animate-marquee gap-8 sm:gap-10 will-change-transform">
+      <motion.div 
+        className="inline-flex w-max gap-8 sm:gap-10"
+        animate={{ x: [0, -33.33 * 100] }}
+        transition={{
+          duration: 25,
+          ease: "linear",
+          repeat: Infinity,
+        }}
+      >
         {[...logos, ...logos, ...logos].map((logo, index) => {
           const isDark = resolvedTheme === "dark";
           const src = isDark && logo.dark ? logo.dark : logo.light;
@@ -61,7 +70,7 @@ export default function HeroBrandsCarrousel() {
             </div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
-// DashboardCompuesto.tsx (Dropdown Pegado + Hover Robusto)
+// DashboardCompuesto.tsx - Botones con iconos de Lucide React
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BookOpen, MonitorPlay, Calendar, Library, Bell, ChevronDown } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -24,7 +24,7 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
 
   return (
     <div
-      className="absolute top-full mt-2 w-full min-w-[220px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden z-20 border border-gray-200 dark:border-white/10"
+      className="absolute top-full mt-2 w-full min-w-[220px] bg-gradient-to-b from-cyan-400/90 to-sky-400/90 dark:from-cyan-500/85 dark:to-sky-500/85 backdrop-blur-xl rounded-xl shadow-2xl shadow-cyan-400/20 overflow-hidden z-20 border border-cyan-300/50 dark:border-cyan-400/40"
     >
       <ul className="py-2">
         {items.map((item, index) => (
@@ -33,7 +33,7 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-white/5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
+              className="block px-5 py-3 text-sm text-white font-medium hover:bg-white/20 dark:hover:bg-white/15 transition-colors duration-200"
             >
               {item.name}
             </a>
@@ -45,58 +45,97 @@ const DropdownMenu = ({ items, isOpen }: DropdownMenuProps) => {
 };
 
 // --------------------------------------------------
-// 2. COMPONENTE CardEnlace
+// 2. COMPONENTE BotonEnlace (reemplaza CardEnlace)
 // --------------------------------------------------
 
-interface CardEnlaceProps {
+interface BotonEnlaceProps {
   title: string;
-  description: string;
   link: string;
   Icon: LucideIcon;
   dropdownItems?: DropdownItem[];
+  colorScheme?: string;
 }
 
-const CardEnlace = ({ title, description, link, Icon, dropdownItems }: CardEnlaceProps) => {
+const BotonEnlace = ({ title, link, Icon, dropdownItems, colorScheme = "cyan" }: BotonEnlaceProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const hasDropdown = dropdownItems && dropdownItems.length > 0;
 
-  const buttonStyle = "mt-6 flex items-center justify-center space-x-2 px-6 py-3 bg-white/90 dark:bg-slate-800/95 text-slate-950 dark:text-white rounded-full shadow-lg shadow-black/10 dark:shadow-black/30 transition-all hover:bg-white dark:hover:bg-slate-700 active:scale-95 w-full font-medium whitespace-nowrap";
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const colorSchemes: Record<string, { bg: string; hover: string; shadow: string; text: string }> = {
+    cyan: {
+      bg: "bg-cyan-400/85 dark:bg-cyan-400/85",
+      hover: "hover:bg-cyan-500/85 dark:hover:bg-cyan-500/85",
+      shadow: "shadow-cyan-300/30",
+      text: "text-white"
+    },
+    purple: {
+      bg: "bg-purple-400/85 dark:bg-purple-400/85",
+      hover: "hover:bg-purple-500/85 dark:hover:bg-purple-500/85",
+      shadow: "shadow-purple-300/30",
+      text: "text-white"
+    },
+    orange: {
+      bg: "bg-orange-400/85 dark:bg-orange-400/85",
+      hover: "hover:bg-orange-500/85 dark:hover:bg-orange-500/85",
+      shadow: "shadow-orange-300/30",
+      text: "text-white"
+    },
+    green: {
+      bg: "bg-emerald-400/85 dark:bg-emerald-400/85",
+      hover: "hover:bg-emerald-500/85 dark:hover:bg-emerald-500/85",
+      shadow: "shadow-emerald-300/30",
+      text: "text-white"
+    },
+    red: {
+      bg: "bg-rose-400/85 dark:bg-rose-400/85",
+      hover: "hover:bg-rose-500/85 dark:hover:bg-rose-500/85",
+      shadow: "shadow-rose-300/30",
+      text: "text-white"
+    },
+    blue: {
+      bg: "bg-sky-400/85 dark:bg-sky-400/85",
+      hover: "hover:bg-sky-500/85 dark:hover:bg-sky-500/85",
+      shadow: "shadow-sky-300/30",
+      text: "text-white"
+    }
+  };
+
+  const scheme = colorSchemes[colorScheme] || colorSchemes.cyan;
+
+  const baseButtonClass = `relative flex items-center justify-center gap-3 px-6 py-3 ${scheme.bg} ${scheme.hover} ${scheme.text} rounded-xl shadow-lg ${scheme.shadow} backdrop-blur-md transition-all duration-200 active:scale-95 font-semibold text-base whitespace-nowrap`;
+
+  if (hasDropdown) {
+    return (
+      <div ref={dropdownRef} className="relative inline-block">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={baseButtonClass}
+        >
+          <Icon size={24} />
+          <span>{title}</span>
+          <ChevronDown size={18} className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
+        </button>
+        <DropdownMenu items={dropdownItems} isOpen={isOpen} />
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`flex flex-col h-full bg-white dark:bg-gray-900/40 dark:backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-2xl p-6 sm:p-8 shadow-lg transition-all hover:shadow-2xl relative hover:-translate-y-1 ${isOpen ? "z-50" : "z-10"
-        }`}
-    >
-      <div className="flex items-center gap-4 mb-4">
-        <div className="bg-emerald-50 dark:bg-white/5 p-3 rounded-xl border border-emerald-100 dark:border-white/10 text-emerald-500">
-          <Icon size={28} />
-        </div>
-        <h2 className="text-xl sm:text-2xl font-bold font-heading text-gray-900 dark:text-white leading-tight">
-          {title}
-        </h2>
-      </div>
-      <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base mb-auto">
-        {description}
-      </p>
-
-      {hasDropdown ? (
-        <div
-          className="relative inline-block w-full"
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-        >
-          <div className={`${buttonStyle} cursor-pointer`}>
-            <span>Acceder</span>
-            <ChevronDown size={20} className={`ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
-          </div>
-          <DropdownMenu items={dropdownItems} isOpen={isOpen} />
-        </div>
-      ) : (
-        <a href={link} target="_blank" rel="noopener noreferrer" className={buttonStyle}>
-          <span>Acceder</span>
-        </a>
-      )}
-    </div>
+    <a href={link} target="_blank" rel="noopener noreferrer" className={baseButtonClass}>
+      <Icon size={24} />
+      <span>{title}</span>
+    </a>
   );
 };
 
@@ -134,9 +173,9 @@ const DashboardCompuesto = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm"
         />
-        <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+        <div className="absolute inset-0 bg-black/5 dark:bg-black/10" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pt-10">
@@ -156,23 +195,43 @@ const DashboardCompuesto = () => {
           </p>
         </div>
 
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-4xl px-2"
-        >
-          <CardEnlace
+        {/* BOTONES ENLACE - Sin cards, solo botones con iconos */}
+        <div className="flex flex-row items-center justify-center gap-3 w-full">
+          <BotonEnlace
             title="Cursos"
-            description="Accede a todo el material teórico, videoclases y evaluaciones de los cursos a los que estás inscripto."
             link={fakeLinks.cursos}
             Icon={BookOpen}
             dropdownItems={cursosItems}
+            colorScheme="purple"
           />
 
-          <CardEnlace
+          <BotonEnlace
             title="Clases en vivo"
-            description="Conectate a las clases sincrónicas con los profesores e interactuá con tus compañeros del curso."
             link={fakeLinks.clases}
             Icon={MonitorPlay}
             dropdownItems={clasesItems}
+            colorScheme="orange"
+          />
+
+          <BotonEnlace
+            title="Calendario"
+            link={fakeLinks.calendario}
+            Icon={Calendar}
+            colorScheme="green"
+          />
+
+          <BotonEnlace
+            title="Biblioteca"
+            link={fakeLinks.biblioteca}
+            Icon={Library}
+            colorScheme="blue"
+          />
+
+          <BotonEnlace
+            title="Avisos"
+            link={fakeLinks.avisos}
+            Icon={Bell}
+            colorScheme="red"
           />
         </div>
       </div>

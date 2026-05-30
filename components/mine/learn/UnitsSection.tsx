@@ -112,7 +112,7 @@ export default function UnitsSection() {
                 <img
                   src={unit.image}
                   alt={unit.title}
-                  className="w-full aspect-[16/9] object-cover"
+                  className="w-full aspect-[16/16] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
               </div>
